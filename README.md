@@ -7,7 +7,7 @@ Each model package comes with an ONNX model, JSON source attributes, excerpts, c
 Use cli tools to explore your own .md and .txt files via command or use Claude Cowork, OpenAI Chat GPT directly with the JSON fies and Python scripts.
 
 **WEB APP & DEMO**
-https://www.shanedevane.com/etiny/
+https://enano.ai
 Web app is private and runs entirely in frontend, no user data or text is sent, models designed to run entirely in-browser.
 <p align="center">
   <a href="docs/screens/screen-1.png"><img src="docs/screens/screen-1.jpg" width="49%"></a>
@@ -57,5 +57,5 @@ onboards: it pulls the default model and shows the shortest path to a first scan
 
 ## Contact
 
-Found a bug or have a question? [Open an issue](https://github.com/shanedevane/etiny/issues)
-or visit [shanedevane.com/contact](https://www.shanedevane.com/contact/).
+Found a bug or have a question? [Open an issue](https://github.com/enano-ai/enano/issues)
+or visit [enano.ai](https://enano.ai).
