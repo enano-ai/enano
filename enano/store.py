@@ -1,4 +1,4 @@
-"""Local bundle store: ~/.etiny layout, versioned bundles, latest pointer."""
+"""Local bundle store: ~/.enano layout (legacy ~/.etiny still honored)."""
 
 from __future__ import annotations
 
@@ -9,11 +9,17 @@ import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 
-DEFAULT_HOME = Path.home() / ".etiny"
+DEFAULT_HOME = Path.home() / ".enano"
+_LEGACY_HOME = Path.home() / ".etiny"
 
 
 def store_root() -> Path:
-    return Path(os.environ.get("ETINY_HOME", DEFAULT_HOME))
+    env = os.environ.get("ENANO_HOME") or os.environ.get("ETINY_HOME")
+    if env:
+        return Path(env)
+    if _LEGACY_HOME.is_dir():
+        return _LEGACY_HOME
+    return DEFAULT_HOME
 
 
 def registry_cache_path() -> Path:

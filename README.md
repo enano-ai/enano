@@ -1,4 +1,4 @@
-# etiny: Explorable tiny models for your second brain
+# enano: Explorable nano models for your second brain
 
 28,000+ pieces of advice distilled from key books on the topics of personal goals, career advice and startup pitch decks.
 
@@ -17,13 +17,13 @@ Web app is private and runs entirely in frontend, no user data or text is sent, 
 ## Install
 
 ```bash
-pipx install etiny
+pipx install enano
 ```
 
 ## Quickstart
 
 ```bash
-etiny scan                   # checks .md in the folder against the  default model
+enano scan                   # checks .md in the folder against the  default model
 ```
 
 | Model | Default | Sources | Corpus | Rules | Detectors | Advice | Pull |
@@ -37,22 +37,22 @@ etiny scan                   # checks .md in the folder against the  default mod
 You can use the packages via the cli toos OR you can use with Claude Cowork et. al.
 
 ```bash
-etiny pull personal-goals         # fetch the personal-goals bundle (~36 MB, sha-verified)
-etiny scan notes.md               # scan a document (regex plus the optional neural pass)
-etiny scan                        # every .md in the current folder (stdin when piped)
-etiny walk                        # every .md in every subfolder
-etiny elevators                   # list the source works with their counts
-etiny elevations "fear of failure"  # search the rule corpus, any word or phrase
-etiny list                        # every model you can pull
-etiny models                      # what's installed
-etiny use pitch-decks             # switch the default model
-etiny update                      # check for newer bundles
-etiny upgrade                     # fetch newer bundles
-etiny doctor                      # environment and store diagnostics
+enano pull personal-goals         # fetch the personal-goals bundle (~36 MB, sha-verified)
+enano scan notes.md               # scan a document (regex plus the optional neural pass)
+enano scan                        # every .md in the current folder (stdin when piped)
+enano walk                        # every .md in every subfolder
+enano elevators                   # list the source works with their counts
+enano elevations "fear of failure"  # search the rule corpus, any word or phrase
+enano list                        # every model you can pull
+enano models                      # what's installed
+enano use pitch-decks             # switch the default model
+enano update                      # check for newer bundles
+enano upgrade                     # fetch newer bundles
+enano doctor                      # environment and store diagnostics
 ```
 
 **Global Parameters**
-Every command takes `--json`; there are no other flags to learn. Bare `etiny`
+Every command takes `--json`; there are no other flags to learn. Bare `enano`
 onboards: it pulls the default model and shows the shortest path to a first scan.
 
 ## Contact

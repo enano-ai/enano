@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "etiny"
+name = "enano"
 version = "0.2.0"
 description = "Elevation models for personal goals and pitch decks: pull versioned bundles, scan documents deterministically, entirely on your machine."
 readme = "README.md"
@@ -21,7 +21,9 @@ classifiers = [
 semantic = ["onnxruntime"]
 
 [project.scripts]
-etiny = "etiny.cli:main"
+enano = "enano.cli:main"
+# Legacy alias so existing muscle memory keeps working.
+etiny = "enano.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["etiny"]
+packages = ["enano"]

@@ -1,4 +1,4 @@
-"""The etiny CLI: pull-based bundle management plus a front door to the
+"""The enano CLI: pull-based bundle management plus a front door to the
 bundle's own deterministic scan tools."""
 
 from __future__ import annotations
@@ -30,7 +30,7 @@ def _require_bundle(selector: str, auto_pull: bool, quiet: bool = False) -> Path
     entry = reg.resolve_entry(reg.fetch_registry(refresh=True), model, version)
     size_mb = round(entry["bytes"] / 1e6, 1)
     if not auto_pull:
-        print(f"{model} is not installed locally. Run: etiny pull {model}  ({size_mb} MB)")
+        print(f"{model} is not installed locally. Run: enano pull {model}  ({size_mb} MB)")
         raise SystemExit(2)
     prompt = f"{model}@{entry['version']} is not installed — download it now ({size_mb} MB)? [y/N] "
     if sys.stdin.isatty() and input(prompt).strip().lower() not in ("y", "yes"):
@@ -75,7 +75,7 @@ def cmd_pull(args: argparse.Namespace) -> int:
     if selectors == ["all"]:
         selectors = sorted(reg.registry_models(registry))
     if not selectors:
-        raise SystemExit("nothing to pull: give a model (or: etiny pull all)")
+        raise SystemExit("nothing to pull: give a model (or: enano pull all)")
     results = []
     for selector in selectors:
         model, version = _parse_selector(selector)
@@ -158,7 +158,7 @@ def cmd_models(args: argparse.Namespace) -> int:
             }
         )
     if not rows:
-        print("nothing installed — try: etiny pull personal-goals  (etiny list shows what exists)")
+        print("nothing installed — try: enano pull personal-goals  (enano list shows what exists)")
         return 0
     if args.json:
         print(jsonlib.dumps(rows, indent=2))
@@ -210,13 +210,13 @@ def cmd_use(args: argparse.Namespace) -> int:
     if args.model:
         registry = reg.fetch_registry(refresh=True)
         if args.model not in reg.registry_models(registry):
-            raise SystemExit(f"unknown model {args.model!r} (etiny list shows what exists)")
+            raise SystemExit(f"unknown model {args.model!r} (enano list shows what exists)")
         store.write_default_model(args.model)
     current = store.default_model()
     if args.json:
         print(jsonlib.dumps({"default_model": current}))
         return 0
-    note = "" if store.resolve_version(current, None) else f" (not installed — etiny pull {current})"
+    note = "" if store.resolve_version(current, None) else f" (not installed — enano pull {current})"
     print(f"default model: {current}{note}")
     return 0
 
@@ -225,7 +225,7 @@ def cmd_info(args: argparse.Namespace) -> int:
     model, version = _parse_selector(args.model)
     path = store.resolve_version(model, version)
     if not path:
-        raise SystemExit(f"{args.model} is not installed (try: etiny pull {model})")
+        raise SystemExit(f"{args.model} is not installed (try: enano pull {model})")
     m = next((lm for lm in store.local_models() if lm.path == path), None)
     doc = m.version_doc if m else {}
     info = {
@@ -333,7 +333,7 @@ def cmd_scan(args: argparse.Namespace) -> int:
         return _run_tool(bundle, "scan", ["-"] + json_flag)
     docs = sorted(Path.cwd().glob("*.md"))
     if not docs:
-        raise SystemExit("no .md files in the current directory (or pass a file: etiny scan notes.md)")
+        raise SystemExit("no .md files in the current directory (or pass a file: enano scan notes.md)")
     print(f"scanning {len(docs)} markdown file(s) in {Path.cwd()}", flush=True)
     failed = 0
     for doc in docs:
@@ -459,10 +459,10 @@ def cmd_doctor(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="etiny",
+        prog="enano",
         description="Elevation models on your machine: pull versioned bundles, scan documents deterministically.",
     )
-    parser.add_argument("--version", action="version", version=f"etiny {__version__}")
+    parser.add_argument("--version", action="version", version=f"enano {__version__}")
     parser.add_argument("--no-color", action="store_true", help=argparse.SUPPRESS)
     sub = parser.add_subparsers(dest="command")
 
@@ -514,7 +514,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--json", action="store_true")
     p.set_defaults(func=cmd_verify)
 
-    p = sub.add_parser("scan", help="scan a document with the default model (etiny use switches it); no file: every .md in the current folder")
+    p = sub.add_parser("scan", help="scan a document with the default model (enano use switches it); no file: every .md in the current folder")
     p.add_argument("--json", action="store_true")
     p.add_argument("forward", nargs=argparse.REMAINDER, help=argparse.SUPPRESS)
     p.set_defaults(func=cmd_scan)
@@ -524,12 +524,12 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--json", action="store_true")
     p.set_defaults(func=cmd_walk)
 
-    p = sub.add_parser("elevators", help="list the default model's source works (etiny use switches it)")
+    p = sub.add_parser("elevators", help="list the default model's source works (enano use switches it)")
     p.add_argument("--json", action="store_true")
     p.add_argument("forward", nargs=argparse.REMAINDER, help=argparse.SUPPRESS)
     p.set_defaults(func=cmd_elevators)
 
-    p = sub.add_parser("elevations", help="search the default model's rule corpus (etiny use switches it)")
+    p = sub.add_parser("elevations", help="search the default model's rule corpus (enano use switches it)")
     p.add_argument("query", nargs="?", help="search text (positional)")
     p.add_argument("--json", action="store_true")
     p.add_argument("forward", nargs=argparse.REMAINDER, help=argparse.SUPPRESS)
@@ -539,7 +539,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--json", action="store_true")
     p.set_defaults(func=cmd_doctor)
 
-    p = sub.add_parser("help", help="show help (for one command: etiny help scan)")
+    p = sub.add_parser("help", help="show help (for one command: enano help scan)")
     p.add_argument("topic", nargs="?", help="command name (default: top-level help)")
     p.set_defaults(func=cmd_help)
 
@@ -554,13 +554,13 @@ def cmd_help(args: argparse.Namespace) -> int:
     subaction = next((a for a in parser._actions if isinstance(a, argparse._SubParsersAction)), None)
     target = subaction.choices.get(args.topic) if subaction else None
     if target is None:
-        raise SystemExit(f"unknown command {args.topic!r} — try: etiny help")
+        raise SystemExit(f"unknown command {args.topic!r} — try: enano help")
     target.print_help()
     return 0
 
 
 def cmd_bare() -> int:
-    """Bare `etiny`: onboard with the default model — pull it if missing,
+    """Bare `enano`: onboard with the default model — pull it if missing,
     then show the shortest path to a first scan."""
     model = store.default_model()
     path = store.resolve_version(model, None)
@@ -572,11 +572,11 @@ def cmd_bare() -> int:
     if path:
         print(f"ready: {model} is installed ({path.name})")
     print()
-    print("  etiny scan notes.md      scan one document")
-    print("  etiny scan                scan every .md in the current folder")
-    print("  etiny walk                scan every .md in every subfolder")
-    print("  etiny list                see every model you can pull")
-    print(f"  etiny use <model>         switch the default (now: {model})")
+    print("  enano scan notes.md      scan one document")
+    print("  enano scan                scan every .md in the current folder")
+    print("  enano walk                scan every .md in every subfolder")
+    print("  enano list                see every model you can pull")
+    print(f"  enano use <model>         switch the default (now: {model})")
     return 0
 
 
