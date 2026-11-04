@@ -1,4 +1,4 @@
-"""Local bundle store: ~/.enano layout (legacy ~/.etiny still honored)."""
+"""Local bundle store: ~/.enano layout (a legacy ~/.etiny is moved here once)."""
 
 from __future__ import annotations
 
@@ -17,8 +17,11 @@ def store_root() -> Path:
     env = os.environ.get("ENANO_HOME") or os.environ.get("ETINY_HOME")
     if env:
         return Path(env)
-    if _LEGACY_HOME.is_dir():
-        return _LEGACY_HOME
+    if not DEFAULT_HOME.is_dir() and _LEGACY_HOME.is_dir():
+        try:
+            _LEGACY_HOME.rename(DEFAULT_HOME)
+        except OSError:
+            return _LEGACY_HOME
     return DEFAULT_HOME
 
 

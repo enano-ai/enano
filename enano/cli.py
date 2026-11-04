@@ -15,6 +15,7 @@ from pathlib import Path
 from . import __version__
 from . import registry as reg
 from . import store
+from . import web
 
 
 def _parse_selector(selector: str) -> tuple[str, str | None]:
@@ -539,11 +540,23 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--json", action="store_true")
     p.set_defaults(func=cmd_doctor)
 
+    p = sub.add_parser("web", help="serve the local web app (localhost API + GUI) and open it in a browser")
+    p.add_argument("--port", type=int, default=web.DEFAULT_PORT, help="port to serve on (0 picks a free one)")
+    p.add_argument("--no-open", action="store_true", help="start the server without opening a browser")
+    p.add_argument("--dir", default=None, help="serve a web app build from this folder (default: the store's web bundle)")
+    p.add_argument("--json", action="store_true", help="print the server info as JSON, then serve")
+    p.set_defaults(func=cmd_web)
+
     p = sub.add_parser("help", help="show help (for one command: enano help scan)")
     p.add_argument("topic", nargs="?", help="command name (default: top-level help)")
     p.set_defaults(func=cmd_help)
 
     return parser
+
+
+def cmd_web(args: argparse.Namespace) -> int:
+    """`enano web`: localhost backend (JSON API + GUI), browser front end."""
+    return web.serve(port=args.port, open_browser=not args.no_open, json_mode=args.json, web_dir=args.dir)
 
 
 def cmd_help(args: argparse.Namespace) -> int:
@@ -575,6 +588,7 @@ def cmd_bare() -> int:
     print("  enano scan notes.md      scan one document")
     print("  enano scan                scan every .md in the current folder")
     print("  enano walk                scan every .md in every subfolder")
+    print("  enano web                 the same models in your browser")
     print("  enano list                see every model you can pull")
     print(f"  enano use <model>         switch the default (now: {model})")
     return 0

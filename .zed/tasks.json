@@ -1,0 +1,33 @@
+{
+  "version": ["0.2", "Keep this file sorted."],
+  "tasks": {
+    "enano web": {
+      "label": "enano web",
+      "command": "make web",
+      "use_new_terminal": true,
+      "allow_concurrent_runs": false,
+      "reveal": "always"
+    },
+    "enano test": {
+      "label": "enano test",
+      "command": "make test",
+      "use_new_terminal": true,
+      "allow_concurrent_runs": false,
+      "reveal": "always"
+    },
+    "enano doctor": {
+      "label": "enano doctor",
+      "command": "make doctor",
+      "use_new_terminal": true,
+      "allow_concurrent_runs": false,
+      "reveal": "always"
+    },
+    "enano install": {
+      "label": "enano install",
+      "command": "make install",
+      "use_new_terminal": true,
+      "allow_concurrent_runs": false,
+      "reveal": "always"
+    }
+  }
+}

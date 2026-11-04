@@ -18,7 +18,11 @@ DEFAULT_REGISTRY_URL = (
 def registry_url() -> str:
     import os
 
-    return os.environ.get("ETINY_REGISTRY", DEFAULT_REGISTRY_URL)
+    return (
+        os.environ.get("ENANO_REGISTRY")
+        or os.environ.get("ETINY_REGISTRY")  # legacy name, still honored
+        or DEFAULT_REGISTRY_URL
+    )
 
 
 def fetch_registry(refresh: bool = False, cache_path: Path | None = None) -> dict[str, Any]:
