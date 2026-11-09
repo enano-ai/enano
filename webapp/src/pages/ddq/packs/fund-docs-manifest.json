@@ -1,0 +1,528 @@
+{
+  "schema": "fund_docs_manifest.v1",
+  "id": "fund_docs_detectors",
+  "version": "fd-release-2026-10-30",
+  "generated_at": "2026-10-30",
+  "source": "document-pipeline:verticals (fintech/fund-docs, personal/goals, startup/pitch-decks, career/guidance)",
+  "detector_count": 1788,
+  "pattern_count": 32536,
+  "rulebook_count": 65,
+  "pack_files": 1788,
+  "exemplar_detectors": 878,
+  "instruments": [
+    {
+      "instrument": "aifmd",
+      "label": "110a(c) - first part: Review of Third-Party Initiative Requirements",
+      "groups": 115,
+      "patterns": 1398,
+      "corpus_obligations": 4940
+    },
+    {
+      "instrument": "allen_as_a_man_thinketh_1903",
+      "label": "of Thought on Circumstances: Improve Yourself to Improve Your Circumstances: Improve Yourself to Improve Your Circumstances",
+      "groups": 2,
+      "patterns": 800,
+      "corpus_obligations": 172
+    },
+    {
+      "instrument": "allen_getting_things_done",
+      "label": "2: Getting Control of Your Life: The Five Steps of Mastering Workflow: Write down open loops in a trusted collection tool",
+      "groups": 4,
+      "patterns": 1600,
+      "corpus_obligations": 1616
+    },
+    {
+      "instrument": "atkinson_power_of_concentration",
+      "label": "V: How Concentrated Thought Links All Humanity Together: Control Your Moods of Mind to Produce Success",
+      "groups": 1,
+      "patterns": 29,
+      "corpus_obligations": 1139
+    },
+    {
+      "instrument": "atomic_habits_clear_2018",
+      "label": "12: Prime Environment Against Bad Habits: Make the good habit the path of least resistance",
+      "groups": 6,
+      "patterns": 2400,
+      "corpus_obligations": 676
+    },
+    {
+      "instrument": "aurelius_meditations",
+      "label": "I, Section XV: Morning Anticipation of Difficult People: Morning Anticipation of Difficult People",
+      "groups": 3,
+      "patterns": 1200,
+      "corpus_obligations": 1649
+    },
+    {
+      "instrument": "benchmark_reg",
+      "label": "I, Section 7(d), first requirement: Conflicts of Interest Management Procedures",
+      "groups": 26,
+      "patterns": 346,
+      "corpus_obligations": 1328
+    },
+    {
+      "instrument": "bennett_how_to_live_1908",
+      "label": "The Case of the Minority: Adjust your life balance when work exhausts you",
+      "groups": 1,
+      "patterns": 400,
+      "corpus_obligations": 198
+    },
+    {
+      "instrument": "boethius_consolation_of_philosophy",
+      "label": "I: The Mists Dispelled: Healing Over Lamentation",
+      "groups": 1,
+      "patterns": 19,
+      "corpus_obligations": 728
+    },
+    {
+      "instrument": "braddy_business_etiquette_1922",
+      "label": "Advertising: Make Advertisements Vivid, Unusual, and Convincing",
+      "groups": 41,
+      "patterns": 779,
+      "corpus_obligations": 1116
+    },
+    {
+      "instrument": "carnegie_art_of_public_speaking",
+      "label": "1: Have Something to Say: Prepare Before Speaking",
+      "groups": 2,
+      "patterns": 31,
+      "corpus_obligations": 1610
+    },
+    {
+      "instrument": "consumer_duty",
+      "label": "2A.8.2G (first sentence): Avoiding Conflicts in Staff Incentives",
+      "groups": 10,
+      "patterns": 132,
+      "corpus_obligations": 875
+    },
+    {
+      "instrument": "conwell_acres_of_diamonds",
+      "label": "of Diamonds Lecture: Core Message: Recognize opportunities in your current location",
+      "groups": 1,
+      "patterns": 17,
+      "corpus_obligations": 178
+    },
+    {
+      "instrument": "coue_self_mastery_autosuggestion",
+      "label": "Self Mastery Through Conscious Autosuggestion: Practise autosuggestion consciously",
+      "groups": 1,
+      "patterns": 8,
+      "corpus_obligations": 367
+    },
+    {
+      "instrument": "covey_7_habits_1989",
+      "label": "2: Habit 2: Begin with the End in Mind (A Personal Mission Statement): Develop a Personal Mission Statement",
+      "groups": 3,
+      "patterns": 1200,
+      "corpus_obligations": 1566
+    },
+    {
+      "instrument": "crowther_how_to_write_letters_1922",
+      "label": "Letter - Acknowledge Receipt of Complaint: Acknowledge Receipt of Complaint Promptly",
+      "groups": 30,
+      "patterns": 518,
+      "corpus_obligations": 1073
+    },
+    {
+      "instrument": "doerr_measure_what_matters",
+      "label": "1: Measuring Output: Create Environment That Values Output",
+      "groups": 1,
+      "patterns": 400,
+      "corpus_obligations": null
+    },
+    {
+      "instrument": "emerson_conduct_of_life_1860",
+      "label": "I: Fate: Obey Your Own Polarity",
+      "groups": 1,
+      "patterns": 17,
+      "corpus_obligations": 688
+    },
+    {
+      "instrument": "emerson_essays_first_series_1841",
+      "label": "Trusting Yourself: Trust Yourself",
+      "groups": 1,
+      "patterns": 18,
+      "corpus_obligations": 1225
+    },
+    {
+      "instrument": "epictetus_enchiridion",
+      "label": "On Olympic Ambition: Engage in the Affair Only If It Is for Your Advantage",
+      "groups": 3,
+      "patterns": 844,
+      "corpus_obligations": 267
+    },
+    {
+      "instrument": "esma_34_45_1272",
+      "label": "3 (Paragraph 46 reference - concrete examples): Concrete Examples of Performance Fee Calculation",
+      "groups": 36,
+      "patterns": 542,
+      "corpus_obligations": 177
+    },
+    {
+      "instrument": "esma_fund_names",
+      "label": "Para 2 (continued): Obligation to Act Honestly and Fairly",
+      "groups": 31,
+      "patterns": 310,
+      "corpus_obligations": 765
+    },
+    {
+      "instrument": "esma_performance_fees",
+      "label": "2, Paragraph 27: Inappropriate Reference Indicator for Benchmark Out-performance",
+      "groups": 40,
+      "patterns": 554,
+      "corpus_obligations": 143
+    },
+    {
+      "instrument": "esma_product_governance",
+      "label": "34: Proportionate Application of Target Market Obligations",
+      "groups": 5,
+      "patterns": 78,
+      "corpus_obligations": 747
+    },
+    {
+      "instrument": "eu_taxonomy",
+      "label": "10(3): Commission Delegated Act on Technical Screening Criteria",
+      "groups": 3,
+      "patterns": 49,
+      "corpus_obligations": 626
+    },
+    {
+      "instrument": "fca_cobs_4",
+      "label": "4.1.10 G: Territorial Scope - Disapplication for Overseas Promotions",
+      "groups": 30,
+      "patterns": 432,
+      "corpus_obligations": 1385
+    },
+    {
+      "instrument": "fca_coll",
+      "label": "Separate discussion for specified matters",
+      "groups": 115,
+      "patterns": 1349,
+      "corpus_obligations": 8153
+    },
+    {
+      "instrument": "fca_fund",
+      "label": "Functional and hierarchical separation (2): Demonstrate risk management independence safeguards",
+      "groups": 28,
+      "patterns": 526,
+      "corpus_obligations": 995
+    },
+    {
+      "instrument": "franklin_autobiography_13_virtues",
+      "label": "9: Method for Acquiring Virtues: Focus on One Virtue at a Time",
+      "groups": 1,
+      "patterns": 400,
+      "corpus_obligations": null
+    },
+    {
+      "instrument": "gips_2020",
+      "label": "Restriction on Current Client Performance Statements",
+      "groups": 188,
+      "patterns": 3131,
+      "corpus_obligations": 2216
+    },
+    {
+      "instrument": "ilpa_ddq_2_0",
+      "label": "HR Role and Structure Details",
+      "groups": 418,
+      "patterns": 2017,
+      "corpus_obligations": 1309
+    },
+    {
+      "instrument": "ilpa_performance_template",
+      "label": "of Operations: Commencement of Operations Consistency",
+      "groups": 4,
+      "patterns": 30,
+      "corpus_obligations": 280
+    },
+    {
+      "instrument": "ilpa_reporting_template",
+      "label": "B.1: Portfolio Company Fees Section Heading",
+      "groups": 1,
+      "patterns": 17,
+      "corpus_obligations": null
+    },
+    {
+      "instrument": "james_habit_ch4_1890",
+      "label": "4: The Great Thing in Education: Make the nervous system your ally",
+      "groups": 1,
+      "patterns": 395,
+      "corpus_obligations": null
+    },
+    {
+      "instrument": "jarvis_seed_template",
+      "label": "Ask",
+      "groups": 20,
+      "patterns": 47,
+      "corpus_obligations": 20
+    },
+    {
+      "instrument": "kawasaki_102030",
+      "label": "the little man",
+      "groups": 21,
+      "patterns": 46,
+      "corpus_obligations": 21
+    },
+    {
+      "instrument": "lorimer_self_made_merchant_1902",
+      "label": "I: Do not over-study",
+      "groups": 16,
+      "patterns": 378,
+      "corpus_obligations": 509
+    },
+    {
+      "instrument": "mar",
+      "label": "I, Section A, point (g): Trading Around Reference Price Calculation Times",
+      "groups": 18,
+      "patterns": 156,
+      "corpus_obligations": 1045
+    },
+    {
+      "instrument": "marden_iron_will_1901",
+      "label": "I: Training the Will: Train the will through deliberate exercise",
+      "groups": 1,
+      "patterns": 20,
+      "corpus_obligations": 172
+    },
+    {
+      "instrument": "mcclure_pitch_vc",
+      "label": "model",
+      "groups": 13,
+      "patterns": 28,
+      "corpus_obligations": 13
+    },
+    {
+      "instrument": "mifid_ii",
+      "label": "10(2): Refusal of Authorisation for Third Country Close Links",
+      "groups": 128,
+      "patterns": 1735,
+      "corpus_obligations": 4222
+    },
+    {
+      "instrument": "mifir",
+      "label": "16(a): Competent Authority Check on Quote Updates and Market Conditions",
+      "groups": 15,
+      "patterns": 173,
+      "corpus_obligations": 1278
+    },
+    {
+      "instrument": "parsons_choosing_a_vocation_1909",
+      "label": "3 Suggestion 3: Read Headlines of Leading Papers Daily",
+      "groups": 34,
+      "patterns": 504,
+      "corpus_obligations": 1421
+    },
+    {
+      "instrument": "plato_apology",
+      "label": "The Philosopher's Mission: Do not desert your post through fear",
+      "groups": 1,
+      "patterns": 24,
+      "corpus_obligations": 75
+    },
+    {
+      "instrument": "plato_republic",
+      "label": "II: Education of the Guardians: Censorship of Nursery Tales",
+      "groups": 2,
+      "patterns": 34,
+      "corpus_obligations": 1974
+    },
+    {
+      "instrument": "pri_reporting",
+      "label": "04.1: Formal RI Commitments in Fund Terms",
+      "groups": 3,
+      "patterns": 60,
+      "corpus_obligations": 538
+    },
+    {
+      "instrument": "pri_ri_ddq",
+      "label": "RI Commitments in Fund Documents Question",
+      "groups": 6,
+      "patterns": 109,
+      "corpus_obligations": 213
+    },
+    {
+      "instrument": "priips",
+      "label": "II, Part 1, Paragraph 9: VaR calculation source and period",
+      "groups": 66,
+      "patterns": 821,
+      "corpus_obligations": 1414
+    },
+    {
+      "instrument": "rubin_happiness_project",
+      "label": "Boost Energy: Go to Sleep Earlier",
+      "groups": 2,
+      "patterns": 800,
+      "corpus_obligations": null
+    },
+    {
+      "instrument": "russell_conquest_of_happiness",
+      "label": "Act in accordance with the recipes offered",
+      "groups": 1,
+      "patterns": 23,
+      "corpus_obligations": 662
+    },
+    {
+      "instrument": "sbai_ddq",
+      "label": "3 Q3.1: Conflicts of Interest",
+      "groups": 5,
+      "patterns": 87,
+      "corpus_obligations": 95
+    },
+    {
+      "instrument": "scott_efficiency_in_business_1911",
+      "label": "1: Study, train, and develop the individual worker",
+      "groups": 21,
+      "patterns": 345,
+      "corpus_obligations": 913
+    },
+    {
+      "instrument": "sdr",
+      "label": "Standardised Sustainability Information Provision",
+      "groups": 33,
+      "patterns": 374,
+      "corpus_obligations": 2116
+    },
+    {
+      "instrument": "seneca_shortness_of_life",
+      "label": "VI: Learning How to Die: Learn how to die",
+      "groups": 2,
+      "patterns": 800,
+      "corpus_obligations": null
+    },
+    {
+      "instrument": "sequoia_business_plan",
+      "label": "model",
+      "groups": 11,
+      "patterns": 37,
+      "corpus_obligations": 11
+    },
+    {
+      "instrument": "sfdr_2019_2088",
+      "label": "10(1)(b): Methodology Information for Characteristics Monitoring",
+      "groups": 21,
+      "patterns": 355,
+      "corpus_obligations": 330
+    },
+    {
+      "instrument": "sfdr_rts",
+      "label": "I, Table 1: Table 1 - Statement on principal adverse impacts",
+      "groups": 27,
+      "patterns": 582,
+      "corpus_obligations": 778
+    },
+    {
+      "instrument": "smiles_self_help_1859",
+      "label": "X: Money-Its Use and Abuse: Neither a Borrower Nor a Lender Be",
+      "groups": 2,
+      "patterns": 783,
+      "corpus_obligations": null
+    },
+    {
+      "instrument": "stewardship_code",
+      "label": "and Outcomes Report - Annual Submission Focus: Activities and Outcomes Report Annual Focus",
+      "groups": 39,
+      "patterns": 326,
+      "corpus_obligations": 328
+    },
+    {
+      "instrument": "sysc",
+      "label": "Application and purpose section heading",
+      "groups": 60,
+      "patterns": 654,
+      "corpus_obligations": 7453
+    },
+    {
+      "instrument": "thoreau_walden_1854",
+      "label": "2: Where I Lived, and What I Lived For (Deliberate Living): Live Deliberately",
+      "groups": 2,
+      "patterns": 30,
+      "corpus_obligations": 674
+    },
+    {
+      "instrument": "ucits_583_2010",
+      "label": "II, bullet 2: Performance Fee Historical Disclosure",
+      "groups": 23,
+      "patterns": 423,
+      "corpus_obligations": 352
+    },
+    {
+      "instrument": "ucits_level1",
+      "label": "I, SCHEDULE A, Row 1.16: Rules for Asset Valuation Disclosure",
+      "groups": 30,
+      "patterns": 363,
+      "corpus_obligations": 1646
+    },
+    {
+      "instrument": "wattles_science_of_getting_rich_1910",
+      "label": "3: Is Opportunity Monopolized?: Turn attention to open channels",
+      "groups": 1,
+      "patterns": 400,
+      "corpus_obligations": null
+    },
+    {
+      "instrument": "yc_seed_deck",
+      "label": "/ use of funds",
+      "groups": 10,
+      "patterns": 33,
+      "corpus_obligations": 10
+    }
+  ],
+  "corpus_obligations": {
+    "ilpa_ddq_2_0": 1309,
+    "fca_cobs_4": 1385,
+    "gips_2020": 2216,
+    "sfdr_2019_2088": 330,
+    "sfdr_rts": 778,
+    "esma_34_45_1272": 177,
+    "esma_performance_fees": 143,
+    "esma_product_governance": 747,
+    "fca_fund": 995,
+    "ucits_583_2010": 352,
+    "mifid_ii": 4222,
+    "esma_fund_names": 765,
+    "mar": 1045,
+    "aifmd": 4940,
+    "pri_reporting": 538,
+    "pri_ri_ddq": 213,
+    "ilpa_performance_template": 280,
+    "consumer_duty": 875,
+    "sysc": 7453,
+    "sdr": 2116,
+    "priips": 1414,
+    "stewardship_code": 328,
+    "ucits_level1": 1646,
+    "fca_coll": 8153,
+    "mifir": 1278,
+    "benchmark_reg": 1328,
+    "eu_taxonomy": 626,
+    "sbai_ddq": 95,
+    "aurelius_meditations": 1649,
+    "allen_as_a_man_thinketh_1903": 172,
+    "allen_getting_things_done": 1616,
+    "atomic_habits_clear_2018": 676,
+    "bennett_how_to_live_1908": 198,
+    "epictetus_enchiridion": 267,
+    "covey_7_habits_1989": 1566,
+    "atkinson_power_of_concentration": 1139,
+    "boethius_consolation_of_philosophy": 728,
+    "conwell_acres_of_diamonds": 178,
+    "coue_self_mastery_autosuggestion": 367,
+    "emerson_conduct_of_life_1860": 688,
+    "emerson_essays_first_series_1841": 1225,
+    "marden_iron_will_1901": 172,
+    "plato_apology": 75,
+    "russell_conquest_of_happiness": 662,
+    "carnegie_art_of_public_speaking": 1610,
+    "plato_republic": 1974,
+    "thoreau_walden_1854": 674,
+    "sequoia_business_plan": 11,
+    "yc_seed_deck": 10,
+    "kawasaki_102030": 21,
+    "mcclure_pitch_vc": 13,
+    "jarvis_seed_template": 20,
+    "braddy_business_etiquette_1922": 1116,
+    "crowther_how_to_write_letters_1922": 1073,
+    "lorimer_self_made_merchant_1902": 509,
+    "parsons_choosing_a_vocation_1909": 1421,
+    "scott_efficiency_in_business_1911": 913
+  }
+}

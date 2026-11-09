@@ -1,0 +1,993 @@
+{
+  "schema": "fund_docs_caveats.v1",
+  "id": "fund_docs_caveats",
+  "version": "fd-caveats-2026-10-30",
+  "generated_at": "2026-10-30",
+  "source": "document-pipeline:verticals/fintech/fund-docs/enrichments/caveats",
+  "sidecars": [
+    {
+      "doc": "fca_cobs4",
+      "caveats": 118,
+      "links": 885
+    },
+    {
+      "doc": "fca_prin_2a_consumer_duty",
+      "caveats": 44,
+      "links": 2025
+    },
+    {
+      "doc": "fca_sysc",
+      "caveats": 378,
+      "links": 2392
+    },
+    {
+      "doc": "gips_standards_firms_2020",
+      "caveats": 42,
+      "links": 98
+    }
+  ],
+  "pack_obligations_with_caveats": 72,
+  "caveat_items": 102,
+  "by_obligation": {
+    "001abd010c3f4a52": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "GIPS Advertising Guidelines Applicability",
+        "e": "adds_condition",
+        "s": "Firms are not required to follow the GIPS Advertising Guidelines unless they wish to claim GIPS compliance in an advertisement, in which case they must adhere to the Guidelines or include a GIPS Report.",
+        "q": "- 8) GIPS Advertising Guidelines: Firms are not required to follow the GIPS Advertising Guidelines when creating an advertisement, but if they would like to claim compliance with the GIPS standards in an advertisement, they must adhere to the GIPS Advertising Guidelines or include a GIPS Report.",
+        "c": 0.95
+      }
+    ],
+    "027a5a8c5d41efed": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "GIPS Advertising Guidelines Applicability",
+        "e": "adds_condition",
+        "s": "Firms are not required to follow the GIPS Advertising Guidelines unless they wish to claim GIPS compliance in an advertisement, in which case they must adhere to the Guidelines or include a GIPS Report.",
+        "q": "- 8) GIPS Advertising Guidelines: Firms are not required to follow the GIPS Advertising Guidelines when creating an advertisement, but if they would like to claim compliance with the GIPS standards in an advertisement, they must adhere to the GIPS Advertising Guidelines or include a GIPS Report.",
+        "c": 0.98
+      }
+    ],
+    "032487df28e624fc": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Carve-out fee representativeness requirement",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of the fee representativeness requirement to calculations of net-of-fees returns for composites that contain carve-outs.",
+        "q": "- 2.A.47 When calculating net-of-fees returns of composites containing carve-outs, the investment management fees for the carve-outs must be representative of the investment management fees charged or that would be charged to the prospective client:",
+        "c": 1.0
+      },
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Carve-Out Fee Representativeness Requirement",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of fee representativeness rules to composites containing carve-outs when calculating net-of-fees returns.",
+        "q": "## Carve-Outs - 2.A.47 When calculating net-of-fees returns of composites containing carve-outs, the investment management fees for the carve-outs must be representative of",
+        "c": 0.95
+      }
+    ],
+    "059c5cd1a2c9fed3": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "COBS 4.5A.1 Application Scope",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of application for the section, specifying that it applies to firms in relation to information provision or financial promotion concerning MiFID business, with specific exclusions for third party prospectuses and image advertising.",
+        "q": "Application <!-- image --> ## COBS 4.5A.1 03/01/2018 R - (1) This section applies to a firm in relation to: 2. (a) the provision of information; or 3. (b) t",
+        "c": 0.95
+      },
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Rule applicability to MiFID business marketing communications",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of the rule as applying to marketing communications relating to a firm's MiFID, equivalent third country or optional exemption business.",
+        "q": "- (1) This rule applies in relation to a marketing communication that relates to a firm's MiFID, equivalent third country or optional exemption business :",
+        "c": 0.95
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "COBS 4.5A Exclusion for NURS-KII",
+        "e": "excludes_obligation",
+        "s": "The clause excludes the rules in COBS 4.5A from applying to the form or content of a NURS-KII document.",
+        "q": "The rules in COBS 4.5A do not apply to the form or content of a NURS-KII document (see COBS 4.1.7AR (Modification relating to the KII Regulation)).",
+        "c": 0.85
+      },
+      {
+        "t": "applicability_scope_limit",
+        "tt": "MiFID direct offer promotions scope",
+        "e": "narrows_applicability",
+        "s": "A section heading that delimits the scope of the following provisions to direct offer financial promotions relating to MiFID, equivalent third country or optional exemption business.",
+        "q": "## Direct offer financial promotions relating to MiFID, equivalent third country or optional exemption business",
+        "c": 0.85
+      }
+    ],
+    "064d1a09d8c57f9d": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN 2A.4 Exclusion Scope",
+        "e": "excludes_obligation",
+        "s": "States that the rules in PRIN 2A.4 do not apply to specified categories of firms and products.",
+        "q": "- (1) The rules in ■ PRIN 2A.4 do not apply to:",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      },
+      {
+        "t": "exemption_or_derogation",
+        "tt": "Forward-looking fair value assessment limitation",
+        "e": "narrows_applicability",
+        "s": "Manufacturers are not required to assess whether closed or existing products provided fair value before the rules came into force, unless another rule requires it.",
+        "q": "- G 2A.4.22 The assessment of whether a closed product or an existing product provides fair value should be on a forward-looking basis only. Unless required to do so by any other rule , manufacturers do not need to consider whether their closed products or existing products provided fair value prior",
+        "c": 0.8
+      }
+    ],
+    "0a5be930df3178e8": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "0ac9b10a80950bbd": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "COBS 4.5A.1 Application Scope",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of application for the section, specifying that it applies to firms in relation to information provision or financial promotion concerning MiFID business, with specific exclusions for third party prospectuses and image advertising.",
+        "q": "Application <!-- image --> ## COBS 4.5A.1 03/01/2018 R - (1) This section applies to a firm in relation to: 2. (a) the provision of information; or 3. (b) t",
+        "c": 0.95
+      },
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Rule applicability to MiFID business marketing communications",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of the rule as applying to marketing communications relating to a firm's MiFID, equivalent third country or optional exemption business.",
+        "q": "- (1) This rule applies in relation to a marketing communication that relates to a firm's MiFID, equivalent third country or optional exemption business :",
+        "c": 0.95
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "COBS 4.5A Exclusion for NURS-KII",
+        "e": "excludes_obligation",
+        "s": "The clause excludes the rules in COBS 4.5A from applying to the form or content of a NURS-KII document.",
+        "q": "The rules in COBS 4.5A do not apply to the form or content of a NURS-KII document (see COBS 4.1.7AR (Modification relating to the KII Regulation)).",
+        "c": 0.85
+      },
+      {
+        "t": "applicability_scope_limit",
+        "tt": "MiFID direct offer promotions scope",
+        "e": "narrows_applicability",
+        "s": "A section heading that delimits the scope of the following provisions to direct offer financial promotions relating to MiFID, equivalent third country or optional exemption business.",
+        "q": "## Direct offer financial promotions relating to MiFID, equivalent third country or optional exemption business",
+        "c": 0.85
+      }
+    ],
+    "0b4dbc09b32afb2d": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "GIPS Advertising Guidelines Applicability Limit",
+        "e": "adds_condition",
+        "s": "Limits the application of the GIPS Advertising Guidelines to firms that already claim compliance with the GIPS standards.",
+        "q": "- 8.A.1 The GIPS Advertising Guidelines apply only to firms that already claim compliance with the GIPS standards.",
+        "c": 0.8
+      }
+    ],
+    "105cc2cbdfa5dfcc": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "COBS 4.5A.1 Application Scope",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of application for the section, specifying that it applies to firms in relation to information provision or financial promotion concerning MiFID business, with specific exclusions for third party prospectuses and image advertising.",
+        "q": "Application <!-- image --> ## COBS 4.5A.1 03/01/2018 R - (1) This section applies to a firm in relation to: 2. (a) the provision of information; or 3. (b) t",
+        "c": 0.95
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "COBS 4.5A Exclusion for NURS-KII",
+        "e": "excludes_obligation",
+        "s": "The clause excludes the rules in COBS 4.5A from applying to the form or content of a NURS-KII document.",
+        "q": "The rules in COBS 4.5A do not apply to the form or content of a NURS-KII document (see COBS 4.1.7AR (Modification relating to the KII Regulation)).",
+        "c": 0.85
+      }
+    ],
+    "1193c17e3cfa2f2b": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Speculative Illiquid Security Promotion Condition",
+        "e": "contextual_note_only",
+        "s": "A firm must not communicate or approve a financial promotion relating to a speculative illiquid security to a retail client unless it contains statements complying with COBS 4.12B.33R.",
+        "q": "A firm must not communicate or approve a financial promotion which relates to a speculative illiquid security to, or for communication to, a retail client unless it contains statements that comply with COBS 4.12B.33R .",
+        "c": 0.75
+      }
+    ],
+    "14fcfc2fe584e8d1": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Duration of comparison requirement",
+        "e": "narrows_applicability",
+        "s": "Defines the period during which the benchmark comparison requirement in paragraph (1) applies to communications made available in a durable medium.",
+        "q": "7. (b) for as long as the communication remains available to the public in a durable medium and has not been superseded by a revised version.",
+        "c": 0.95
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "COBS 4.5 Exclusion for NURS-KII",
+        "e": "excludes_obligation",
+        "s": "The clause excludes the rules in COBS 4.5 from applying to the form or content of a NURS-KII document.",
+        "q": "The rules in COBS 4.5 do not apply to the form or content of a NURS-KII document (see COBS 4.1.7AR (Modification relating to the KII Regulation)).",
+        "c": 0.95
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "MiFID business exclusion from section",
+        "e": "excludes_obligation",
+        "s": "This clause excludes firms communicating in relation to their MiFID, equivalent third country or optional exemption business from the application of this section.",
+        "q": "- (2) This section does not apply to a firm communicating in relation to its MiFID, equivalent third country or optional exemption business .",
+        "c": 0.85
+      }
+    ],
+    "1560c0dc73b739c2": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      }
+    ],
+    "19f45759ba6799c9": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "1d7b41f9304c5dda": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "1e65fd36ddcf9ac5": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Remuneration Rules Applicability Scope",
+        "e": "narrows_applicability",
+        "s": "Specifies that the remuneration policy and practice requirements apply to dormant account fund operators, MiFID optional exemption firms, and third country firms in respect of their investment services and ancillary services.",
+        "q": "- (1) A dormant account fund operator in respect of its investment services and ancillary services , a MiFID optional exemption firm in respect of its investment services and ancillary services and a third country firm in respect of its MiFID or equivalent third country business must:",
+        "c": 0.85
+      }
+    ],
+    "1fac1e8f6b775e52": [
+      {
+        "t": "applicability_exclusion",
+        "tt": "Non-MiFID Business Exclusion",
+        "e": "excludes_obligation",
+        "s": "This clause excludes the section from applying to communications relating to a firm's business that is not MiFID or equivalent third country business, subject to five alternative carve-out conditions.",
+        "q": "- (3) If a communication relates to a firm's business that is not MiFID or equivalent third country business , this section does not apply:",
+        "c": 0.95
+      }
+    ],
+    "2453eb529fad9fe8": [
+      {
+        "t": "exemption_or_derogation",
+        "tt": "Administrative roles exemption from certification",
+        "e": "narrows_applicability",
+        "s": "Excludes purely administrative roles from the client-dealing FCA certification function, even where such roles involve customer contact.",
+        "q": "- (1) The client-dealing FCA certification function does not apply to purely administrative roles even though they involve customer contact.",
+        "c": 0.9
+      }
+    ],
+    "2862a9b73d919397": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "GIPS Partial Compliance Prohibition",
+        "e": "contextual_note_only",
+        "s": "Prohibits firms from claiming partial or qualified compliance with GIPS standards when not all requirements are met.",
+        "q": "4. 1.A.8 If the firm does not meet all the applicable requirements of the GIPS standards, the firm must not represent or state that it is 'in compliance with the Global Investment Performance Standards except for... ' or make any other statements that may indicate compliance or partial compliance wi",
+        "c": 0.5
+      }
+    ],
+    "2b6903f0cd8c7a18": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Speculative Illiquid Security Promotion Condition",
+        "e": "contextual_note_only",
+        "s": "A firm must not communicate or approve a financial promotion relating to a speculative illiquid security to a retail client unless it contains statements complying with COBS 4.12B.33R.",
+        "q": "A firm must not communicate or approve a financial promotion which relates to a speculative illiquid security to, or for communication to, a retail client unless it contains statements that comply with COBS 4.12B.33R .",
+        "c": 0.75
+      }
+    ],
+    "2c3b83b8f788610a": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "2def07de786ec037": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      }
+    ],
+    "3641d3861f517c50": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SMCR Firm Classification Continuity Rule",
+        "e": "contextual_note_only",
+        "s": "This clause provides that a firm's SMCR classification (core, enhanced scope, or limited scope) established before the general commencement date is retained after that date until changed under SYSC 23 Annex 1.",
+        "q": "- 7.7.1 R If a firm is treated as a core SMCR firm , an enhanced scope SMCR firm or a limited scope SMCR firm immediately before the general commencement date for the purposes of SUP TP 11A (Bank of England and Financial Services Act 2016: Approved persons in solo-regulated firms) it retains that st",
+        "c": 0.95
+      }
+    ],
+    "37877a579eb6bb51": [
+      {
+        "t": "applicability_exclusion",
+        "tt": "Section inapplicability for MiFID business",
+        "e": "excludes_obligation",
+        "s": "This clause excludes the entire section from applying to MiFID, equivalent third country, or optional exemption business, subject to further sub-conditions.",
+        "q": "MiFID, equivalent third country or optional exemption business , this section does not apply:",
+        "c": 0.95
+      }
+    ],
+    "3b679e0a545665ce": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Remuneration Rules Applicability Scope",
+        "e": "narrows_applicability",
+        "s": "Specifies that the remuneration policy and practice requirements apply to dormant account fund operators, MiFID optional exemption firms, and third country firms in respect of their investment services and ancillary services.",
+        "q": "- (1) A dormant account fund operator in respect of its investment services and ancillary services , a MiFID optional exemption firm in respect of its investment services and ancillary services and a third country firm in respect of its MiFID or equivalent third country business must:",
+        "c": 0.85
+      }
+    ],
+    "3d8d44c34737fccf": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "UCITS Section Application Clause",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of application for the section, stating it applies to firm communications that are UCITS marketing communications, while excluding image advertising and fund constitutive documents.",
+        "q": "## Application <!-- image --> ## COBS 4.13.1 06/04/2026 R - (1) This section applies to a firm in relation to a communication to a client , including an ex",
+        "c": 0.95
+      }
+    ],
+    "42af5997a879c0ba": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      }
+    ],
+    "457e217466f6ef7d": [
+      {
+        "t": "exemption_or_derogation",
+        "tt": "Guaranteed Variable Remuneration Prohibition Exception",
+        "e": "adds_condition",
+        "s": "Prohibits guaranteed variable remuneration unless three cumulative conditions are met: it is exceptional, occurs only when hiring new staff, and is limited to the first year of engagement.",
+        "q": "A management company must not award, pay or provide guaranteed variable remuneration unless it:",
+        "c": 0.95
+      }
+    ],
+    "4cd2d126962c43cd": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "4e1b965145edf259": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "4ea00af5ef4cd70c": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "51441396e38f846d": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "UCITS Section Application Clause",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of application for the section, stating it applies to firm communications that are UCITS marketing communications, while excluding image advertising and fund constitutive documents.",
+        "q": "## Application <!-- image --> ## COBS 4.13.1 06/04/2026 R - (1) This section applies to a firm in relation to a communication to a client , including an ex",
+        "c": 0.95
+      }
+    ],
+    "56bd29c1598f52fa": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Section Application to UK Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of Section 3.4 as applying to UK insurers and UK pure reinsurers doing long-term insurance business.",
+        "q": "## Application ..................................................................................................... - This section applies to: - (a) a UK in",
+        "c": 0.85
+      }
+    ],
+    "5b3ba697bdbcf1e4": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "COBS 4.5A.1 Application Scope",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of application for the section, specifying that it applies to firms in relation to information provision or financial promotion concerning MiFID business, with specific exclusions for third party prospectuses and image advertising.",
+        "q": "Application <!-- image --> ## COBS 4.5A.1 03/01/2018 R - (1) This section applies to a firm in relation to: 2. (a) the provision of information; or 3. (b) t",
+        "c": 0.95
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "COBS 4.5A Exclusion for NURS-KII",
+        "e": "excludes_obligation",
+        "s": "The clause excludes the rules in COBS 4.5A from applying to the form or content of a NURS-KII document.",
+        "q": "The rules in COBS 4.5A do not apply to the form or content of a NURS-KII document (see COBS 4.1.7AR (Modification relating to the KII Regulation)).",
+        "c": 0.85
+      },
+      {
+        "t": "applicability_scope_limit",
+        "tt": "MiFID direct offer promotions scope",
+        "e": "narrows_applicability",
+        "s": "A section heading that delimits the scope of the following provisions to direct offer financial promotions relating to MiFID, equivalent third country or optional exemption business.",
+        "q": "## Direct offer financial promotions relating to MiFID, equivalent third country or optional exemption business",
+        "c": 0.85
+      }
+    ],
+    "63301e63327761c9": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "63a9d1deb9116a98": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "COBS 4.12A.15R Effect Interpretation",
+        "e": "narrows_applicability",
+        "s": "An interpretive provision explaining that personalised risk warnings and cooling off periods are only required on the first occasion a firm communicates a direct offer financial promotion relating to a restricted mass market investment to a particular retail client.",
+        "q": "- The effect of COBS 4.12A.15R and related provisions in this section is that: (1) a personalised risk warning and cooling off period are only required on the first occasion that a firm , or other person communicating an approved direct offer financial promotion , communicates a direct offer financi",
+        "c": 0.85
+      }
+    ],
+    "63b9cf365fd82b0d": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Section Application to UK Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of Section 3.4 as applying to UK insurers and UK pure reinsurers doing long-term insurance business.",
+        "q": "## Application ..................................................................................................... - This section applies to: - (a) a UK in",
+        "c": 0.85
+      }
+    ],
+    "66c422b0c71eb96d": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "UCITS Section Application Clause",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of application for the section, stating it applies to firm communications that are UCITS marketing communications, while excluding image advertising and fund constitutive documents.",
+        "q": "## Application <!-- image --> ## COBS 4.13.1 06/04/2026 R - (1) This section applies to a firm in relation to a communication to a client , including an ex",
+        "c": 0.95
+      }
+    ],
+    "6b80368ed7aaf9ab": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Section Application to UK Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of Section 3.4 as applying to UK insurers and UK pure reinsurers doing long-term insurance business.",
+        "q": "## Application ..................................................................................................... - This section applies to: - (a) a UK in",
+        "c": 0.85
+      }
+    ],
+    "6e69a92f36737f9b": [
+      {
+        "t": "applicability_exclusion",
+        "tt": "Non-MiFID Business Exclusion",
+        "e": "excludes_obligation",
+        "s": "This clause excludes the section from applying to communications relating to a firm's business that is not MiFID or equivalent third country business, subject to five alternative carve-out conditions.",
+        "q": "- (3) If a communication relates to a firm's business that is not MiFID or equivalent third country business , this section does not apply:",
+        "c": 0.95
+      }
+    ],
+    "6ec3369e1f8a07d9": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Carve-out fee representativeness requirement",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of the fee representativeness requirement to calculations of net-of-fees returns for composites that contain carve-outs.",
+        "q": "- 2.A.47 When calculating net-of-fees returns of composites containing carve-outs, the investment management fees for the carve-outs must be representative of the investment management fees charged or that would be charged to the prospective client:",
+        "c": 0.95
+      },
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Carve-Out Fee Representativeness Requirement",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of fee representativeness rules to composites containing carve-outs when calculating net-of-fees returns.",
+        "q": "## Carve-Outs - 2.A.47 When calculating net-of-fees returns of composites containing carve-outs, the investment management fees for the carve-outs must be representative of",
+        "c": 0.85
+      }
+    ],
+    "705686f7e1402205": [
+      {
+        "t": "edge_case_qualifier",
+        "tt": "Discretionary Leverage Calculation Requirement",
+        "e": "modifies_requirement",
+        "s": "Returns must be calculated net of discretionary leverage, subject to any contrary specification.",
+        "q": "- 2.A.15 All required returns must be calculated net of discretionary leverage, unless otherwise specified.",
+        "c": 1.0
+      }
+    ],
+    "74f50021153f3ae0": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Section Application to UK Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of Section 3.4 as applying to UK insurers and UK pure reinsurers doing long-term insurance business.",
+        "q": "## Application ..................................................................................................... - This section applies to: - (a) a UK in",
+        "c": 0.85
+      }
+    ],
+    "76e54fa407528626": [
+      {
+        "t": "exemption_or_derogation",
+        "tt": "Underlying Fund Fee Deduction Exception",
+        "e": "narrows_applicability",
+        "s": "Provides an exemption from the requirement to deduct underlying pooled fund fees when the firm controls the investment management fees of those underlying funds.",
+        "q": "- 2.A.17 For portfolios invested in underlying pooled funds, all returns must reflect the deduction of all fees and expenses charged at the underlying pooled fund level, unless the firm controls the investment management fees of the underlying pooled funds. When the firm controls the investment mana",
+        "c": 1.0
+      }
+    ],
+    "7a4496f37924d3cb": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      }
+    ],
+    "7c556e73c89cda01": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      }
+    ],
+    "7efebfe7fc5f2036": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "86ae1905b7256124": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "UCITS Section Application Clause",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of application for the section, stating it applies to firm communications that are UCITS marketing communications, while excluding image advertising and fund constitutive documents.",
+        "q": "## Application <!-- image --> ## COBS 4.13.1 06/04/2026 R - (1) This section applies to a firm in relation to a communication to a client , including an ex",
+        "c": 0.95
+      }
+    ],
+    "8c6d2747ef9ace90": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN 2A.4 Exclusion Scope",
+        "e": "excludes_obligation",
+        "s": "States that the rules in PRIN 2A.4 do not apply to specified categories of firms and products.",
+        "q": "- (1) The rules in ■ PRIN 2A.4 do not apply to:",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      }
+    ],
+    "8fc2a14efb84e4eb": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "9b1be6a13db061ea": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "9b71dc0150a28fd3": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Speculative Illiquid Security Promotion Condition",
+        "e": "contextual_note_only",
+        "s": "A firm must not communicate or approve a financial promotion relating to a speculative illiquid security to a retail client unless it contains statements complying with COBS 4.12B.33R.",
+        "q": "A firm must not communicate or approve a financial promotion which relates to a speculative illiquid security to, or for communication to, a retail client unless it contains statements that comply with COBS 4.12B.33R .",
+        "c": 0.75
+      }
+    ],
+    "a0f1541eb21e489a": [
+      {
+        "t": "applicability_exclusion",
+        "tt": "Non-MiFID Business Exclusion",
+        "e": "excludes_obligation",
+        "s": "This clause excludes the section from applying to communications relating to a firm's business that is not MiFID or equivalent third country business, subject to five alternative carve-out conditions.",
+        "q": "- (3) If a communication relates to a firm's business that is not MiFID or equivalent third country business , this section does not apply:",
+        "c": 0.95
+      }
+    ],
+    "a9f579824ded4019": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN 2A.4 Exclusion Scope",
+        "e": "excludes_obligation",
+        "s": "States that the rules in PRIN 2A.4 do not apply to specified categories of firms and products.",
+        "q": "- (1) The rules in ■ PRIN 2A.4 do not apply to:",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      }
+    ],
+    "aeb45331ff345b75": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Section Application to UK Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of Section 3.4 as applying to UK insurers and UK pure reinsurers doing long-term insurance business.",
+        "q": "## Application ..................................................................................................... - This section applies to: - (a) a UK in",
+        "c": 0.85
+      }
+    ],
+    "b2769eeb4f416d29": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Carve-out fee representativeness requirement",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of the fee representativeness requirement to calculations of net-of-fees returns for composites that contain carve-outs.",
+        "q": "- 2.A.47 When calculating net-of-fees returns of composites containing carve-outs, the investment management fees for the carve-outs must be representative of the investment management fees charged or that would be charged to the prospective client:",
+        "c": 0.95
+      },
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Carve-Out Fee Representativeness Requirement",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of fee representativeness rules to composites containing carve-outs when calculating net-of-fees returns.",
+        "q": "## Carve-Outs - 2.A.47 When calculating net-of-fees returns of composites containing carve-outs, the investment management fees for the carve-outs must be representative of",
+        "c": 0.85
+      }
+    ],
+    "b30c194cc6713b50": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Application to funeral plan distribution",
+        "e": "narrows_applicability",
+        "s": "This clause specifies that the section applies to firms carrying on funeral plan distribution in accordance with specified tables.",
+        "q": "## Application to funeral plan distribution ..................................................................................................... - G 10.1.-5",
+        "c": 0.95
+      }
+    ],
+    "bd9709319cdafe17": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "c2037f317ebd9832": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "AIFM Remuneration Code Application Scope",
+        "e": "narrows_applicability",
+        "s": "Defines that the AIFM Remuneration Code applies to full-scope UK AIFMs managing UK AIFs or non-UK AIFs.",
+        "q": "Application The AIFM Remuneration Code applies to a full-scope UK AIFM of: - (1) a UK AIF ; and - (2) a non-UK AIF. - (3) [deleted] - (1) Full-scope UK AIFMs",
+        "c": 0.85
+      }
+    ],
+    "c311cb0b8d535ab4": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Section Application to UK Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of Section 3.4 as applying to UK insurers and UK pure reinsurers doing long-term insurance business.",
+        "q": "## Application ..................................................................................................... - This section applies to: - (a) a UK in",
+        "c": 0.85
+      }
+    ],
+    "cb2d0452ef787731": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "d015778c91af20ad": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "d5b17acf56a62900": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      }
+    ],
+    "d6d65e3455ec595e": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "AIFM Remuneration Code Application Scope",
+        "e": "narrows_applicability",
+        "s": "Defines that the AIFM Remuneration Code applies to full-scope UK AIFMs managing UK AIFs or non-UK AIFs.",
+        "q": "Application The AIFM Remuneration Code applies to a full-scope UK AIFM of: - (1) a UK AIF ; and - (2) a non-UK AIF. - (3) [deleted] - (1) Full-scope UK AIFMs",
+        "c": 0.85
+      }
+    ],
+    "dd3668eff2e1cb3a": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Rule interpretation modification for firms",
+        "e": "modifies_requirement",
+        "s": "Specifies that certain firms should read SYSC 10.1.11AAR as if 'should' appeared instead of 'must'.",
+        "q": "A firm (other than a common platform firm , an insurance intermediary and a firm carrying on funeral plan distribution ) should read ■ SYSC 10.1.11AAR as if 'should' appeared in that rule instead of 'must'.",
+        "c": 1.0
+      }
+    ],
+    "deb622f230f1fce8": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "UCITS Section Application Clause",
+        "e": "narrows_applicability",
+        "s": "This clause defines the scope of application for the section, stating it applies to firm communications that are UCITS marketing communications, while excluding image advertising and fund constitutive documents.",
+        "q": "## Application <!-- image --> ## COBS 4.13.1 06/04/2026 R - (1) This section applies to a firm in relation to a communication to a client , including an ex",
+        "c": 0.95
+      }
+    ],
+    "e1180a1c8b7ca9d2": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "GIPS Advertising Guidelines Applicability Limit",
+        "e": "adds_condition",
+        "s": "Limits the application of the GIPS Advertising Guidelines to firms that already claim compliance with the GIPS standards.",
+        "q": "- 8.A.1 The GIPS Advertising Guidelines apply only to firms that already claim compliance with the GIPS standards.",
+        "c": 0.8
+      }
+    ],
+    "e1df1d5a43546ece": [
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN 2A.4 Exclusion Scope",
+        "e": "excludes_obligation",
+        "s": "States that the rules in PRIN 2A.4 do not apply to specified categories of firms and products.",
+        "q": "- (1) The rules in ■ PRIN 2A.4 do not apply to:",
+        "c": 0.95
+      },
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      }
+    ],
+    "eafb5d7e56083685": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "SYSC 3.3 Application to Insurers",
+        "e": "narrows_applicability",
+        "s": "This clause limits the application of SYSC 3.3 to insurers when carrying on insurance distribution activities.",
+        "q": "Application ..................................................................................................... ■ SYSC 3.3 applies to an insurer in the cou",
+        "c": 0.85
+      }
+    ],
+    "ee5fda4c1165ee31": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Speculative Illiquid Security Promotion Condition",
+        "e": "contextual_note_only",
+        "s": "A firm must not communicate or approve a financial promotion relating to a speculative illiquid security to a retail client unless it contains statements complying with COBS 4.12B.33R.",
+        "q": "A firm must not communicate or approve a financial promotion which relates to a speculative illiquid security to, or for communication to, a retail client unless it contains statements that comply with COBS 4.12B.33R .",
+        "c": 0.75
+      }
+    ],
+    "f30a77e931918d94": [
+      {
+        "t": "applicability_scope_limit",
+        "tt": "Application of remuneration requirements to material risk takers",
+        "e": "contextual_note_only",
+        "s": "A section heading that establishes the scope of remuneration requirements as applying specifically to material risk takers.",
+        "q": "Application of remuneration requirements to material risk takers ## Identifying material risk takers .........................................................",
+        "c": 0.65
+      }
+    ],
+    "f94c7b6d755ec1ee": [
+      {
+        "t": "interpretation_or_definition",
+        "tt": "Cross-reference to PRIN 2A obligations",
+        "e": "contextual_note_only",
+        "s": "This clause clarifies that references in PRIN to obligations under Principle 12 include the obligations imposed by rules in PRIN 2A.",
+        "q": "Application ..................................................................................................... - R 2A.1.1 References in PRIN to the obliga",
+        "c": 0.9
+      },
+      {
+        "t": "applicability_exclusion",
+        "tt": "PRIN Application Scope Exclusion",
+        "e": "excludes_obligation",
+        "s": "PRIN applies to every firm except it does not apply to a firm in relation to its carrying on of auction regulation bidding.",
+        "q": "PRIN applies to every firm , except that it does not apply to a firm in relation to its carrying on of auction regulation bidding .",
+        "c": 0.9
+      }
+    ],
+    "fb60bd7adf429e75": [
+      {
+        "t": "exemption_or_derogation",
+        "tt": "GIPS Performance Statement Prohibition Exception",
+        "e": "contextual_note_only",
+        "s": "Prohibits GIPS performance statements for current clients/investors except when a GIPS-compliant firm reports segregated account or pooled fund performance to current clients or investors.",
+        "q": "- 1.A.10 The firm must not make statements referring to the performance of a current client or pooled fund investor as being 'calculated in accordance with the Global Investment Performance Standards,' except for when a GIPS-compliant firm reports the performance of a segregated account to current c",
+        "c": 0.85
+      }
+    ]
+  }
+}

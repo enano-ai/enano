@@ -1,0 +1,132 @@
+{
+  "schema": "nano_models.v1",
+  "provenance": "Per-model runtime attributes for the /nano-demo bench. Every setting that changes embedding behaviour (input cap, dtype, batch size, instruction prefixes) is read from this catalog - adding a model here is all it takes to trial it in the selector. maxInputChars is the pre-tokenisation character cap aligned to each model's tokenizer window (~4 chars/token); queryPrefix/passagePrefix are empty except for instruction-style models (e5 family) that require them for sensible scores.",
+  "models": [
+    {
+      "id": "Xenova/all-MiniLM-L6-v2",
+      "label": "all-MiniLM-L6-v2",
+      "size": "23 MB · 384-d · recommended",
+      "dimensions": 384,
+      "maxInputChars": 1000,
+      "dtype": "q8",
+      "batchSize": 16,
+      "queryPrefix": "",
+      "passagePrefix": "",
+      "notes": "6 layers, 22.7M params, 256-token window. Fastest on the WASM CPU tier."
+    },
+    {
+      "id": "bge-small-en-v1.5",
+      "label": "bge-small-en-v1.5",
+      "size": "33 MB · 384-d · self-hosted",
+      "dimensions": 384,
+      "maxInputChars": 2000,
+      "dtype": "q8",
+      "batchSize": 16,
+      "queryPrefix": "",
+      "passagePrefix": "",
+      "local": true,
+      "notes": "Xenova/bge-small-en-v1.5 ONNX q8 self-hosted at /models/bge-small-en-v1.5 (MIT). Same weights as the HF hub copy; used by /prototype so the browser never hits huggingface.co."
+    },
+    {
+      "id": "Xenova/bge-small-en-v1.5",
+      "label": "bge-small-en-v1.5 (HF hub)",
+      "size": "33 MB · 384-d",
+      "dimensions": 384,
+      "maxInputChars": 2000,
+      "dtype": "q8",
+      "batchSize": 16,
+      "queryPrefix": "",
+      "passagePrefix": "",
+      "notes": "12 layers, 33.4M params, 512-token window, retrieval-native training. Hub copy kept for /nano-demo A/B; production /prototype uses the self-hosted bge-small-en-v1.5 id."
+    },
+    {
+      "id": "Xenova/bge-base-en-v1.5",
+      "label": "bge-base-en-v1.5",
+      "size": "110 MB · 768-d · desktop tier",
+      "dimensions": 768,
+      "maxInputChars": 2000,
+      "dtype": "q8",
+      "batchSize": 8,
+      "queryPrefix": "",
+      "passagePrefix": "",
+      "notes": "109M params, 768-d. Trial model for the quality ceiling: fine on WebGPU desktops, slow on the 8 GB WASM tier."
+    },
+    {
+      "id": "Xenova/e5-small-v2",
+      "label": "e5-small-v2",
+      "size": "33 MB · 384-d · prefix family",
+      "dimensions": 384,
+      "maxInputChars": 2000,
+      "dtype": "q8",
+      "batchSize": 16,
+      "queryPrefix": "query: ",
+      "passagePrefix": "passage: ",
+      "notes": "33.4M, general retrieval family. REQUIRES query:/passage: prefixes - wired via the catalog."
+    },
+    {
+      "id": "Xenova/e5-base-v2",
+      "label": "e5-base-v2",
+      "size": "110 MB · 768-d · prefix family · desktop tier",
+      "dimensions": 768,
+      "maxInputChars": 2000,
+      "dtype": "q8",
+      "batchSize": 8,
+      "queryPrefix": "query: ",
+      "passagePrefix": "passage: ",
+      "notes": "109M e5-base: quality ladder within the prefix family. Desktop tier."
+    },
+    {
+      "id": "Xenova/gte-small",
+      "label": "gte-small",
+      "size": "33 MB · 384-d",
+      "dimensions": 384,
+      "maxInputChars": 2000,
+      "dtype": "q8",
+      "batchSize": 16,
+      "queryPrefix": "",
+      "passagePrefix": "",
+      "notes": "33.4M, MIT, retrieval-trained, 512-token window. ONNX port ready - zero conversion."
+    },
+    {
+      "id": "finance2-small",
+      "label": "finance2-small",
+      "size": "33 MB · 384-d · self-hosted",
+      "dimensions": 384,
+      "maxInputChars": 2000,
+      "dtype": "q8",
+      "batchSize": 16,
+      "queryPrefix": "",
+      "passagePrefix": "",
+      "local": true,
+      "notes": "baconnier/Finance2_embedding_small_en-V1.5, ONNX q8 export self-hosted at /models/finance2-small (base bge-small, licence unstated - base MIT). Best sibling separation measured (0.79)."
+    },
+    {
+      "id": "enano/pg-mnrl-47845708",
+      "label": "etiny personal-goals (fine-tuned)",
+      "size": "34 MB · 384-d · self-hosted",
+      "dimensions": 384,
+      "maxInputChars": 1000,
+      "dtype": "q8",
+      "batchSize": 16,
+      "queryPrefix": "",
+      "passagePrefix": "",
+      "pooling": "cls",
+      "local": true,
+      "notes": "bge-small MNRL fine-tune on personal-goals triples (77, 1 epoch). CLS pooling, 256-token window. Serves the goals scan scope; exported from compliance-embeddings run pg-mnrl-47845708."
+    },
+    {
+      "id": "enano/spd-mnrl-48127877",
+      "label": "etiny pitch-decks (fine-tuned)",
+      "size": "34 MB · 384-d · self-hosted",
+      "dimensions": 384,
+      "maxInputChars": 1000,
+      "dtype": "q8",
+      "batchSize": 16,
+      "queryPrefix": "",
+      "passagePrefix": "",
+      "pooling": "cls",
+      "local": true,
+      "notes": "bge-small MNRL fine-tune on pitch-deck triples (168, 3 epochs). CLS pooling, 256-token window. Serves the pitch-decks scan scope; exported from compliance-embeddings run spd-mnrl-48127877."
+    }
+  ]
+}

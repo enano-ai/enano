@@ -55,7 +55,13 @@ def registry_doc():
                     "2026-02-02": _entry("career-advice", "2026-02-02", 3_000),
                 },
             },
-        }
+        },
+        "runtime": {
+            "latest": "2026-03-03",
+            "versions": {
+                "2026-03-03": _entry("runtime", "2026-03-03", 1_000),
+            },
+        },
     }
 
 
@@ -75,9 +81,13 @@ def downloads(monkeypatch):
         archive = dest_dir / name
         root = name.removesuffix(".zip")
         with zipfile.ZipFile(archive, "w") as zf:
-            zf.writestr(f"{root}/VERSION.json", json.dumps({"built_at": "now", "counts": {"rules": 3}}))
-            zf.writestr(f"{root}/tools/scan.py", SCAN_TOOL)
-            zf.writestr(f"{root}/tools/verify.py", "print('verified')\n")
+            if "runtime" in name:
+                zf.writestr(f"{root}/manifest.json", json.dumps({"runtime": root}))
+                zf.writestr(f"{root}/models/bge-small/config.json", "{}")
+            else:
+                zf.writestr(f"{root}/VERSION.json", json.dumps({"built_at": "now", "counts": {"rules": 3}}))
+                zf.writestr(f"{root}/tools/scan.py", SCAN_TOOL)
+                zf.writestr(f"{root}/tools/verify.py", "print('verified')\n")
         return archive
 
     monkeypatch.setattr(reg, "download_archive", download_archive)

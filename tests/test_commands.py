@@ -271,6 +271,15 @@ def test_scan_json_flag_reaches_tool(tool_calls, store_home):
     assert tool_calls == [("scan", ["notes.md", "--json"])]
 
 
+def test_scan_existing_relative_file_is_absolutized(tool_calls, store_home, tmp_path, monkeypatch):
+    (tmp_path / "notes.md").write_text("x")
+    monkeypatch.chdir(tmp_path)
+    assert cli.main(["scan", "notes.md", "--status", "partial"]) == 0
+    assert tool_calls == [
+        ("scan", [str(tmp_path / "notes.md"), "--status", "partial"])
+    ]
+
+
 def test_scan_piped_stdin_forwards_dash(tool_calls, store_home):
     assert cli.main(["scan", "--json"]) == 0
     assert tool_calls == [("scan", ["-", "--json"])]
@@ -307,6 +316,151 @@ def test_scan_auto_pulls_default_model(store_home, registry, downloads, capfd):
     lines = capfd.readouterr().out.strip().splitlines()
     assert "installed personal-goals@2026-01-01" in lines[0]
     assert json.loads(lines[-1])["scanned"] == ["-"]
+
+
+# ------------------------------------------------------------------ runtime
+
+
+def test_pull_runtime_installs_shared_layer(store_home, registry, downloads, capsys):
+    assert cli.main(["pull", "runtime"]) == 0
+    out = capsys.readouterr().out
+    assert "installed runtime@2026-03-03" in out
+    assert store.resolve_runtime() is not None
+    assert (store.resolve_runtime() / "manifest.json").is_file()
+
+
+def test_pull_runtime_again_reports_already_installed(store_home, registry, downloads, capsys):
+    cli.main(["pull", "runtime"])
+    capsys.readouterr()
+    assert cli.main(["pull", "runtime", "--json"]) == 0
+    assert json.loads(capsys.readouterr().out) == [
+        {"model": "runtime", "version": "2026-03-03", "status": "already-installed"}
+    ]
+
+
+def test_pull_model_auto_installs_runtime(store_home, registry, downloads, capfd):
+    assert cli.main(["pull", "personal-goals", "--json"]) == 0
+    assert store.resolve_version("personal-goals", None) is not None
+    assert store.resolve_runtime() is not None
+    assert (store.resolve_runtime() / "manifest.json").is_file()
+
+
+def test_models_lists_runtime_row(store_home, registry, downloads, capsys):
+    cli.main(["pull", "personal-goals", "--json"])
+    capsys.readouterr()
+    assert cli.main(["models", "--json"]) == 0
+    rows = json.loads(capsys.readouterr().out)
+    runtime_rows = [row for row in rows if row["name"].startswith("runtime@")]
+    assert len(runtime_rows) == 1
+    assert runtime_rows[0]["state"] == "shared engine assets"
+
+
+def test_upgrade_updates_runtime(store_home, registry, downloads, capsys):
+    import shutil as _shutil
+
+    from enano import store as store_mod
+
+    cli.main(["pull", "runtime", "--json"])
+    capsys.readouterr()
+    _shutil.rmtree(store_mod.runtime_root())
+    old = store_mod.runtime_root() / "2025-01-01"
+    old.mkdir(parents=True)
+    (old / "manifest.json").write_text("{}")
+    store_mod.write_runtime_latest("2025-01-01")
+    assert cli.main(["upgrade", "--json"]) == 0
+    rows = json.loads(capsys.readouterr().out)
+    runtime_rows = [row for row in rows if row["model"] == "runtime"]
+    assert runtime_rows and runtime_rows[0]["status"] == "update-available"
+    assert store_mod.read_runtime_latest() == "2026-03-03"
+
+
+# ------------------------------------------------------------------- watch
+
+
+WATCH_TOOL = (
+    "import json, sys\n"
+    "from pathlib import Path\n"
+    "text = Path(sys.argv[1]).read_text().lower()\n"
+    "findings = []\n"
+    "if 'spanish' in text:\n"
+    "    findings.append({'elevation_id': 'e1', 'elevator': 'aurelius_meditations',\n"
+    "                     'title': 'Study a little every day', 'status': 'documented'})\n"
+    "if '10k' in text:\n"
+    "    findings.append({'elevation_id': 'e2', 'elevator': 'wattles',\n"
+    "                     'title': 'Act on a realistic scale', 'status': 'partial'})\n"
+    "counts = {s: 0 for s in ('documented', 'partial', 'topic_only', 'absence', 'none')}\n"
+    "for f in findings:\n"
+    "    counts[f['status']] += 1\n"
+    "print(json.dumps({'document': sys.argv[1], 'counts': counts, 'findings': findings}))\n"
+)
+
+
+@pytest.fixture
+def watch_bundle(bundle_factory):
+    root = bundle_factory()
+    (root / "tools" / "scan.py").write_text(WATCH_TOOL)
+    return root
+
+
+def test_watch_once_json_events(watch_bundle, tmp_path, capsys):
+    (tmp_path / "notes.md").write_text("learn spanish this year\n")
+    (tmp_path / "other.md").write_text("nothing relevant\n")
+    assert cli.main(["watch", "--once", "--json", str(tmp_path)]) == 0
+    events = [json.loads(line) for line in capsys.readouterr().out.splitlines()]
+    assert events[0]["event"] == "start"
+    assert sorted(events[0]["files"]) == ["notes.md", "other.md"]
+    scans = {event["file"]: event for event in events if event["event"] == "scan"}
+    assert scans["notes.md"]["first"] is True
+    assert scans["notes.md"]["counts"]["documented"] == 1
+    assert scans["notes.md"]["findings"][0]["elevation_id"] == "e1"
+    assert scans["other.md"]["counts"]["documented"] == 0
+
+
+def test_watch_once_human_output(watch_bundle, tmp_path, capsys):
+    (tmp_path / "notes.md").write_text("learn spanish\n")
+    assert cli.main(["watch", "--once", str(tmp_path)]) == 0
+    out = capsys.readouterr().out
+    assert "watching 1 markdown file(s) under" in out
+    assert "-> notes.md" in out
+    assert "1 documented" in out
+
+
+def test_watch_state_diff_detects_removal(watch_bundle, tmp_path):
+    doc = tmp_path / "notes.md"
+    doc.write_text("learn spanish\nrun the 10k\n")
+    _, first = cli._scan_state(watch_bundle, doc)
+    assert set(first) == {"e1", "e2"}
+    doc.write_text("learn spanish only now\n")
+    _, second = cli._scan_state(watch_bundle, doc)
+    added, changed, removed = cli._diff_states(first, second)
+    assert added == [] and changed == []
+    assert [finding["elevation_id"] for finding in removed] == ["e2"]
+
+
+def test_diff_states_marks_status_changes():
+    prev = {"e1": {"elevation_id": "e1", "status": "partial"}}
+    curr = {"e1": {"elevation_id": "e1", "status": "documented"}}
+    added, changed, removed = cli._diff_states(prev, curr)
+    assert added == [] and removed == []
+    assert changed[0]["status"] == "documented"
+
+
+def test_watch_missing_path_fails(watch_bundle):
+    with pytest.raises(SystemExit, match="path not found"):
+        cli.main(["watch", "--once", "/definitely/not/here.md"])
+
+
+def test_watch_folder_without_md_fails(watch_bundle, tmp_path):
+    with pytest.raises(SystemExit, match="no .md files"):
+        cli.main(["watch", "--once", str(tmp_path)])
+
+
+def test_watch_scan_failure_is_an_error_event(bundle_factory, tmp_path, capsys):
+    bundle_factory(scan_exit=3)
+    (tmp_path / "notes.md").write_text("x")
+    assert cli.main(["watch", "--once", "--json", str(tmp_path)]) == 1
+    events = [json.loads(line) for line in capsys.readouterr().out.splitlines()]
+    assert events[-1]["event"] == "error"
 
 
 # --------------------------------------------------------------------- walk
@@ -405,7 +559,9 @@ def test_update_available(store_home, registry, bundle_factory, capsys):
 def test_update_model_not_in_registry(store_home, registry, bundle_factory, capsys):
     bundle_factory(model="ghost-model")
     assert cli.main(["update", "--json"]) == 0
-    assert out_json(capsys) == [{"model": "ghost-model", "status": "not-in-registry"}]
+    rows = out_json(capsys)
+    assert {"model": "ghost-model", "status": "not-in-registry"} in rows
+    assert {"model": "runtime", "current": None, "latest": "2026-03-03", "status": "update-available"} in rows
 
 
 def test_upgrade_fetches_newer_bundle(store_home, registry, downloads, bundle_factory, capsys):

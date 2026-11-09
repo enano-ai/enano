@@ -1,0 +1,140 @@
+{
+  "schema": "fund_docs_regulatory_updates.v2",
+  "id": "fund_docs_regulatory_updates",
+  "version": "fd-updates-2026-10-30",
+  "generated_at": "2026-10-30",
+  "source": "document-pipeline:verticals/fintech/fund-docs/enrichments/regulatory_updates",
+  "window_days": 365,
+  "pipeline_generated_at": "2026-09-18T10:03:11+00:00",
+  "sidecars": [
+    {
+      "pipeline_instrument": "aifmd2_2024-927",
+      "instrument": "aifmd",
+      "items": 1
+    },
+    {
+      "pipeline_instrument": "aifmd2_lmt_rts_2026-465",
+      "instrument": "aifmd",
+      "items": 1
+    },
+    {
+      "pipeline_instrument": "aifmd_level1_2011-61-EU",
+      "instrument": "aifmd",
+      "items": 0
+    },
+    {
+      "pipeline_instrument": "aifmd_level2_231-2013",
+      "instrument": "aifmd",
+      "items": 0
+    },
+    {
+      "pipeline_instrument": "fca_cobs4",
+      "instrument": "fca_cobs_4",
+      "items": 1
+    },
+    {
+      "pipeline_instrument": "fca_prin_2a_consumer_duty",
+      "instrument": "consumer_duty",
+      "items": 0
+    },
+    {
+      "pipeline_instrument": "gips_standards_firms_2020",
+      "instrument": "gips_2020",
+      "items": 1
+    }
+  ],
+  "update_items": 3,
+  "instruments_with_updates": 3,
+  "by_instrument": {
+    "aifmd": [
+      {
+        "id": "1b2e2a67a6927869",
+        "title": "ESMA publishes implementing rules on loan-originating AIFs",
+        "publisher": "ESMA",
+        "published_at": "2025-10-21",
+        "url": "https://www.esma.europa.eu/press-news/esma-news/esma-publishes-implementing-rules-loan-originating-aifs",
+        "class": "publisher_notice",
+        "summary": "",
+        "deadline": null,
+        "effective_date": null,
+        "provision": null,
+        "instrument": "aifmd",
+        "pipeline_instrument": "aifmd2_2024-927",
+        "publisher_item_type": "press_release",
+        "feed": "esma_news",
+        "topics": [],
+        "pdf_urls": [],
+        "action_items": [],
+        "affected_obligation_ids": [],
+        "match_method": "keyword",
+        "match_terms": [
+          "loan-originating AIF"
+        ]
+      }
+    ],
+    "consumer_duty": [],
+    "fca_cobs_4": [
+      {
+        "id": "d87f0277c2964036",
+        "title": "COBS 4 chapter updated 2026-04-06, future versions apply 2027-10-25",
+        "publisher": "FCA",
+        "published_at": "2026-04-06",
+        "url": "https://www.handbook.fca.org.uk/handbook/COBS/4/",
+        "class": "chapter_signal",
+        "summary": "FCA Handbook banner: COBS 4 was last updated on 2026-04-06., future versions apply 2027-10-25",
+        "deadline": null,
+        "effective_date": "2026-04-06",
+        "provision": null,
+        "instrument": "fca_cobs_4",
+        "pipeline_instrument": "fca_cobs4",
+        "publisher_item_type": "amendment",
+        "feed": "fca_cobs4_handbook",
+        "topics": [],
+        "pdf_urls": [],
+        "action_items": [],
+        "affected_obligation_ids": [],
+        "match_method": "snapshot_diff",
+        "match_terms": [
+          "COBS 4",
+          "COBS"
+        ]
+      }
+    ],
+    "gips_2020": [
+      {
+        "id": "acd66c0f6ef79589",
+        "title": "Exposure Draft Guidance Statement on Trade Errors - public comment period open until 15 December 2026",
+        "publisher": "CFA Institute (GIPS)",
+        "published_at": "2026-09-01",
+        "url": "https://www.gipsstandards.org/wp-content/uploads/2026/09/exposure-draft-guidance-statement-trade-errors.pdf",
+        "class": "proposed_rules",
+        "summary": "Send Us Your Comments: Exposure Draft Guidance Statement on Trade Errors - public comment period open until 15 December 2026",
+        "deadline": "2026-12-15",
+        "effective_date": null,
+        "provision": null,
+        "instrument": "gips_2020",
+        "pipeline_instrument": "gips_standards_firms_2020",
+        "publisher_item_type": "exposure_draft",
+        "feed": "gips_news",
+        "topics": [],
+        "pdf_urls": [
+          "https://www.gipsstandards.org/wp-content/uploads/2026/09/exposure-draft-guidance-statement-trade-errors.pdf"
+        ],
+        "action_items": [
+          {
+            "action": "Respond to consultation",
+            "deadline": "2026-12-15"
+          }
+        ],
+        "affected_obligation_ids": [],
+        "match_method": "publisher",
+        "match_terms": [
+          "Trade Errors",
+          "Guidance Statement"
+        ]
+      }
+    ]
+  },
+  "by_obligation": {},
+  "by_provision": {}
+}

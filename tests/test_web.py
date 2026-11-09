@@ -41,7 +41,8 @@ def test_make_server_binds_loopback_with_free_port():
     try:
         port = httpd.server_address[1]
         assert port > 0
-        assert url == f"http://127.0.0.1:{port}/"
+        assert httpd.server_address[0] == "127.0.0.1"
+        assert url == f"http://localhost:{port}/"
     finally:
         httpd.server_close()
 
@@ -93,6 +94,56 @@ def test_unknown_path_is_json_404(server):
         urllib.request.urlopen(url + "nope", timeout=5)
     assert exc.value.code == 404
     assert json.loads(exc.value.read())["error"]
+
+
+# ------------------------------------------------------------------ runtime
+
+
+def test_runtime_files_served_from_store(server, store_home):
+    _, url = server
+    runtime = store_home / "runtime" / "2026-03-03"
+    (runtime / "models" / "bge-small").mkdir(parents=True)
+    (runtime / "models" / "bge-small" / "config.json").write_text("{}")
+    from enano import store as store_mod
+
+    store_mod.write_runtime_latest("2026-03-03")
+    status, _, body = _get(url + "runtime/models/bge-small/config.json")
+    assert status == 200
+    assert body == b"{}"
+
+
+def test_runtime_traversal_rejected(server, store_home):
+    _, url = server
+    runtime = store_home / "runtime" / "2026-03-03"
+    runtime.mkdir(parents=True)
+    (store_home / "secret.txt").write_text("nope")
+    from enano import store as store_mod
+
+    store_mod.write_runtime_latest("2026-03-03")
+    with pytest.raises(urllib.error.HTTPError) as exc:
+        urllib.request.urlopen(url + "runtime/../../secret.txt", timeout=5)
+    assert exc.value.code in (404, 400)
+
+
+def test_runtime_route_404s_when_not_installed(server):
+    _, url = server
+    with pytest.raises(urllib.error.HTTPError) as exc:
+        urllib.request.urlopen(url + "runtime/manifest.json", timeout=5)
+    assert exc.value.code == 404
+
+
+def test_api_runtime_reports_state(server, store_home):
+    _, url = server
+    status, doc = _get_json(url + "api/runtime")
+    assert status == 200
+    assert doc["runtime"]["version"] is None
+    runtime = store_home / "runtime" / "2026-03-03"
+    runtime.mkdir(parents=True)
+    from enano import store as store_mod
+
+    store_mod.write_runtime_latest("2026-03-03")
+    status, doc = _get_json(url + "api/runtime")
+    assert doc["runtime"]["version"] == "2026-03-03"
 
 
 def test_api_registry_uses_cache_without_network(server, store_home, monkeypatch):
@@ -190,20 +241,14 @@ def test_serve_no_open_leaves_browser_alone(monkeypatch, store_home):
     assert opened == []
 
 
-def test_serve_default_port_busy_falls_back_to_free_port(store_home):
+def test_serve_default_port_busy_is_an_error(store_home):
     try:
         blocker, _ = web.make_server(web.DEFAULT_PORT)
     except OSError:
         pytest.skip(f"port {web.DEFAULT_PORT} already busy on this machine")
     try:
-        holder, thread, _ = _run_serve_until_stopped(
-            port=web.DEFAULT_PORT, open_browser=False, json_mode=True
-        )
-        try:
-            assert holder["server"].server_address[1] != web.DEFAULT_PORT
-        finally:
-            holder["server"].shutdown()
-        thread.join(5)
+        with pytest.raises(SystemExit, match="already in use"):
+            web.serve(port=web.DEFAULT_PORT, open_browser=False)
     finally:
         blocker.server_close()
 
@@ -238,6 +283,37 @@ def test_web_dispatch_passes_flags(monkeypatch, store_home):
     monkeypatch.setattr(web, "serve", lambda **kw: calls.update(kw) or 0)
     assert cli.main(["web", "--no-open", "--port", "9"]) == 0
     assert calls == {"port": 9, "open_browser": False, "json_mode": False, "web_dir": None}
+
+
+def test_api_model_elevators_from_store(server, store_home):
+    from enano import store as store_mod
+
+    bundle = store_mod.model_dir("personal-goals", "2026-01-01")
+    (bundle / "data").mkdir(parents=True)
+    (bundle / "data" / "elevators.json").write_text(
+        json.dumps([{"id": "seneca_shortness_of_life", "title": "On the Shortness of Life"}])
+    )
+    store_mod.write_latest("personal-goals", "2026-01-01")
+    _, url = server
+    status, doc = _get_json(url + "api/models/personal-goals/elevators")
+    assert status == 200
+    assert doc["model"] == "personal-goals"
+    assert doc["elevators"][0]["id"] == "seneca_shortness_of_life"
+
+
+def test_api_model_elevators_missing_model_404(server, store_home):
+    _, url = server
+    with pytest.raises(urllib.error.HTTPError) as exc:
+        urllib.request.urlopen(url + "api/models/nope/elevators", timeout=5)
+    assert exc.value.code == 404
+
+
+def test_api_model_elevators_bundle_without_file_404(server, bundle_factory):
+    bundle_factory(model="personal-goals", version="2026-01-01")
+    _, url = server
+    with pytest.raises(urllib.error.HTTPError) as exc:
+        urllib.request.urlopen(url + "api/models/personal-goals/elevators", timeout=5)
+    assert exc.value.code == 404
 
 
 # ------------------------------------------------------------- gui serving
@@ -277,14 +353,27 @@ def test_resolve_web_root_env_var(gui_dir, store_home, monkeypatch):
     assert web.resolve_web_root(None) == gui_dir
 
 
-def test_resolve_web_root_store_bundle(store_home):
+def test_resolve_web_root_store_bundle(store_home, monkeypatch):
+    monkeypatch.setattr(web, "CHECKOUT_DIST", store_home / "no-dist")
     bundled = store_home / "web"
     bundled.mkdir()
     (bundled / "index.html").write_text("<html></html>")
     assert web.resolve_web_root(None) == bundled
 
 
-def test_resolve_web_root_none_when_nothing_installed(store_home):
+def test_resolve_web_root_prefers_checkout_dist(store_home, tmp_path, monkeypatch):
+    dist = tmp_path / "dist"
+    dist.mkdir()
+    (dist / "index.html").write_text("<html></html>")
+    bundled = store_home / "web"
+    bundled.mkdir()
+    (bundled / "index.html").write_text("<html></html>")
+    monkeypatch.setattr(web, "CHECKOUT_DIST", dist)
+    assert web.resolve_web_root(None) == dist
+
+
+def test_resolve_web_root_none_when_nothing_installed(store_home, monkeypatch):
+    monkeypatch.setattr(web, "CHECKOUT_DIST", store_home / "no-dist")
     assert web.resolve_web_root(None) is None
 
 
@@ -299,10 +388,19 @@ def test_root_redirects_to_gui(gui_server):
     with pytest.raises(urllib.error.HTTPError) as exc:
         opener.open(url, timeout=5)
     assert exc.value.code == 302
-    assert exc.value.headers["Location"] == "/etiny/"
+    assert exc.value.headers["Location"] == "/enano/"
+
+
+def test_serves_gui_under_enano_path(gui_server, gui_dir):
+    _, url = gui_server
+    status, headers, body = _get(url + "enano/")
+    assert status == 200
+    assert headers.get_content_type() == "text/html"
+    assert body == (gui_dir / "index.html").read_bytes()
 
 
 def test_serves_gui_under_etiny_path(gui_server, gui_dir):
+    """Legacy alias: the public build's asset URLs are /etiny/assets/..."""
     _, url = gui_server
     status, headers, body = _get(url + "etiny/")
     assert status == 200

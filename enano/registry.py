@@ -52,6 +52,23 @@ def registry_models(registry: dict[str, Any]) -> dict[str, Any]:
     return registry.get("models", {})
 
 
+def resolve_runtime_entry(registry: dict[str, Any], version: str | None = None) -> dict[str, Any] | None:
+    """The shared runtime layer entry (engine assets), or None when the
+    registry has not published one. Mirrors a model entry's shape:
+    {"latest": v, "versions": {v: {bytes, sha256, url, mirrorUrl}}}."""
+    runtime = registry.get("runtime") or {}
+    versions = runtime.get("versions") or {}
+    if not versions:
+        return None
+    if version is None:
+        version = runtime.get("latest") or sorted(versions)[-1]
+    if version not in versions:
+        raise SystemExit(
+            f"unknown runtime version {version} (available: {', '.join(sorted(versions))})"
+        )
+    return {"name": "runtime", "version": version, **versions[version]}
+
+
 def resolve_entry(registry: dict[str, Any], model: str, version: str | None) -> dict[str, Any]:
     models = registry_models(registry)
     if model not in models:

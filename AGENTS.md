@@ -2,7 +2,7 @@
 
 ## What this repo is (and is not)
 
-This repo is only the **client** for enano: a stdlib-only Python CLI that pulls, verifies, and manages versioned "model" bundles (advice corpora from books) from a remote registry, plus `enano web`, a localhost GUI backend. The actual domain logic (scanning, rule search, elevators listing) does **not live here** — it ships inside each downloaded bundle at `tools/*.py`, and the CLI subprocess-executes those scripts. Do not look for scanning code in this repo; it is not here.
+This repo is the **enano client**: a stdlib-only Python CLI that pulls, verifies, and manages versioned "model" bundles (advice corpora from books) from a remote registry, plus `enano web`, a localhost GUI backend, plus `webapp/`, the GUI's own React source (vendored; build with `make webapp`). The bundle scan logic ships inside each downloaded bundle at `tools/*.py` and the CLI subprocess-executes those scripts.
 
 The package has zero runtime dependencies. `onnxruntime` is an optional extra (`pip install .[semantic]`) consumed by bundles, never imported by this package.
 
@@ -18,9 +18,20 @@ make install                # venv + editable install + pytest
 make test                   # pytest via .venv (falls back to python3)
 make web ARGS="--no-open"   # serve the local web app (ARGS forwards flags)
 make doctor                 # enano doctor through the same wrapper
+make webapp                 # npm install + build webapp/ into webapp/dist
+make webapp-dev             # vite dev server for the GUI
 ```
 
 Zed tasks live in `.zed/tasks.json` and just call these make targets.
+
+`webapp/` is the GUI source (React + Vite + TypeScript, self-contained).
+Build output `webapp/dist` is gitignored; `enano web` prefers it when present,
+then falls back to the store's `web/` copy, then the built-in status page. The
+pack-import and upload pipeline scripts were deliberately not vendored.
+`webapp/src/endpoints.json` is inert by default (`{}`): the hosted build
+injects real backend endpoints there; when empty, remote features (model-zip
+downloads, backend packs, prebuilt catalog vectors) soft-fail to inline data
+or runtime embedding.
 
 The suite is hermetic: no network (registry fetch/downloads are patched), every
 test runs against a throwaway store via the `ENANO_HOME` fixture in
@@ -31,17 +42,18 @@ Set `ENANO_HOME=/tmp/some-dir` to redirect the store during testing so you never
 
 ## Architecture
 
-Four modules, no cyclic imports (`cli` → `registry` + `store` + `web`; `registry` lazily imports `store` inside functions; `web` → `store` + `registry`):
+Five modules plus the vendored GUI (`cli` → `registry` + `store` + `web`; `registry` lazily imports `store` inside functions; `web` → `store` + `registry`; `webapp/` builds standalone via npm):
 
 - **`enano/cli.py`** — argparse front end. Each subcommand is a `cmd_*` function registered via `parser.set_defaults(func=...)`; `main()` dispatches with `return args.func(args) or 0`. Bare `enano` (no subcommand) runs onboarding (`cmd_bare`): pulls the default model and prints a cheat sheet.
 - **`enano/store.py`** — the local store. Layout under `store_root()`:
   - `models/<model>/<version>/` — extracted bundles (immutable per version)
   - `models/<model>/latest` — symlink to the current version dir; **falls back to a plain text file containing the version string if symlink creation fails** (Windows). `read_latest()` handles both forms — always resolve through it, never assume a symlink.
+  - `runtime/<version>/` (+ `runtime/latest`) — the shared runtime layer: engine assets (embedding weights, ORT wasm) served to the GUI by `enano web` under `/runtime/`, pulled once and shared by all models (`resolve_runtime()`, `install_runtime()`). Registry publishes it as a top-level `"runtime"` entry mirroring a model entry's shape; `enano pull <model>` auto-installs it first, `enano pull runtime` manages it alone, and `update`/`upgrade` treat it like a model.
   - `default-model` — text file holding the `use` selection; falls back to hardcoded `"personal-goals"`.
   - `registry.json` — cached registry index; `archives/` — downloaded zips.
   - Store root resolution order: `ENANO_HOME` env → `ETINY_HOME` env → legacy `~/.etiny` if it exists → `~/.enano`.
 - **`enano/registry.py`** — fetches the index and streams bundle zips with size + sha256 verification (fail-hard `SystemExit` on mismatch; partial `.part` temp file is unlinked on sha failure).
-- **`enano/web.py`** — `enano web`: the GUI backend (Ollama pattern: localhost server + JSON API; the browser is the front end today, a native app could speak the same API later). `ThreadingHTTPServer` bound to **127.0.0.1 only**. Serves the GUI build under `/etiny/` (the public SPA is compiled with base `/etiny/`, so the path is fixed) with `/` redirecting there; JSON API lives alongside at `/api/version`, `/api/models`, `/api/registry[?refresh=1]`. The GUI folder is resolved by `resolve_web_root()`: `--dir` flag → `ENANO_WEB_DIR` env → `<store>/web` (a build copied into the store; the CLI repo itself carries no vertical assets). No GUI installed → a minimal status page at `/` and everything else 404s. `make_server(port, web_root)` binds (port 0 = kernel-picked), `serve()` runs until Ctrl-C, opens the browser, prints startup info flushed immediately (includes `web_root`). Default port 8765; a busy default falls back to a free port, a busy explicit `--port` is an error. Static serving resolves paths and rejects traversal; handler errors return JSON (404/502/500), never tracebacks; per-request logging is silenced.
+- **`enano/web.py`** — `enano web`: the GUI backend (Ollama pattern: localhost server + JSON API; the browser is the front end today, a native app could speak the same API later). `ThreadingHTTPServer` bound to **127.0.0.1 only** (the URL shown/opened is `http://localhost:<port>/`). Serves the GUI build under `/enano/` (primary; `/` redirects there) with `/etiny/` kept as a legacy alias because the public build's asset URLs are `/etiny/assets/...`; JSON API lives alongside at `/api/version`, `/api/models`, `/api/registry[?refresh=1]`. The GUI folder is resolved by `resolve_web_root()`: `--dir` flag → `ENANO_WEB_DIR` env → the checkout's `webapp/dist` (so dev serves what the repo builds) → `<store>/web` (a build copied into a user's store). No GUI anywhere → the built-in status page at `/` and everything else 404s. `make_server(port, web_root)` binds (port 0 = kernel-picked), `serve()` runs until Ctrl-C, opens the browser, prints startup info flushed immediately (includes `web_root`). Default port **8599** (fixed, IANA-unassigned, no known tool default; a busy port errors, never silently changes); a future native app can rely on the documented URL. Static serving resolves paths and rejects traversal; handler errors return JSON (404/502/500), never tracebacks; per-request logging is silenced.
 
 ### Bundle execution flow
 

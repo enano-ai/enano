@@ -67,6 +67,24 @@ def _pull(model: str, entry: dict, quiet: bool = False) -> Path:
     return target
 
 
+def _pull_runtime(registry: dict, quiet: bool = False) -> bool:
+    """Install the shared runtime layer if the registry publishes one and it
+    is not installed yet. Returns True when an install happened."""
+    entry = reg.resolve_runtime_entry(registry)
+    if entry is None or store.runtime_dir(entry["version"]).is_dir():
+        return False
+    archive = reg.download_archive(
+        entry.get("url") or entry["mirrorUrl"],
+        entry.get("bytes", 0),
+        entry["sha256"],
+        store.store_root() / "archives",
+    )
+    target = store.install_runtime(entry["version"], archive)
+    if not quiet:
+        print(f"installed runtime@{entry['version']} -> {target}")
+    return True
+
+
 # ------------------------------------------------------------- subcommands
 
 
@@ -78,6 +96,19 @@ def cmd_pull(args: argparse.Namespace) -> int:
     if not selectors:
         raise SystemExit("nothing to pull: give a model (or: enano pull all)")
     results = []
+    if "runtime" in selectors:
+        selectors = [s for s in selectors if s != "runtime"]
+        entry = reg.resolve_runtime_entry(registry)
+        if entry is None:
+            raise SystemExit("registry has no runtime published")
+        if store.runtime_dir(entry["version"]).is_dir():
+            if not args.json:
+                print(f"runtime@{entry['version']} already installed")
+            results.append({"model": "runtime", "version": entry["version"], "status": "already-installed"})
+        elif _pull_runtime(registry, quiet=args.json):
+            results.append({"model": "runtime", "version": entry["version"], "status": "installed"})
+    if selectors:
+        _pull_runtime(registry, quiet=args.json)
     for selector in selectors:
         model, version = _parse_selector(selector)
         entry = reg.resolve_entry(registry, model, version)
@@ -158,6 +189,17 @@ def cmd_models(args: argparse.Namespace) -> int:
                 "state": "latest" if store.read_latest(m.model) == m.version else "old",
             }
         )
+    runtime_latest = store.read_runtime_latest()
+    if runtime_latest:
+        path = store.runtime_dir(runtime_latest)
+        rows.append(
+            {
+                "name": f"runtime@{runtime_latest}",
+                "bytes": sum(f.stat().st_size for f in path.rglob("*") if f.is_file()),
+                "pulled": time.strftime("%Y-%m-%d", time.localtime(path.stat().st_mtime)),
+                "state": "shared engine assets",
+            }
+        )
     if not rows:
         print("nothing installed — try: enano pull personal-goals  (enano list shows what exists)")
         return 0
@@ -194,6 +236,19 @@ def _update_run(args: argparse.Namespace, fetch: bool) -> int:
             print(f"{model}: {local_latest or 'none'} -> {latest}")
         if fetch:
             _pull(model, reg.resolve_entry(registry, model, latest), quiet=args.json)
+    runtime_entry = reg.resolve_runtime_entry(registry)
+    if runtime_entry:
+        current = store.read_runtime_latest()
+        if runtime_entry["version"] != current:
+            rows.append({"model": "runtime", "current": current, "latest": runtime_entry["version"], "status": "update-available"})
+            if not args.json:
+                print(f"runtime: {current or 'none'} -> {runtime_entry['version']}")
+            if fetch:
+                _pull_runtime(registry, quiet=args.json)
+        else:
+            rows.append({"model": "runtime", "current": current, "latest": current, "status": "up-to-date"})
+            if not args.json:
+                print(f"runtime: up to date ({current})")
     if args.json:
         print(jsonlib.dumps(rows, indent=2))
     return 0
@@ -324,9 +379,21 @@ def cmd_verify(args: argparse.Namespace) -> int:
     return 0 if ok else 1
 
 
+def _forwardable(forward: list[str]) -> list[str]:
+    """Absolutize file arguments: bundle tools run with cwd=<bundle>, so a
+    relative path would resolve inside the bundle instead of the user's cwd."""
+    out = []
+    for arg in forward:
+        if not arg.startswith("-") and Path(arg).exists():
+            out.append(str(Path(arg).resolve()))
+        else:
+            out.append(arg)
+    return out
+
+
 def cmd_scan(args: argparse.Namespace) -> int:
     bundle = _require_bundle(store.default_model(), auto_pull=True, quiet=args.json)
-    forward = list(args.forward)
+    forward = _forwardable(list(args.forward))
     json_flag = ["--json"] if args.json else []
     if forward:
         return _run_tool(bundle, "scan", forward + json_flag)
@@ -361,9 +428,10 @@ def cmd_walk(args: argparse.Namespace) -> int:
     tool = bundle / "tools" / "scan.py"
     if not tool.is_file():
         raise SystemExit(f"this bundle ships no scanner ({bundle.name})")
-    root = Path(args.directory) if args.directory else Path.cwd()
+    root = Path(args.directory).expanduser() if args.directory else Path.cwd()
     if not root.is_dir():
         raise SystemExit(f"not a directory: {root}")
+    root = root.resolve()
     docs = _walk_docs(root)
     if not docs:
         raise SystemExit(f"no .md files under {root}")
@@ -392,6 +460,161 @@ def cmd_walk(args: argparse.Namespace) -> int:
         print(f"\n===== {doc.relative_to(root)} =====", flush=True)
         failed += _run_tool(bundle, "scan", [str(doc)]) != 0
     return 1 if failed else 0
+
+
+# ------------------------------------------------------------------- watch
+
+
+def _watch_docs(path: Path) -> tuple[list[Path], bool]:
+    """Docs to watch for a file-or-folder target: ([files], is_folder)."""
+    if path.is_file():
+        return [path], False
+    if path.is_dir():
+        docs = _walk_docs(path)
+        if not docs:
+            raise SystemExit(f"no .md files under {path} (watch a specific file, or cd into your notes)")
+        return docs, True
+    raise SystemExit(f"path not found: {path}")
+
+
+def _signature(path: Path) -> tuple[int, int] | None:
+    try:
+        stat = path.stat()
+    except OSError:
+        return None
+    return (stat.st_mtime_ns, stat.st_size)
+
+
+def _scan_state(bundle: Path, doc: Path) -> tuple[dict, dict] | None:
+    """Run the bundle scanner once; -> (counts, {elevation_id: finding}) or None."""
+    tool = bundle / "tools" / "scan.py"
+    if not tool.is_file():
+        raise SystemExit(f"this bundle ships no scanner: {bundle}")
+    out = subprocess.run(
+        [sys.executable, str(tool), str(doc), "--json"],
+        cwd=str(bundle), capture_output=True, text=True,
+    )
+    try:
+        payload = jsonlib.loads(out.stdout)
+    except jsonlib.JSONDecodeError:
+        return None
+    counts = payload.get("counts") or {}
+    state = {
+        f["elevation_id"]: f
+        for f in payload.get("findings") or []
+        if isinstance(f, dict) and f.get("elevation_id")
+    }
+    return counts, state
+
+
+def _diff_states(prev: dict, curr: dict) -> tuple[list, list, list]:
+    added = [curr[key] for key in curr.keys() - prev.keys()]
+    removed = [prev[key] for key in prev.keys() - curr.keys()]
+    changed = [
+        curr[key]
+        for key in curr.keys() & prev.keys()
+        if curr[key].get("status") != prev[key].get("status")
+    ]
+    return added, changed, removed
+
+
+def _counts_line(counts: dict) -> str:
+    return ", ".join(f"{counts.get(key, 0)} {key}" for key in ("documented", "partial", "topic_only", "absence"))
+
+
+def cmd_watch(args: argparse.Namespace) -> int:
+    """`enano watch`: re-scan on every save and print only what moved."""
+    bundle = _require_bundle(store.default_model(), auto_pull=True, quiet=args.json)
+    root = (Path(args.path).expanduser() if args.path else Path.cwd()).resolve()
+    docs, is_folder = _watch_docs(root)
+
+    def shown(doc: Path) -> str:
+        return str(doc.relative_to(root)) if is_folder else str(doc)
+
+    if args.json:
+        print(jsonlib.dumps({"event": "start", "model": bundle.name, "files": [shown(d) for d in docs]}), flush=True)
+    else:
+        label = f"{len(docs)} markdown file(s) under {root}" if is_folder else str(docs[0])
+        print(f"watching {label} with {bundle.name} (Ctrl-C to stop)", flush=True)
+
+    states: dict[Path, dict] = {}
+    sigs = {doc: _signature(doc) for doc in docs}
+
+    def scan_doc(doc: Path) -> bool:
+        first = doc not in states
+        name = shown(doc)
+        result = _scan_state(bundle, doc)
+        if result is None:
+            message = "scan failed (scanner exited without JSON)"
+            if args.json:
+                print(jsonlib.dumps({"event": "error", "file": name, "message": message}), flush=True)
+            else:
+                print(f"! {name}: {message}", flush=True)
+            return False
+        counts, state = result
+        prev = states.get(doc, {})
+        added, changed, removed = _diff_states(prev, state) if not first else ([], [], [])
+        states[doc] = state
+        if args.json:
+            event = {"event": "scan", "file": name, "first": first, "counts": counts,
+                     "added": added, "changed": changed, "removed": removed}
+            if first:
+                event["findings"] = list(state.values())
+            print(jsonlib.dumps(event, ensure_ascii=False), flush=True)
+            return True
+        print(f"-> {name}  ({_counts_line(counts)})", flush=True)
+        for finding in added:
+            print(f"  + {str(finding.get('status', '?')).upper():<10} [{finding.get('elevator', '?')}] {finding.get('title', '')}", flush=True)
+        for finding in changed:
+            old = prev[finding["elevation_id"]].get("status", "?")
+            new = finding.get("status", "?")
+            print(f"  ~ {old}->{new} [{finding.get('elevator', '?')}] {finding.get('title', '')}", flush=True)
+        for finding in removed:
+            print(f"  - lost {str(finding.get('status', '?')).upper():<10} [{finding.get('elevator', '?')}] {finding.get('title', '')}", flush=True)
+        return True
+
+    failed = sum(not scan_doc(doc) for doc in docs)
+    if args.once:
+        return 1 if failed else 0
+
+    pending: set = set()
+    last_change = 0.0
+    try:
+        while True:
+            time.sleep(args.interval)
+            if is_folder:
+                current = set(_walk_docs(root))
+                for doc in sorted(current - set(sigs)):
+                    sigs[doc] = _signature(doc)
+                    states.pop(doc, None)
+                    pending.add(doc)
+                    last_change = time.monotonic()
+                    if args.json:
+                        print(jsonlib.dumps({"event": "new", "file": shown(doc)}), flush=True)
+                    else:
+                        print(f"+ new file: {shown(doc)}", flush=True)
+                for doc in sorted(set(sigs) - current):
+                    del sigs[doc]
+                    states.pop(doc, None)
+                    pending.discard(doc)
+                    if args.json:
+                        print(jsonlib.dumps({"event": "gone", "file": shown(doc)}), flush=True)
+                    else:
+                        print(f"- gone: {shown(doc)}", flush=True)
+            for doc, sig in list(sigs.items()):
+                fresh = _signature(doc)
+                if fresh != sig:
+                    sigs[doc] = fresh
+                    pending.add(doc)
+                    last_change = time.monotonic()
+            if pending and time.monotonic() - last_change >= args.debounce:
+                for doc in sorted(pending):
+                    scan_doc(doc)
+                pending.clear()
+    except KeyboardInterrupt:
+        if not args.json:
+            print("\nstopped", flush=True)
+        return 0
 
 
 def cmd_elevators(args: argparse.Namespace) -> int:
@@ -437,6 +660,8 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     except SystemExit as exc:
         line("registry", str(exc), False)
     line("default model", store.default_model(), True)
+    runtime_path = store.resolve_runtime()
+    line("runtime", str(runtime_path) if runtime_path else "absent (engine assets pull with the first model)", True)
     line("onnxruntime", "installed (semantic on)" if importlib.util.find_spec("onnxruntime") else "absent (regex-only fallback)", True)
     for m in store.local_models():
         doc = m.version_doc
@@ -524,6 +749,14 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("directory", nargs="?", help="folder to walk (default: the current one)")
     p.add_argument("--json", action="store_true")
     p.set_defaults(func=cmd_walk)
+
+    p = sub.add_parser("watch", help="watch a file or folder and re-scan on every change, printing only what moved")
+    p.add_argument("path", nargs="?", help="file or folder to watch (default: the current folder)")
+    p.add_argument("--interval", type=float, default=0.25, help="poll interval in seconds (default: 0.25)")
+    p.add_argument("--debounce", type=float, default=0.5, help="seconds of quiet before a changed file is re-scanned (default: 0.5)")
+    p.add_argument("--once", action="store_true", help="scan every watched file once, then exit (no watching)")
+    p.add_argument("--json", action="store_true", help="emit JSONL events instead of human output")
+    p.set_defaults(func=cmd_watch)
 
     p = sub.add_parser("elevators", help="list the default model's source works (enano use switches it)")
     p.add_argument("--json", action="store_true")

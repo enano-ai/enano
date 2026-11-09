@@ -53,6 +53,68 @@ def model_dir(model: str, version: str) -> Path:
     return models_root() / model / version
 
 
+def runtime_root() -> Path:
+    return store_root() / "runtime"
+
+
+def runtime_dir(version: str) -> Path:
+    return runtime_root() / version
+
+
+def read_runtime_latest() -> str | None:
+    pointer = runtime_root() / "latest"
+    if pointer.is_symlink():
+        target = pointer.resolve()
+        return target.name if target.is_dir() else None
+    if pointer.is_file():
+        value = pointer.read_text(encoding="utf-8").strip()
+        return value or None
+    return None
+
+
+def write_runtime_latest(version: str) -> None:
+    pointer = runtime_root() / "latest"
+    if pointer.is_symlink() or pointer.is_file():
+        pointer.unlink()
+    try:
+        pointer.symlink_to(version, target_is_directory=True)
+    except OSError:
+        pointer.write_text(version, encoding="utf-8")
+
+
+def resolve_runtime(version: str | None = None) -> Path | None:
+    """The shared runtime layer (engine assets served to the GUI), or None."""
+    if version:
+        path = runtime_dir(version)
+        return path if path.is_dir() else None
+    latest = read_runtime_latest()
+    if not latest:
+        return None
+    path = runtime_dir(latest)
+    return path if path.is_dir() else None
+
+
+def install_runtime(version: str, archive: Path) -> Path:
+    """Extract the runtime zip into runtime/<version> and point latest at it.
+    Same single-top-level-directory lift as install_bundle."""
+    staging = runtime_dir(f".{version}.tmp")
+    if staging.exists():
+        shutil.rmtree(staging)
+    staging.mkdir(parents=True)
+    with zipfile.ZipFile(archive) as bundle:
+        bundle.extractall(staging)
+    top = [p for p in staging.iterdir() if p.is_dir()]
+    payload = top[0] if len(top) == 1 else staging
+    target = runtime_dir(version)
+    if target.exists():
+        shutil.rmtree(target)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.move(str(payload), str(target))
+    shutil.rmtree(staging, ignore_errors=True)
+    write_runtime_latest(version)
+    return target
+
+
 @dataclass
 class LocalModel:
     model: str

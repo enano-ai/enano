@@ -1,0 +1,348 @@
+{
+  "schema": "question_matrix.v1",
+  "id": "fund_docs_v1",
+  "vertical": "fintech/fund-docs",
+  "seed_version": "1.0.0",
+  "generated_at": "2026-09-18",
+  "source": "document-pipeline:verticals/fintech/fund-docs/classifiers/question_matrix.json",
+  "questions": [
+    {
+      "id": "firm_aum",
+      "label": "Firm AUM",
+      "instrument": "corpus",
+      "provision_id": "Corpus consistency — firm-level assets under management",
+      "kind": "currency_amount",
+      "patterns": [
+        {
+          "id": "aum_context",
+          "regex": "\\b(?:firm|group|aggregate|manages|managed|under management|AUM|assets under management)\\b[^.\\n]{0,90}?(GBP|EUR|USD|£|€|\\$)\\s?([\\d.,]+)\\s?(bn|billion|m|million)",
+          "flags": "gi",
+          "capture_groups": {
+            "currency": 1,
+            "amount": 2,
+            "magnitude": 3
+          }
+        },
+        {
+          "id": "aum_table_row",
+          "regex": "\\b(?:Firm\\s+AUM|AUM)\\s*\\n\\s*(GBP|EUR|USD|£|€|\\$)\\s?([\\d.,]+)\\s?(bn|billion|m|million)",
+          "flags": "gi",
+          "capture_groups": {
+            "currency": 1,
+            "amount": 2,
+            "magnitude": 3
+          }
+        }
+      ],
+      "normalisation": "currency_millions",
+      "tolerance": 0.05,
+      "temporal": true,
+      "date_patterns": [
+        {
+          "id": "full_date",
+          "regex": "\\b(\\d{1,2}\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\s+20\\d{2})\\b",
+          "flags": "i",
+          "capture_groups": {
+            "date": 1
+          }
+        },
+        {
+          "id": "year_with_marker",
+          "regex": "(?:as at|as of|at 31|year ended|year-end)[^.]{0,20}\\b(20\\d{2})\\b",
+          "flags": "i",
+          "capture_groups": {
+            "date": 1
+          }
+        }
+      ],
+      "conflict_severity": "high",
+      "description": "Firm-level AUM should be consistent across the document set for the same date. Tolerance of 5% handles rounding (2.6bn ≈ 2,614m)."
+    },
+    {
+      "id": "employees",
+      "label": "Employee headcount",
+      "instrument": "corpus",
+      "provision_id": "Corpus consistency — employee headcount",
+      "kind": "integer",
+      "patterns": [
+        {
+          "id": "employees_verb",
+          "regex": "\\b(?:employs|employing)\\s+(\\d+)\\s+(?:people|employees|staff|colleagues)",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1
+          }
+        },
+        {
+          "id": "employees_noun",
+          "regex": "\\b(\\d+)\\s+(?:employees|colleagues)\\b",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1
+          }
+        },
+        {
+          "id": "headcount",
+          "regex": "(?:headcount\\s+(?:of|was))\\s+(\\d+)",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1
+          }
+        }
+      ],
+      "normalisation": "integer",
+      "tolerance": 0,
+      "temporal": false,
+      "conflict_severity": "medium",
+      "description": "Employee count should be identical across the corpus. No tolerance — a 1-person difference is a contradiction."
+    },
+    {
+      "id": "founded_year",
+      "label": "Founding year",
+      "instrument": "corpus",
+      "provision_id": "Corpus consistency — founding year",
+      "kind": "year",
+      "patterns": [
+        {
+          "id": "founded",
+          "regex": "\\b(?:founded|established)(?:\\s+[A-Za-z]+)?\\s+(?:in\\s+)?((?:19|20)\\d{2})\\b",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1
+          }
+        }
+      ],
+      "normalisation": "year",
+      "tolerance": 0,
+      "temporal": false,
+      "conflict_severity": "medium",
+      "description": "Founding year should be identical across all documents. A 2-year discrepancy (2009 vs 2011) indicates a stale document."
+    },
+    {
+      "id": "gips_since",
+      "label": "GIPS compliance since",
+      "instrument": "gips_2020",
+      "provision_id": "GIPS 2020 §4.A — period of claimed compliance",
+      "kind": "year",
+      "patterns": [
+        {
+          "id": "gips_claim",
+          "regex": "GIPS[^.\\n]{0,120}?since\\s+((?:19|20)\\d{2})",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1
+          }
+        }
+      ],
+      "normalisation": "year",
+      "tolerance": 0,
+      "temporal": false,
+      "conflict_severity": "medium",
+      "description": "The year a firm claims GIPS compliance from should be consistent. Claiming since 2004 vs 2010 is a material difference."
+    },
+    {
+      "id": "sfdr_article",
+      "label": "SFDR classification",
+      "instrument": "sfdr_2019_2088",
+      "provision_id": "SFDR Article 6/8/9 classification consistency",
+      "kind": "scoped_enum",
+      "patterns": [
+        {
+          "id": "article_mention",
+          "regex": "Article\\s+([689])\\b",
+          "flags": "g",
+          "capture_groups": {
+            "value": 1
+          }
+        }
+      ],
+      "scope_patterns": [
+        {
+          "id": "fund_name",
+          "regex": "\\b([A-Z][A-Za-z&'-]*(?:[\\t ]+[A-Z][A-Za-z&'-]*){1,5}[\\t ]+(?:Fund|Sub-Fund|SICAV))\\b",
+          "flags": "g",
+          "capture_groups": {
+            "scope": 1
+          }
+        }
+      ],
+      "normalisation": "enum",
+      "enum_values": [
+        "Article 6",
+        "Article 8",
+        "Article 9"
+      ],
+      "tolerance": 0,
+      "temporal": false,
+      "conflict_severity": "medium",
+      "description": "A fund's SFDR classification must be consistent. Article 8 in one document and Article 9 in another is a material misclassification."
+    },
+    {
+      "id": "hurdle_basis",
+      "label": "Preferred return basis",
+      "instrument": "ilpa_ddq_2_0",
+      "provision_id": "ILPA DDQ 2.0 — carried interest / hurdle terms",
+      "kind": "compound_value",
+      "patterns": [
+        {
+          "id": "hurdle_rate",
+          "regex": "(\\d(?:\\.\\d+)?)\\s?%\\s*(compounded|simple)?\\s*(?:annually\\s+)?(?:preferred return|hurdle)",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1,
+            "qualifier": 2
+          }
+        }
+      ],
+      "normalisation": "rate_with_qualifier",
+      "tolerance": 0,
+      "temporal": false,
+      "conflict_severity": "medium",
+      "description": "The hurdle rate and its basis (compounded vs simple) must be consistent. 8% compounded ≠ 8% simple."
+    },
+    {
+      "id": "custodian",
+      "label": "Custodian",
+      "instrument": "corpus",
+      "provision_id": "Corpus consistency — custodian entity",
+      "kind": "scoped_entity",
+      "patterns": [
+        {
+          "id": "custodian_named",
+          "regex": "(?:custodian|depositary)[^.\\n]{0,20}[:\\s]+([A-Z][A-Za-z& .'-]{3,40}(?:Bank|Trust|Mellon|Custody|Services|Paribas|Street|Harriman)[A-Za-z .]*(?:S\\.?à r\\.l\\.?|LLP|Ltd|Inc|N\\.?V\\.?|S\\.?A\\.?)?)",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1
+          }
+        },
+        {
+          "id": "custodian_table_row",
+          "regex": "\\b(?:Custodian|Depositary)\\s*\\n\\s*([A-Z][A-Za-z& .',-]{3,50}(?:Bank|Trust|Mellon|Custody|Services|Paribas|Brown Brothers Harriman|State Street|Northern Trust|BNP|JPMorgan|HSBC|Citi))",
+          "flags": "g",
+          "capture_groups": {
+            "value": 1
+          }
+        }
+      ],
+      "scope_patterns": [
+        {
+          "id": "fund_name",
+          "regex": "\\b([A-Z][A-Za-z&'-]*(?:[\\t ]+[A-Z][A-Za-z&'-]*){1,5}[\\t ]+(?:Fund|Sub-Fund|SICAV|ICAV))\\b",
+          "flags": "g",
+          "capture_groups": {
+            "scope": 1
+          }
+        }
+      ],
+      "normalisation": "entity_name",
+      "tolerance": 0,
+      "temporal": false,
+      "conflict_severity": "high",
+      "description": "The named custodian for a specific fund should be consistent across documents."
+    },
+    {
+      "id": "auditor",
+      "label": "Auditor",
+      "instrument": "corpus",
+      "provision_id": "Corpus consistency — auditor entity",
+      "kind": "entity",
+      "patterns": [
+        {
+          "id": "auditor_named",
+          "regex": "(?:auditor|audited by)[^.\\n]{0,20}[:\\s]+((?:PwC|KPMG|EY|Deloitte|BDO|Grant Thornton|Baker Tilly|RSM|Mazars|Forvis)[A-Za-z .]*(?:LLP|Ltd)?)",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1
+          }
+        }
+      ],
+      "normalisation": "entity_name",
+      "tolerance": 0,
+      "temporal": false,
+      "conflict_severity": "medium",
+      "description": "The named auditor should be consistent across the document set."
+    },
+    {
+      "id": "management_fee",
+      "label": "Management fee rate",
+      "instrument": "corpus",
+      "provision_id": "Corpus consistency — management fee rate",
+      "kind": "rate",
+      "patterns": [
+        {
+          "id": "fee_rate",
+          "regex": "(?:management fee|fee\\s+(?:of|is|at))[^.\\n]{0,20}(\\d(?:\\.\\d+)?)\\s?%",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1
+          }
+        },
+        {
+          "id": "fee_share_class",
+          "regex": "(\\d(?:\\.\\d+)?)\\s?%\\s?p\\.?a\\.?\\s*\\((?:Class\\s+[A-Z])\\)",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1
+          }
+        }
+      ],
+      "scope_patterns": [
+        {
+          "id": "fund_name",
+          "regex": "\\b([A-Z][A-Za-z&'-]*(?:[\\t ]+[A-Z][A-Za-z&'-]*){1,5}[\\t ]+(?:Fund|Sub-Fund|SICAV))\\b",
+          "flags": "g",
+          "capture_groups": {
+            "scope": 1
+          }
+        },
+        {
+          "id": "share_class",
+          "regex": "\\((Class\\s+[A-Z])\\)",
+          "flags": "g",
+          "capture_groups": {
+            "scope": 1
+          }
+        }
+      ],
+      "normalisation": "rate",
+      "tolerance": 0,
+      "temporal": false,
+      "conflict_severity": "medium",
+      "description": "Management fee rates should be consistent for the same fund and share class. A fee change needs a date-aware comparison."
+    },
+    {
+      "id": "max_leverage",
+      "label": "Maximum leverage",
+      "instrument": "corpus",
+      "provision_id": "Corpus consistency — maximum leverage limit",
+      "kind": "rate",
+      "patterns": [
+        {
+          "id": "leverage_pct",
+          "regex": "(?:maximum\\s+)?(?:leverage|gearing)[^.\\n]{0,30}?(\\d{2,3})\\s?%",
+          "flags": "gi",
+          "capture_groups": {
+            "value": 1
+          }
+        }
+      ],
+      "scope_patterns": [
+        {
+          "id": "fund_name",
+          "regex": "\\b([A-Z][A-Za-z&'-]*(?:[\\t ]+[A-Z][A-Za-z&'-]*){1,5}[\\t ]+(?:Fund|Sub-Fund|SICAV|ICAV))\\b",
+          "flags": "g",
+          "capture_groups": {
+            "scope": 1
+          }
+        }
+      ],
+      "normalisation": "rate",
+      "tolerance": 0,
+      "temporal": false,
+      "conflict_severity": "high",
+      "description": "Maximum leverage limits for the same fund must be consistent. 100% vs 200% of NAV is materially different risk."
+    }
+  ],
+  "question_count": 10,
+  "pattern_count": 15
+}

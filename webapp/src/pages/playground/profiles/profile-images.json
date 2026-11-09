@@ -1,0 +1,136 @@
+{
+  "profiles": {
+    "aurelius_meditations": {
+      "image": "marcus-aurelius.png",
+      "name": "Marcus Aurelius"
+    },
+    "bennett_how_to_live_1908": {
+      "image": "arnold-bennett.png",
+      "name": "Arnold Bennett"
+    },
+    "franklin_autobiography_13_virtues": {
+      "image": "benjamin-franklin.png",
+      "name": "Benjamin Franklin"
+    },
+    "allen_getting_things_done": {
+      "image": "david-allen.png",
+      "name": "David Allen"
+    },
+    "allen_as_a_man_thinketh_1903": {
+      "image": "james-allen.png",
+      "name": "James Allen"
+    },
+    "epictetus_enchiridion": {
+      "image": "epictetus.png",
+      "name": "Epictetus"
+    },
+    "hill_law_of_success_1928": {
+      "image": "napoleon-hill.png",
+      "name": "Napoleon Hill"
+    },
+    "atomic_habits_clear_2018": {
+      "image": "james-clear.png",
+      "name": "James Clear"
+    },
+    "covey_7_habits_1989": {
+      "image": "stephen-covey.png",
+      "name": "Stephen Covey"
+    },
+    "doerr_measure_what_matters": {
+      "image": "john-doerr.png",
+      "name": "John Doerr"
+    },
+    "rubin_happiness_project": {
+      "image": "gretchen-rubin.png",
+      "name": "Gretchen Rubin"
+    },
+    "seneca_shortness_of_life": {
+      "image": "seneca.png",
+      "name": "Seneca"
+    },
+    "smiles_self_help_1859": {
+      "image": "samuel-smiles.png",
+      "name": "Samuel Smiles"
+    },
+    "wattles_science_of_getting_rich_1910": {
+      "image": "wallace-wattles.png",
+      "name": "Wallace D. Wattles"
+    },
+    "james_habit_ch4_1890": {
+      "image": "william-james.png",
+      "name": "William James"
+    },
+    "sequoia_business_plan": {
+      "image": "sequoia-capital.png",
+      "name": "Sequoia Capital"
+    },
+    "yc_seed_deck": {
+      "image": "ycombinator.png",
+      "name": "Y Combinator"
+    },
+    "mcclure_pitch_vc": {
+      "image": "500-startups.png",
+      "name": "500 Startups"
+    },
+    "kawasaki_102030": {
+      "image": "guy-kawasaki.png",
+      "name": "Guy Kawasaki"
+    },
+    "jarvis_seed_template": {
+      "image": "perfect-pitch-deck.png",
+      "name": "Perfect Pitch Deck"
+    },
+    "carnegie_art_of_public_speaking": {
+      "image": "dale-carnegie.png",
+      "name": "Dale Carnegie"
+    },
+    "atkinson_power_of_concentration": {
+      "image": "theron-q-dumont.png",
+      "name": "Theron Q Dumont"
+    },
+    "boethius_consolation_of_philosophy": {
+      "image": "boethius.png",
+      "name": "Boethius"
+    },
+    "conwell_acres_of_diamonds": {
+      "image": "russell-h-conwell.png",
+      "name": "Russell H Conwell"
+    },
+    "coue_self_mastery_autosuggestion": {
+      "image": "emile-coue.png",
+      "name": "Emile Coue"
+    },
+    "emerson_conduct_of_life_1860": {
+      "image": "ralph-waldo-emerson.png",
+      "name": "Ralph Waldo Emerson"
+    },
+    "emerson_essays_first_series_1841": {
+      "image": "ralph-waldo-emerson.png",
+      "name": "Ralph Waldo Emerson"
+    },
+    "thoreau_walden_1854": {
+      "image": "henry-david-thoreau.png",
+      "name": "Henry David Thoreau"
+    },
+    "russell_conquest_of_happiness": {
+      "image": "bertrand-russell.png",
+      "name": "Bertrand Russell"
+    },
+    "parsons_choosing_a_vocation_1909": {
+      "image": "frank-parsons.png",
+      "name": "Frank Parsons"
+    },
+    "marden_iron_will_1901": {
+      "image": "orison-swett-marden.png",
+      "name": "Orison Swett Marden"
+    },
+    "plato_apology": {
+      "image": "plato.png",
+      "name": "Plato"
+    },
+    "plato_republic": {
+      "image": "plato.png",
+      "name": "Plato"
+    }
+  }
+}

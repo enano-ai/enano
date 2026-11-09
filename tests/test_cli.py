@@ -11,8 +11,8 @@ from enano import cli, store
 
 ALL_COMMANDS = {
     "pull", "list", "models", "update", "upgrade", "use", "info",
-    "rm", "prune", "verify", "scan", "walk", "elevators", "elevations",
-    "doctor", "web", "help",
+    "rm", "prune", "verify", "scan", "walk", "watch", "elevators",
+    "elevations", "doctor", "web", "help",
 }
 
 

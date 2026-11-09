@@ -1,0 +1,3715 @@
+{
+ "schema": "hn_pd_catalog.v1",
+ "id": "hn_pd_catalog",
+ "version": "hn-pd-2026-11-02",
+ "generated_at": "2026-11-02",
+ "source": "Hacker News book-mention census via OpenLibrary works; US public domain (published pre-1931)",
+ "book_count": 322,
+ "books": [
+  {
+   "title": "The Wealth of Nations",
+   "author": "Adam Smith",
+   "year": 1776,
+   "hn_rank": 35,
+   "hn_mentions": 666,
+   "topics": [
+    "economics",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL76827W"
+  },
+  {
+   "title": "The Elements of Style",
+   "author": "William Strunk, Jr.",
+   "year": 1920,
+   "hn_rank": 115,
+   "hn_mentions": 281,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL38285W"
+  },
+  {
+   "title": "Elements",
+   "author": "Euclid",
+   "year": 1482,
+   "hn_rank": 122,
+   "hn_mentions": 271,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL912133W"
+  },
+  {
+   "title": "Meditations",
+   "author": "Marcus Aurelius",
+   "year": 1626,
+   "hn_rank": 139,
+   "hn_mentions": 237,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1317211W"
+  },
+  {
+   "title": "The Prince",
+   "author": "Niccolò Machiavelli",
+   "year": 1515,
+   "hn_rank": 154,
+   "hn_mentions": 220,
+   "topics": [
+    "philosophy",
+    "politics-society",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL1089297W"
+  },
+  {
+   "title": "Das Kapital",
+   "author": "Karl Marx",
+   "year": 1867,
+   "hn_rank": 155,
+   "hn_mentions": 228,
+   "topics": [
+    "economics",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL628450W"
+  },
+  {
+   "title": "The Art of War",
+   "author": "孙武 (Sun Tzu)",
+   "year": 1900,
+   "hn_rank": 179,
+   "hn_mentions": 198,
+   "topics": [
+    "business",
+    "design",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL244537W"
+  },
+  {
+   "title": "Principia mathematica",
+   "author": "Alfred North Whitehead",
+   "year": 1910,
+   "hn_rank": 192,
+   "hn_mentions": 205,
+   "topics": [
+    "math",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1133702W"
+  },
+  {
+   "title": "Calculus Made Easy",
+   "author": "Silvanus Phillips Thompson",
+   "year": 1914,
+   "hn_rank": 240,
+   "hn_mentions": 163,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL1084219W"
+  },
+  {
+   "title": "On Liberty",
+   "author": "John Stuart Mill",
+   "year": 1859,
+   "hn_rank": 344,
+   "hn_mentions": 152,
+   "topics": [
+    "politics-society",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1068091W"
+  },
+  {
+   "title": "Leviathan",
+   "author": "Thomas Hobbes",
+   "year": 1651,
+   "hn_rank": 348,
+   "hn_mentions": 120,
+   "topics": [
+    "politics-society",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL653987W"
+  },
+  {
+   "title": "Progress and poverty",
+   "author": "Henry George",
+   "year": 1879,
+   "hn_rank": 449,
+   "hn_mentions": 129,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL60753W"
+  },
+  {
+   "title": "The Richest Man in Babylon",
+   "author": "George S. Clason",
+   "year": 1926,
+   "hn_rank": 525,
+   "hn_mentions": 86,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL8165007W"
+  },
+  {
+   "title": "Nicomachean Ethics",
+   "author": "Aristotle",
+   "year": 1558,
+   "hn_rank": 567,
+   "hn_mentions": 88,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL8273964W"
+  },
+  {
+   "title": "Tractatus logico-philosophicus",
+   "author": "Ludwig Wittgenstein",
+   "year": 1921,
+   "hn_rank": 571,
+   "hn_mentions": 79,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1410381W"
+  },
+  {
+   "title": "The theory of moral sentiments",
+   "author": "Adam Smith",
+   "year": 1759,
+   "hn_rank": 627,
+   "hn_mentions": 81,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL76826W"
+  },
+  {
+   "title": "Propaganda",
+   "author": "Edward L. Bernays",
+   "year": 1928,
+   "hn_rank": 641,
+   "hn_mentions": 77,
+   "topics": [
+    "politics-society",
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL2781905W"
+  },
+  {
+   "title": "Common Sense",
+   "author": "Thomas Paine",
+   "year": 1776,
+   "hn_rank": 721,
+   "hn_mentions": 61,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL60358W"
+  },
+  {
+   "title": "The Theory of the Leisure Class",
+   "author": "Thorstein Veblen",
+   "year": 1899,
+   "hn_rank": 839,
+   "hn_mentions": 66,
+   "topics": [
+    "politics-society",
+    "economics",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1868441W"
+  },
+  {
+   "title": "The conquest of happiness",
+   "author": "Bertrand Russell",
+   "year": 1930,
+   "hn_rank": 1058,
+   "hn_mentions": 46,
+   "topics": [
+    "philosophy",
+    "productivity"
+   ],
+   "url": "https://openlibrary.org/works/OL1088568W"
+  },
+  {
+   "title": "Inquiry into the nature and causes of the wealth of nations",
+   "author": "Adam Smith",
+   "year": 1788,
+   "hn_rank": 1070,
+   "hn_mentions": 60,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL76825W"
+  },
+  {
+   "title": "A genealogy of morals",
+   "author": "Friedrich Nietzsche",
+   "year": 1899,
+   "hn_rank": 1123,
+   "hn_mentions": 44,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL17705254W"
+  },
+  {
+   "title": "The Story of Philosophy",
+   "author": "Will Durant",
+   "year": 1926,
+   "hn_rank": 1135,
+   "hn_mentions": 43,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1073898W"
+  },
+  {
+   "title": "Self-reliance",
+   "author": "Ralph Waldo Emerson",
+   "year": 1900,
+   "hn_rank": 1152,
+   "hn_mentions": 41,
+   "topics": [
+    "productivity"
+   ],
+   "url": "https://openlibrary.org/works/OL62189W"
+  },
+  {
+   "title": "Reminiscences of a stock operator",
+   "author": "Edwin Lefèvre",
+   "year": 1923,
+   "hn_rank": 1180,
+   "hn_mentions": 41,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL3472215W"
+  },
+  {
+   "title": "Orthodoxy",
+   "author": "Gilbert Keith Chesterton",
+   "year": 1874,
+   "hn_rank": 1201,
+   "hn_mentions": 44,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL76350W"
+  },
+  {
+   "title": "The Autobiography of Benjamin Franklin",
+   "author": "Benjamin Franklin",
+   "year": 1791,
+   "hn_rank": 1243,
+   "hn_mentions": 37,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL26492W"
+  },
+  {
+   "title": "The great illusion",
+   "author": "Norman Angell",
+   "year": 1909,
+   "hn_rank": 1327,
+   "hn_mentions": 35,
+   "topics": [
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL89024W"
+  },
+  {
+   "title": "The Nichomachean ethics",
+   "author": "Aristotle",
+   "year": 1876,
+   "hn_rank": 1413,
+   "hn_mentions": 37,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL15391515W"
+  },
+  {
+   "title": "Commentarii de bello gallico",
+   "author": "Julius Caesar",
+   "year": 1838,
+   "hn_rank": 1443,
+   "hn_mentions": 35,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL45798877W"
+  },
+  {
+   "title": "The Varieties of Religious Experience",
+   "author": "William James",
+   "year": 1817,
+   "hn_rank": 1553,
+   "hn_mentions": 34,
+   "topics": [
+    "religion",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1073561W"
+  },
+  {
+   "title": "Discourses",
+   "author": "Epictetus",
+   "year": 1766,
+   "hn_rank": 1556,
+   "hn_mentions": 34,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL13572W"
+  },
+  {
+   "title": "The Problems of Philosophy",
+   "author": "Bertrand Russell",
+   "year": 1900,
+   "hn_rank": 1665,
+   "hn_mentions": 29,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1088577W"
+  },
+  {
+   "title": "A treatise of human nature",
+   "author": "David Hume",
+   "year": 1739,
+   "hn_rank": 1729,
+   "hn_mentions": 29,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL93569W"
+  },
+  {
+   "title": "Discourses on Livy",
+   "author": "Niccolò Machiavelli",
+   "year": 1531,
+   "hn_rank": 1745,
+   "hn_mentions": 33,
+   "topics": [
+    "politics-society",
+    "philosophy",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL1089260W"
+  },
+  {
+   "title": "Summa Theologica",
+   "author": "Thomas Aquinas",
+   "year": 1467,
+   "hn_rank": 1749,
+   "hn_mentions": 27,
+   "topics": [
+    "religion",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL15314568W"
+  },
+  {
+   "title": "Public opinion",
+   "author": "Walter Lippmann",
+   "year": 1922,
+   "hn_rank": 1904,
+   "hn_mentions": 37,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL42346W"
+  },
+  {
+   "title": "Seven Pillars of Wisdom",
+   "author": "T. E. Lawrence",
+   "year": 1905,
+   "hn_rank": 1910,
+   "hn_mentions": 24,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL830503W"
+  },
+  {
+   "title": "Mutual Aid",
+   "author": "Peter Kropotkin",
+   "year": 1891,
+   "hn_rank": 1985,
+   "hn_mentions": 27,
+   "topics": [
+    "politics-society",
+    "biology",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1105375W"
+  },
+  {
+   "title": "Letters to a young poet",
+   "author": "Rainer Maria Rilke",
+   "year": 1656,
+   "hn_rank": 1996,
+   "hn_mentions": 29,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL3800761W"
+  },
+  {
+   "title": "The Magic of Thinking Big",
+   "author": "David Joseph Schwartz",
+   "year": 1900,
+   "hn_rank": 2030,
+   "hn_mentions": 22,
+   "topics": [
+    "productivity",
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL1906484W"
+  },
+  {
+   "title": "Decline of the West",
+   "author": "Oswald Spengler",
+   "year": 1926,
+   "hn_rank": 2053,
+   "hn_mentions": 24,
+   "topics": [
+    "history",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL39668923W"
+  },
+  {
+   "title": "Men of mathematics",
+   "author": "Eric Temple Bell",
+   "year": 1900,
+   "hn_rank": 2101,
+   "hn_mentions": 25,
+   "topics": [
+    "math",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL4091543W"
+  },
+  {
+   "title": "The Worst Journey in the World",
+   "author": "Apsley Cherry-Garrard",
+   "year": 1922,
+   "hn_rank": 2102,
+   "hn_mentions": 22,
+   "topics": [
+    "history",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL3360211W"
+  },
+  {
+   "title": "The descent of man",
+   "author": "Charles Darwin",
+   "year": 1871,
+   "hn_rank": 2140,
+   "hn_mentions": 23,
+   "topics": [
+    "biology"
+   ],
+   "url": "https://openlibrary.org/works/OL515361W"
+  },
+  {
+   "title": "My life and work",
+   "author": "Ford, Henry",
+   "year": 1922,
+   "hn_rank": 2160,
+   "hn_mentions": 25,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL4418043W"
+  },
+  {
+   "title": "Thus spake Zarathustra",
+   "author": "Friedrich Nietzsche",
+   "year": 1917,
+   "hn_rank": 2201,
+   "hn_mentions": 21,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL26442780W"
+  },
+  {
+   "title": "The hedgehog and the fox",
+   "author": "Isaiah Berlin",
+   "year": 1901,
+   "hn_rank": 2210,
+   "hn_mentions": 21,
+   "topics": [
+    "philosophy",
+    "history",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL930405W"
+  },
+  {
+   "title": "The Golden Bough",
+   "author": "James George Frazer",
+   "year": 1890,
+   "hn_rank": 2234,
+   "hn_mentions": 22,
+   "topics": [
+    "religion",
+    "fantasy"
+   ],
+   "url": "https://openlibrary.org/works/OL1159648W"
+  },
+  {
+   "title": "The art of money-getting",
+   "author": "P. T. Barnum",
+   "year": 1800,
+   "hn_rank": 2240,
+   "hn_mentions": 22,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL43075975W"
+  },
+  {
+   "title": "Leaders Eat Last",
+   "author": "Simon Sinek",
+   "year": 1900,
+   "hn_rank": 2255,
+   "hn_mentions": 21,
+   "topics": [
+    "business"
+   ],
+   "url": "https://openlibrary.org/works/OL16821124W"
+  },
+  {
+   "title": "Philosophiæ Naturalis Principia Mathematica.",
+   "author": "Sir Isaac Newton",
+   "year": 1687,
+   "hn_rank": 2292,
+   "hn_mentions": 20,
+   "topics": [
+    "physics",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL17640601W"
+  },
+  {
+   "title": "The Naked Ape",
+   "author": "Desmond Morris",
+   "year": 1772,
+   "hn_rank": 2357,
+   "hn_mentions": 21,
+   "topics": [
+    "psychology",
+    "biology"
+   ],
+   "url": "https://openlibrary.org/works/OL104128W"
+  },
+  {
+   "title": "Book of common prayer",
+   "author": "Church of England",
+   "year": 1537,
+   "hn_rank": 2381,
+   "hn_mentions": 20,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL769120W"
+  },
+  {
+   "title": "Physics",
+   "author": "Aristotle",
+   "year": 1472,
+   "hn_rank": 2417,
+   "hn_mentions": 19,
+   "topics": [
+    "philosophy",
+    "popular-science",
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL151632W"
+  },
+  {
+   "title": "State and Revolution",
+   "author": "Vladimir Il’ich Lenin",
+   "year": 1900,
+   "hn_rank": 2432,
+   "hn_mentions": 21,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL301143W"
+  },
+  {
+   "title": "A Course of Pure Mathematics",
+   "author": "G. H. Hardy",
+   "year": 1908,
+   "hn_rank": 2479,
+   "hn_mentions": 20,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL9331625W"
+  },
+  {
+   "title": "The Datacenter as a Computer",
+   "author": "Luiz André Barroso",
+   "year": 1900,
+   "hn_rank": 2483,
+   "hn_mentions": 20,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL17556163W"
+  },
+  {
+   "title": "The Everlasting Man",
+   "author": "Gilbert Keith Chesterton",
+   "year": 1925,
+   "hn_rank": 2505,
+   "hn_mentions": 19,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL76474W"
+  },
+  {
+   "title": "Essay concerning human understanding",
+   "author": "John Locke",
+   "year": 1689,
+   "hn_rank": 2515,
+   "hn_mentions": 21,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL880201W"
+  },
+  {
+   "title": "The Mother Tongue",
+   "author": "Bill Bryson",
+   "year": 1656,
+   "hn_rank": 2611,
+   "hn_mentions": 22,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL74126W"
+  },
+  {
+   "title": "Syntactic structures",
+   "author": "Noam Chomsky",
+   "year": 1900,
+   "hn_rank": 2612,
+   "hn_mentions": 19,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL71733W"
+  },
+  {
+   "title": "Essay on the principle of population",
+   "author": "Thomas Robert Malthus",
+   "year": 1798,
+   "hn_rank": 2690,
+   "hn_mentions": 16,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL1538755W"
+  },
+  {
+   "title": "Ecce homo",
+   "author": "Friedrich Nietzsche",
+   "year": 1908,
+   "hn_rank": 2766,
+   "hn_mentions": 18,
+   "topics": [
+    "philosophy",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL24945055W"
+  },
+  {
+   "title": "The anatomy of melancholy",
+   "author": "Burton, Robert, 1577-1640",
+   "year": 1907,
+   "hn_rank": 2773,
+   "hn_mentions": 18,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL42981315W"
+  },
+  {
+   "title": "Summerhill",
+   "author": "A. S. Neill",
+   "year": 1926,
+   "hn_rank": 2790,
+   "hn_mentions": 17,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL2950120W"
+  },
+  {
+   "title": "Gallic war",
+   "author": "Gaius Julius Caesar",
+   "year": 1895,
+   "hn_rank": 2975,
+   "hn_mentions": 16,
+   "topics": [
+    "writing",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL16911133W"
+  },
+  {
+   "title": "The Principles of Quantum Mechanics",
+   "author": "Paul Adrian Maurice Dirac",
+   "year": 1930,
+   "hn_rank": 2990,
+   "hn_mentions": 15,
+   "topics": [
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL1255103W"
+  },
+  {
+   "title": "The Age of Reason",
+   "author": "Thomas Paine",
+   "year": 1794,
+   "hn_rank": 3045,
+   "hn_mentions": 15,
+   "topics": [
+    "religion",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL60357W"
+  },
+  {
+   "title": "Mathematical principles of natural philosophy",
+   "author": "Isaac Newton",
+   "year": 1777,
+   "hn_rank": 3064,
+   "hn_mentions": 14,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL32859844W"
+  },
+  {
+   "title": "De architectura",
+   "author": "Vitruvius Pollio",
+   "year": 1486,
+   "hn_rank": 3068,
+   "hn_mentions": 14,
+   "topics": [
+    "design"
+   ],
+   "url": "https://openlibrary.org/works/OL1847603W"
+  },
+  {
+   "title": "Rāja-yoga",
+   "author": "Swami Vivekananda",
+   "year": 1920,
+   "hn_rank": 3123,
+   "hn_mentions": 17,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL311924W"
+  },
+  {
+   "title": "Plutarch's Lives",
+   "author": "Plutarch",
+   "year": 1916,
+   "hn_rank": 3135,
+   "hn_mentions": 16,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL24369415W"
+  },
+  {
+   "title": "How to live on 24 hours a day",
+   "author": "Arnold Bennett",
+   "year": 1900,
+   "hn_rank": 3160,
+   "hn_mentions": 18,
+   "topics": [
+    "productivity"
+   ],
+   "url": "https://openlibrary.org/works/OL109213W"
+  },
+  {
+   "title": "Crystallizing public opinion",
+   "author": "Edward L. Bernays",
+   "year": 1923,
+   "hn_rank": 3226,
+   "hn_mentions": 17,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL2781906W"
+  },
+  {
+   "title": "Hiroshima",
+   "author": "John Hersey",
+   "year": 1702,
+   "hn_rank": 3261,
+   "hn_mentions": 14,
+   "topics": [
+    "history",
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL2700123W"
+  },
+  {
+   "title": "Process and reality",
+   "author": "Alfred North Whitehead",
+   "year": 1929,
+   "hn_rank": 3264,
+   "hn_mentions": 14,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1133700W"
+  },
+  {
+   "title": "Why I am not a Christian",
+   "author": "Bertrand Russell",
+   "year": 1927,
+   "hn_rank": 3304,
+   "hn_mentions": 13,
+   "topics": [
+    "religion",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1088563W"
+  },
+  {
+   "title": "Pragmatism",
+   "author": "William James",
+   "year": 1907,
+   "hn_rank": 3376,
+   "hn_mentions": 15,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1502058W"
+  },
+  {
+   "title": "The life of reason",
+   "author": "George Santayana",
+   "year": 1905,
+   "hn_rank": 3426,
+   "hn_mentions": 13,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1862194W"
+  },
+  {
+   "title": "Malleus maleficarum",
+   "author": "Heinrich Institoris",
+   "year": 1491,
+   "hn_rank": 3596,
+   "hn_mentions": 14,
+   "topics": [
+    "fantasy",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL4062616W"
+  },
+  {
+   "title": "De re metallica",
+   "author": "Georg Agricola",
+   "year": 1541,
+   "hn_rank": 3607,
+   "hn_mentions": 14,
+   "topics": [
+    "design",
+    "hardware"
+   ],
+   "url": "https://openlibrary.org/works/OL3777463W"
+  },
+  {
+   "title": "Sailing alone around the world",
+   "author": "Joshua Slocum",
+   "year": 1800,
+   "hn_rank": 3664,
+   "hn_mentions": 13,
+   "topics": [
+    "biography",
+    "lifestyle"
+   ],
+   "url": "https://openlibrary.org/works/OL59979W"
+  },
+  {
+   "title": "Novum organum",
+   "author": "Francis Bacon",
+   "year": 1620,
+   "hn_rank": 3687,
+   "hn_mentions": 12,
+   "topics": [
+    "philosophy",
+    "popular-science",
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL69399W"
+  },
+  {
+   "title": "The gospel of wealth",
+   "author": "Andrew Carnegie",
+   "year": 1901,
+   "hn_rank": 3706,
+   "hn_mentions": 12,
+   "topics": [
+    "economics",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL1532864W"
+  },
+  {
+   "title": "Just Mercy",
+   "author": "Bryan Stevenson",
+   "year": 1600,
+   "hn_rank": 3773,
+   "hn_mentions": 11,
+   "topics": [
+    "biography",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL17231441W"
+  },
+  {
+   "title": "A treatise on electricity and magnetism",
+   "author": "James Clerk Maxwell",
+   "year": 1873,
+   "hn_rank": 3796,
+   "hn_mentions": 11,
+   "topics": [
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL606642W"
+  },
+  {
+   "title": "Yoga sutras",
+   "author": "Patanjali.",
+   "year": 1930,
+   "hn_rank": 3799,
+   "hn_mentions": 14,
+   "topics": [
+    "philosophy",
+    "religion",
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL7467995W"
+  },
+  {
+   "title": "Commentaries on the laws of England",
+   "author": "Sir William Blackstone",
+   "year": 1721,
+   "hn_rank": 3924,
+   "hn_mentions": 12,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL2417578W"
+  },
+  {
+   "title": "A history of mathematical notations",
+   "author": "Florian Cajori",
+   "year": 1928,
+   "hn_rank": 3951,
+   "hn_mentions": 12,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL2337965W"
+  },
+  {
+   "title": "Coming of age in Samoa",
+   "author": "Margaret Mead",
+   "year": 1924,
+   "hn_rank": 4026,
+   "hn_mentions": 11,
+   "topics": [
+    "politics-society",
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL73787W"
+  },
+  {
+   "title": "On War",
+   "author": "Carl von Clausewitz",
+   "year": 1918,
+   "hn_rank": 4085,
+   "hn_mentions": 11,
+   "topics": [
+    "history",
+    "design",
+    "arts"
+   ],
+   "url": "https://openlibrary.org/works/OL28242254W"
+  },
+  {
+   "title": "The Principles of Scientific Management",
+   "author": "Frederick Winslow Taylor",
+   "year": 1911,
+   "hn_rank": 4149,
+   "hn_mentions": 10,
+   "topics": [
+    "business"
+   ],
+   "url": "https://openlibrary.org/works/OL1866671W"
+  },
+  {
+   "title": "Guide culinaire",
+   "author": "Auguste Escoffier",
+   "year": 1903,
+   "hn_rank": 4166,
+   "hn_mentions": 10,
+   "topics": [
+    "lifestyle"
+   ],
+   "url": "https://openlibrary.org/works/OL3279082W"
+  },
+  {
+   "title": "As a Man Thinketh",
+   "author": "James Allen",
+   "year": 1902,
+   "hn_rank": 4169,
+   "hn_mentions": 10,
+   "topics": [
+    "productivity",
+    "psychology",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL43024W"
+  },
+  {
+   "title": "Data-Driven Science and Engineering",
+   "author": "Steven L. Brunton",
+   "year": 1900,
+   "hn_rank": 4347,
+   "hn_mentions": 11,
+   "topics": [
+    "math",
+    "programming"
+   ],
+   "url": "https://openlibrary.org/works/OL20705608W"
+  },
+  {
+   "title": "The principles of psychology",
+   "author": "William James",
+   "year": 1890,
+   "hn_rank": 4385,
+   "hn_mentions": 10,
+   "topics": [
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL1502064W"
+  },
+  {
+   "title": "On the origin of species by means of natural selection",
+   "author": "Charles Darwin",
+   "year": 1859,
+   "hn_rank": 4432,
+   "hn_mentions": 10,
+   "topics": [
+    "biology"
+   ],
+   "url": "https://openlibrary.org/works/OL515051W"
+  },
+  {
+   "title": "A Study of History",
+   "author": "Arnold J. Toynbee",
+   "year": 1900,
+   "hn_rank": 4542,
+   "hn_mentions": 9,
+   "topics": [
+    "history",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1108523W"
+  },
+  {
+   "title": "A message to Garcia",
+   "author": "Elbert Hubbard",
+   "year": 1899,
+   "hn_rank": 4638,
+   "hn_mentions": 9,
+   "topics": [
+    "productivity",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL1113702W"
+  },
+  {
+   "title": "Sein und Zeit",
+   "author": "Martin Heidegger",
+   "year": 1927,
+   "hn_rank": 4655,
+   "hn_mentions": 9,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL77609W"
+  },
+  {
+   "title": "Fragments of an Anarchist Anthropology",
+   "author": "David Graeber",
+   "year": 1900,
+   "hn_rank": 4659,
+   "hn_mentions": 9,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL5738844W"
+  },
+  {
+   "title": "The discourses of Epictetus",
+   "author": "Epictetus",
+   "year": 1800,
+   "hn_rank": 4669,
+   "hn_mentions": 11,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL10411273W"
+  },
+  {
+   "title": "A history of philosophy",
+   "author": "Frederick Charles Copleston",
+   "year": 1900,
+   "hn_rank": 4686,
+   "hn_mentions": 11,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1235667W"
+  },
+  {
+   "title": "How the other half lives",
+   "author": "Jacob A. Riis",
+   "year": 1890,
+   "hn_rank": 4689,
+   "hn_mentions": 11,
+   "topics": [
+    "politics-society",
+    "economics",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL1838900W"
+  },
+  {
+   "title": "De anima",
+   "author": "Aristotle",
+   "year": 1877,
+   "hn_rank": 4734,
+   "hn_mentions": 10,
+   "topics": [
+    "philosophy",
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL15222713W"
+  },
+  {
+   "title": "The Book of Tea",
+   "author": "Okakura Kakuzō",
+   "year": 1900,
+   "hn_rank": 4738,
+   "hn_mentions": 10,
+   "topics": [
+    "lifestyle",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL7095112W"
+  },
+  {
+   "title": "The chemical history of a candle",
+   "author": "Michael Faraday",
+   "year": 1894,
+   "hn_rank": 4753,
+   "hn_mentions": 10,
+   "topics": [
+    "popular-science",
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL15135728W"
+  },
+  {
+   "title": "Homeric Greek",
+   "author": "Pharr, Clyde",
+   "year": 1920,
+   "hn_rank": 4841,
+   "hn_mentions": 9,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL122562W"
+  },
+  {
+   "title": "The will to believe",
+   "author": "William James",
+   "year": 1897,
+   "hn_rank": 4874,
+   "hn_mentions": 9,
+   "topics": [
+    "philosophy",
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL1502061W"
+  },
+  {
+   "title": "The friends of Voltaire",
+   "author": "Evelyn Beatrice Hall",
+   "year": 1906,
+   "hn_rank": 4879,
+   "hn_mentions": 9,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL1093958W"
+  },
+  {
+   "title": "Confessions of an English opium eater",
+   "author": "Thomas De Quincey",
+   "year": 1822,
+   "hn_rank": 4886,
+   "hn_mentions": 9,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL46720W"
+  },
+  {
+   "title": "Pensées",
+   "author": "Blaise Pascal",
+   "year": 1670,
+   "hn_rank": 4943,
+   "hn_mentions": 8,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL1262495W"
+  },
+  {
+   "title": "Sam Walton",
+   "author": "John Huey",
+   "year": 1900,
+   "hn_rank": 4966,
+   "hn_mentions": 8,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL4291646W"
+  },
+  {
+   "title": "An introduction to mathematics",
+   "author": "Alfred North Whitehead",
+   "year": 1911,
+   "hn_rank": 5079,
+   "hn_mentions": 8,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL1133699W"
+  },
+  {
+   "title": "Life of Samuel Johnson",
+   "author": "James Boswell",
+   "year": 1776,
+   "hn_rank": 5092,
+   "hn_mentions": 8,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL16234621W"
+  },
+  {
+   "title": "Enumerative combinatorics",
+   "author": "Richard P. Stanley",
+   "year": 1900,
+   "hn_rank": 5108,
+   "hn_mentions": 8,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL2938344W"
+  },
+  {
+   "title": "The Human Zoo",
+   "author": "Desmond Morris",
+   "year": 1705,
+   "hn_rank": 5111,
+   "hn_mentions": 8,
+   "topics": [
+    "psychology",
+    "biology"
+   ],
+   "url": "https://openlibrary.org/works/OL104152W"
+  },
+  {
+   "title": "Introduction to mathematical philosophy",
+   "author": "Bertrand Russell",
+   "year": 1920,
+   "hn_rank": 5127,
+   "hn_mentions": 10,
+   "topics": [
+    "philosophy",
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL1088545W"
+  },
+  {
+   "title": "Rise of the Robots",
+   "author": "Martin Ford",
+   "year": 1708,
+   "hn_rank": 5177,
+   "hn_mentions": 9,
+   "topics": [
+    "startups",
+    "hardware",
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL19668878W"
+  },
+  {
+   "title": "Roots",
+   "author": "Alex Haley",
+   "year": 1861,
+   "hn_rank": 5188,
+   "hn_mentions": 9,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL1815447W"
+  },
+  {
+   "title": "The King's English",
+   "author": "H. W. Fowler",
+   "year": 1906,
+   "hn_rank": 5205,
+   "hn_mentions": 9,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL2220252W"
+  },
+  {
+   "title": "Institutio oratoria",
+   "author": "Quintilian",
+   "year": 1538,
+   "hn_rank": 5253,
+   "hn_mentions": 8,
+   "topics": [
+    "history",
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL10314048W"
+  },
+  {
+   "title": "The Flaw of Averages",
+   "author": "Savage",
+   "year": 1921,
+   "hn_rank": 5379,
+   "hn_mentions": 8,
+   "topics": [
+    "business"
+   ],
+   "url": "https://openlibrary.org/works/OL8228037W"
+  },
+  {
+   "title": "Narrative of the life of Frederick Douglass",
+   "author": "Frederick Douglass",
+   "year": 1845,
+   "hn_rank": 5423,
+   "hn_mentions": 7,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL69178W"
+  },
+  {
+   "title": "The education of Henry Adams",
+   "author": "Henry Adams",
+   "year": 1777,
+   "hn_rank": 5451,
+   "hn_mentions": 10,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL24220W"
+  },
+  {
+   "title": "You Can't Win",
+   "author": "Jack Black",
+   "year": 1926,
+   "hn_rank": 5456,
+   "hn_mentions": 10,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL4290389W"
+  },
+  {
+   "title": "Philosophiae naturalis principia mathematica",
+   "author": "Sir Isaac Newton",
+   "year": 1687,
+   "hn_rank": 5467,
+   "hn_mentions": 7,
+   "topics": [
+    "physics",
+    "math",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL104736W"
+  },
+  {
+   "title": "Reflections on the revolution in France",
+   "author": "Edmund Burke",
+   "year": 1790,
+   "hn_rank": 5473,
+   "hn_mentions": 7,
+   "topics": [
+    "biography",
+    "history",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL843379W"
+  },
+  {
+   "title": "Utilitarianism",
+   "author": "John Stuart Mill",
+   "year": 1863,
+   "hn_rank": 5501,
+   "hn_mentions": 7,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1068100W"
+  },
+  {
+   "title": "Also sprach Zarathustra",
+   "author": "Friedrich Nietzsche",
+   "year": 1883,
+   "hn_rank": 5509,
+   "hn_mentions": 7,
+   "topics": [
+    "philosophy",
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL98130W"
+  },
+  {
+   "title": "The Autobiography of Mark Twain",
+   "author": "Mark Twain",
+   "year": 1917,
+   "hn_rank": 5562,
+   "hn_mentions": 7,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL54115W"
+  },
+  {
+   "title": "Notes on the state of Virginia",
+   "author": "Thomas Jefferson",
+   "year": 1784,
+   "hn_rank": 5608,
+   "hn_mentions": 7,
+   "topics": [
+    "politics-society",
+    "biography",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL622973W"
+  },
+  {
+   "title": "A dictionary of the English language",
+   "author": "Samuel Johnson",
+   "year": 1747,
+   "hn_rank": 5688,
+   "hn_mentions": 7,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL14862662W"
+  },
+  {
+   "title": "Autopoiesis and cognition",
+   "author": "Humberto R. Maturana",
+   "year": 1899,
+   "hn_rank": 5703,
+   "hn_mentions": 12,
+   "topics": [
+    "philosophy",
+    "biology",
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL1418959W"
+  },
+  {
+   "title": "The coal question",
+   "author": "William Stanley Jevons",
+   "year": 1865,
+   "hn_rank": 5714,
+   "hn_mentions": 12,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL4764086W"
+  },
+  {
+   "title": "Democracy and Education",
+   "author": "John Dewey",
+   "year": 1916,
+   "hn_rank": 5724,
+   "hn_mentions": 9,
+   "topics": [
+    "philosophy",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL111359W"
+  },
+  {
+   "title": "Unpopular Essays",
+   "author": "Bertrand Russell",
+   "year": 1901,
+   "hn_rank": 5752,
+   "hn_mentions": 8,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1088334W"
+  },
+  {
+   "title": "Lombard Street",
+   "author": "Walter Bagehot",
+   "year": 1873,
+   "hn_rank": 5786,
+   "hn_mentions": 8,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL1330667W"
+  },
+  {
+   "title": "Principles of Political Economy",
+   "author": "John Stuart Mill",
+   "year": 1848,
+   "hn_rank": 5849,
+   "hn_mentions": 7,
+   "topics": [
+    "economics",
+    "philosophy",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL1068184W"
+  },
+  {
+   "title": "Invictus",
+   "author": "William Ernest Henley",
+   "year": 1900,
+   "hn_rank": 5860,
+   "hn_mentions": 7,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL37154976W"
+  },
+  {
+   "title": "The fable of the bees",
+   "author": "Bernard Mandeville",
+   "year": 1723,
+   "hn_rank": 5862,
+   "hn_mentions": 7,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL2700408W"
+  },
+  {
+   "title": "Vom Kriege",
+   "author": "Carl von Clausewitz",
+   "year": 1835,
+   "hn_rank": 5970,
+   "hn_mentions": 7,
+   "topics": [
+    "design",
+    "history",
+    "arts"
+   ],
+   "url": "https://openlibrary.org/works/OL62744W"
+  },
+  {
+   "title": "The medical detectives",
+   "author": "Berton Roueché",
+   "year": 1900,
+   "hn_rank": 5973,
+   "hn_mentions": 7,
+   "topics": [
+    "biology",
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL11077308W"
+  },
+  {
+   "title": "Mysterium cosmographicum",
+   "author": "Johannes Kepler",
+   "year": 1923,
+   "hn_rank": 6079,
+   "hn_mentions": 6,
+   "topics": [
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL2954064W"
+  },
+  {
+   "title": "De finibus bonorum et malorum",
+   "author": "Cicero",
+   "year": 1471,
+   "hn_rank": 6090,
+   "hn_mentions": 6,
+   "topics": [
+    "philosophy",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL67544W"
+  },
+  {
+   "title": "De officiis",
+   "author": "Cicero",
+   "year": 1465,
+   "hn_rank": 6128,
+   "hn_mentions": 6,
+   "topics": [
+    "philosophy",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL67551W"
+  },
+  {
+   "title": "Lives",
+   "author": "Plutarch",
+   "year": 1564,
+   "hn_rank": 6307,
+   "hn_mentions": 6,
+   "topics": [
+    "biography",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL2521179W"
+  },
+  {
+   "title": "The English constitution",
+   "author": "Walter Bagehot",
+   "year": 1867,
+   "hn_rank": 6318,
+   "hn_mentions": 6,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL1330668W"
+  },
+  {
+   "title": "Elements of Euclid",
+   "author": "Werner Oechslin",
+   "year": 1900,
+   "hn_rank": 6388,
+   "hn_mentions": 6,
+   "topics": [
+    "design",
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL21144994W"
+  },
+  {
+   "title": "Risk, uncertainty and profit",
+   "author": "Frank H. Knight",
+   "year": 1921,
+   "hn_rank": 6398,
+   "hn_mentions": 6,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL10480137W"
+  },
+  {
+   "title": "Diary",
+   "author": "Samuel Pepys",
+   "year": 1825,
+   "hn_rank": 6488,
+   "hn_mentions": 8,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL193961W"
+  },
+  {
+   "title": "The principles of art",
+   "author": "R. G. Collingwood",
+   "year": 1656,
+   "hn_rank": 6565,
+   "hn_mentions": 7,
+   "topics": [
+    "design",
+    "arts",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL506664W"
+  },
+  {
+   "title": "Money and the mechanism of exchange",
+   "author": "William Stanley Jevons",
+   "year": 1875,
+   "hn_rank": 6601,
+   "hn_mentions": 10,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL4764091W"
+  },
+  {
+   "title": "BOLD",
+   "author": "Peter H. Diamandis",
+   "year": 1905,
+   "hn_rank": 6666,
+   "hn_mentions": 7,
+   "topics": [
+    "startups"
+   ],
+   "url": "https://openlibrary.org/works/OL17100369W"
+  },
+  {
+   "title": "The art of controversy",
+   "author": "Arthur Schopenhauer",
+   "year": 1896,
+   "hn_rank": 6753,
+   "hn_mentions": 6,
+   "topics": [
+    "philosophy",
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL1183654W"
+  },
+  {
+   "title": "American practical navigator",
+   "author": "Nathaniel Bowditch",
+   "year": 1802,
+   "hn_rank": 7034,
+   "hn_mentions": 5,
+   "topics": [
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL4256463W"
+  },
+  {
+   "title": "Trauma and Recovery",
+   "author": "Judith Lewis Herman",
+   "year": 1901,
+   "hn_rank": 7137,
+   "hn_mentions": 5,
+   "topics": [
+    "biology",
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL2652815W"
+  },
+  {
+   "title": "Introductio in analysin infinitorum",
+   "author": "L. Euler",
+   "year": 1748,
+   "hn_rank": 7148,
+   "hn_mentions": 5,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL9334688W"
+  },
+  {
+   "title": "A Vindication of the rights of woman",
+   "author": "Mary Wollstonecraft",
+   "year": 1792,
+   "hn_rank": 7211,
+   "hn_mentions": 5,
+   "topics": [
+    "philosophy",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL38872177W"
+  },
+  {
+   "title": "The Rough Riders",
+   "author": "Theodore Roosevelt",
+   "year": 1894,
+   "hn_rank": 7401,
+   "hn_mentions": 5,
+   "topics": [
+    "biography",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL20531W"
+  },
+  {
+   "title": "Natural theology",
+   "author": "William Paley",
+   "year": 1802,
+   "hn_rank": 7411,
+   "hn_mentions": 5,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL3716636W"
+  },
+  {
+   "title": "100 things every designer needs to know about people",
+   "author": "Susan Weinschenk",
+   "year": 1920,
+   "hn_rank": 7435,
+   "hn_mentions": 5,
+   "topics": [
+    "design",
+    "web"
+   ],
+   "url": "https://openlibrary.org/works/OL19906923W"
+  },
+  {
+   "title": "Imitation of Christ",
+   "author": "Thomas à Kempis",
+   "year": 1568,
+   "hn_rank": 7442,
+   "hn_mentions": 5,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL260847W"
+  },
+  {
+   "title": "The Longest Day",
+   "author": "Cornelius Ryan",
+   "year": 1901,
+   "hn_rank": 7480,
+   "hn_mentions": 5,
+   "topics": [
+    "history",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL3086882W"
+  },
+  {
+   "title": "Collected papers",
+   "author": "Slevin, Joseph Richard",
+   "year": 1919,
+   "hn_rank": 7614,
+   "hn_mentions": 6,
+   "topics": [
+    "programming",
+    "computer-science"
+   ],
+   "url": "https://openlibrary.org/works/OL45726575W"
+  },
+  {
+   "title": "Principia ethica",
+   "author": "George Edward Moore",
+   "year": 1903,
+   "hn_rank": 7677,
+   "hn_mentions": 9,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL3907953W"
+  },
+  {
+   "title": "The First Six Books of the Elements of Euclid",
+   "author": "Euclid",
+   "year": 1847,
+   "hn_rank": 7766,
+   "hn_mentions": 5,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL15677131W"
+  },
+  {
+   "title": "The writings of Thomas Jefferson",
+   "author": "Thomas Jefferson",
+   "year": 1853,
+   "hn_rank": 7878,
+   "hn_mentions": 5,
+   "topics": [
+    "biography",
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL622972W"
+  },
+  {
+   "title": "Concerning the spiritual in art",
+   "author": "Wassily Kandinsky",
+   "year": 1912,
+   "hn_rank": 7899,
+   "hn_mentions": 5,
+   "topics": [
+    "design"
+   ],
+   "url": "https://openlibrary.org/works/OL30152W"
+  },
+  {
+   "title": "The art spirit",
+   "author": "Robert Henri",
+   "year": 1930,
+   "hn_rank": 7921,
+   "hn_mentions": 5,
+   "topics": [
+    "design",
+    "arts"
+   ],
+   "url": "https://openlibrary.org/works/OL10490778W"
+  },
+  {
+   "title": "A free man's worship",
+   "author": "Bertrand Russell",
+   "year": 1923,
+   "hn_rank": 7947,
+   "hn_mentions": 5,
+   "topics": [
+    "religion",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1088470W"
+  },
+  {
+   "title": "Who Paid the Piper?",
+   "author": "Frances Stonor Saunders",
+   "year": 1905,
+   "hn_rank": 8017,
+   "hn_mentions": 5,
+   "topics": [
+    "design",
+    "arts",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL548260W"
+  },
+  {
+   "title": "On the connexion of the physical sciences",
+   "author": "Mary Somerville",
+   "year": 1834,
+   "hn_rank": 8021,
+   "hn_mentions": 5,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL7013870W"
+  },
+  {
+   "title": "The  French Revolution",
+   "author": "Thomas Carlyle",
+   "year": 1837,
+   "hn_rank": 8083,
+   "hn_mentions": 4,
+   "topics": [
+    "biography",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL1064769W"
+  },
+  {
+   "title": "The Arthashastra",
+   "author": "Kauṭalya.",
+   "year": 1923,
+   "hn_rank": 8116,
+   "hn_mentions": 4,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL319529W"
+  },
+  {
+   "title": "My bondage and my freedom",
+   "author": "Frederick Douglass",
+   "year": 1815,
+   "hn_rank": 8179,
+   "hn_mentions": 4,
+   "topics": [
+    "biography",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL69179W"
+  },
+  {
+   "title": "Representative men",
+   "author": "Ralph Waldo Emerson",
+   "year": 1800,
+   "hn_rank": 8246,
+   "hn_mentions": 7,
+   "topics": [
+    "biography",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL62248W"
+  },
+  {
+   "title": "A treatise on probability",
+   "author": "John Maynard Keynes",
+   "year": 1921,
+   "hn_rank": 8285,
+   "hn_mentions": 4,
+   "topics": [
+    "data-statistics"
+   ],
+   "url": "https://openlibrary.org/works/OL35949W"
+  },
+  {
+   "title": "American crisis",
+   "author": "Thomas Paine",
+   "year": 1776,
+   "hn_rank": 8322,
+   "hn_mentions": 4,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL60355W"
+  },
+  {
+   "title": "Confessions",
+   "author": "Augustine of Hippo",
+   "year": 1482,
+   "hn_rank": 8371,
+   "hn_mentions": 4,
+   "topics": [
+    "religion",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL137872W"
+  },
+  {
+   "title": "The brass check",
+   "author": "Upton Sinclair",
+   "year": 1905,
+   "hn_rank": 8480,
+   "hn_mentions": 4,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL115061W"
+  },
+  {
+   "title": "The River War",
+   "author": "Winston S. Churchill",
+   "year": 1899,
+   "hn_rank": 8589,
+   "hn_mentions": 4,
+   "topics": [
+    "history",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL134325W"
+  },
+  {
+   "title": "Modern painters",
+   "author": "John Ruskin",
+   "year": 1843,
+   "hn_rank": 8670,
+   "hn_mentions": 4,
+   "topics": [
+    "design",
+    "arts"
+   ],
+   "url": "https://openlibrary.org/works/OL88639W"
+  },
+  {
+   "title": "The wisdom of life",
+   "author": "Arthur Schopenhauer",
+   "year": 1901,
+   "hn_rank": 8768,
+   "hn_mentions": 4,
+   "topics": [
+    "productivity",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL20967407W"
+  },
+  {
+   "title": "A Treatise on Painting",
+   "author": "Leonardo da Vinci",
+   "year": 1796,
+   "hn_rank": 8796,
+   "hn_mentions": 4,
+   "topics": [
+    "design",
+    "arts"
+   ],
+   "url": "https://openlibrary.org/works/OL15082165W"
+  },
+  {
+   "title": "The idea of a university",
+   "author": "John Henry Newman",
+   "year": 1873,
+   "hn_rank": 8831,
+   "hn_mentions": 4,
+   "topics": [
+    "philosophy",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL1144814W"
+  },
+  {
+   "title": "The late great planet earth",
+   "author": "Hal Lindsey",
+   "year": 1727,
+   "hn_rank": 8865,
+   "hn_mentions": 4,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL2757941W"
+  },
+  {
+   "title": "Up from Slavery",
+   "author": "Booker T. Washington",
+   "year": 1900,
+   "hn_rank": 8869,
+   "hn_mentions": 4,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL357501W"
+  },
+  {
+   "title": "The American Pageant",
+   "author": "David M. Kennedy",
+   "year": 1900,
+   "hn_rank": 8913,
+   "hn_mentions": 4,
+   "topics": [
+    "biography",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL1997096W"
+  },
+  {
+   "title": "Den of thieves",
+   "author": "James B. Stewart",
+   "year": 1601,
+   "hn_rank": 8973,
+   "hn_mentions": 4,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL46466W"
+  },
+  {
+   "title": "The American way of death",
+   "author": "Jessica Mitford",
+   "year": 1901,
+   "hn_rank": 9197,
+   "hn_mentions": 5,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL2748768W"
+  },
+  {
+   "title": "Bury My Heart at Wounded Knee",
+   "author": "Dee Alexander Brown",
+   "year": 1672,
+   "hn_rank": 9339,
+   "hn_mentions": 4,
+   "topics": [
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL14864823W"
+  },
+  {
+   "title": "The Outline of History",
+   "author": "H. G. Wells",
+   "year": 1919,
+   "hn_rank": 9344,
+   "hn_mentions": 4,
+   "topics": [
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL52264W"
+  },
+  {
+   "title": "Zur Elektrodynamik bewegter Korper",
+   "author": "A. Einstein",
+   "year": 1905,
+   "hn_rank": 9369,
+   "hn_mentions": 4,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL10276008W"
+  },
+  {
+   "title": "Around the world on a bicycle ..",
+   "author": "Thomas Stevens",
+   "year": 1887,
+   "hn_rank": 9374,
+   "hn_mentions": 4,
+   "topics": [
+    "lifestyle"
+   ],
+   "url": "https://openlibrary.org/works/OL4840350W"
+  },
+  {
+   "title": "Discours de la méthode",
+   "author": "René Descartes",
+   "year": 1644,
+   "hn_rank": 9458,
+   "hn_mentions": 4,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1151518W"
+  },
+  {
+   "title": "A source book in mathematics",
+   "author": "David Eugene Smith",
+   "year": 1929,
+   "hn_rank": 9672,
+   "hn_mentions": 4,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL1514575W"
+  },
+  {
+   "title": "The \" art\" of rhetoric",
+   "author": "Aristotle",
+   "year": 1926,
+   "hn_rank": 9679,
+   "hn_mentions": 4,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL13703820W"
+  },
+  {
+   "title": "The Souls of Black Folk",
+   "author": "W. E. B. Du Bois",
+   "year": 1903,
+   "hn_rank": 9764,
+   "hn_mentions": 3,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL28577W"
+  },
+  {
+   "title": "The Birds of America",
+   "author": "John James Audubon",
+   "year": 1827,
+   "hn_rank": 9766,
+   "hn_mentions": 3,
+   "topics": [
+    "design",
+    "arts",
+    "biology"
+   ],
+   "url": "https://openlibrary.org/works/OL74757W"
+  },
+  {
+   "title": "Autobiography",
+   "author": "John Stuart Mill",
+   "year": 1873,
+   "hn_rank": 9790,
+   "hn_mentions": 3,
+   "topics": [
+    "biography",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1068072W"
+  },
+  {
+   "title": "Of studies",
+   "author": "Francis Bacon",
+   "year": 1900,
+   "hn_rank": 9868,
+   "hn_mentions": 3,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL10424917W"
+  },
+  {
+   "title": "The foundations of science",
+   "author": "Henri Poincaré",
+   "year": 1913,
+   "hn_rank": 9903,
+   "hn_mentions": 3,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL708902W"
+  },
+  {
+   "title": "Unto This Last",
+   "author": "John Ruskin",
+   "year": 1860,
+   "hn_rank": 9972,
+   "hn_mentions": 3,
+   "topics": [
+    "economics",
+    "philosophy",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL88634W"
+  },
+  {
+   "title": "The study of sociology",
+   "author": "Herbert Spencer",
+   "year": 1873,
+   "hn_rank": 9981,
+   "hn_mentions": 3,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL1067706W"
+  },
+  {
+   "title": "Electromagnetic theory",
+   "author": "Oliver Heaviside",
+   "year": 1893,
+   "hn_rank": 9988,
+   "hn_mentions": 3,
+   "topics": [
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL6829747W"
+  },
+  {
+   "title": "The Fasting Cure",
+   "author": "Upton Sinclair",
+   "year": 1911,
+   "hn_rank": 10011,
+   "hn_mentions": 3,
+   "topics": [
+    "biology"
+   ],
+   "url": "https://openlibrary.org/works/OL114963W"
+  },
+  {
+   "title": "Way to wealth",
+   "author": "Benjamin Franklin",
+   "year": 1758,
+   "hn_rank": 10013,
+   "hn_mentions": 3,
+   "topics": [
+    "economics",
+    "productivity",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL26610W"
+  },
+  {
+   "title": "Statistics of mental imagery",
+   "author": "Sir Francis Galton",
+   "year": 1880,
+   "hn_rank": 10059,
+   "hn_mentions": 3,
+   "topics": [
+    "data-statistics"
+   ],
+   "url": "https://openlibrary.org/works/OL17704907W"
+  },
+  {
+   "title": "History of mathematics",
+   "author": "David Eugene Smith",
+   "year": 1923,
+   "hn_rank": 10072,
+   "hn_mentions": 3,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL1514580W"
+  },
+  {
+   "title": "Composition",
+   "author": "Arthur Wesley Dow",
+   "year": 1913,
+   "hn_rank": 10106,
+   "hn_mentions": 3,
+   "topics": [
+    "design",
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL20327784W"
+  },
+  {
+   "title": "Twelve years a slave",
+   "author": "Solomon Northup",
+   "year": 1853,
+   "hn_rank": 10146,
+   "hn_mentions": 3,
+   "topics": [
+    "biography",
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL78871W"
+  },
+  {
+   "title": "De revolutionibus orbium coelestium",
+   "author": "Nicolaus Copernicus",
+   "year": 1543,
+   "hn_rank": 10220,
+   "hn_mentions": 3,
+   "topics": [
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL1429609W"
+  },
+  {
+   "title": "Chapters on Machinery and Labor",
+   "author": "George E. Barnett",
+   "year": 1926,
+   "hn_rank": 10346,
+   "hn_mentions": 6,
+   "topics": [
+    "hardware"
+   ],
+   "url": "https://openlibrary.org/works/OL21519791W"
+  },
+  {
+   "title": "The history of the Standard Oil Company",
+   "author": "Ida Minerva Tarbell",
+   "year": 1904,
+   "hn_rank": 10363,
+   "hn_mentions": 3,
+   "topics": [
+    "economics",
+    "business"
+   ],
+   "url": "https://openlibrary.org/works/OL1100467W"
+  },
+  {
+   "title": "The State",
+   "author": "Franz Oppenheimer",
+   "year": 1914,
+   "hn_rank": 10370,
+   "hn_mentions": 3,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL29299706W"
+  },
+  {
+   "title": "The noble eightfold path",
+   "author": "Manly Palmer Hall",
+   "year": 1929,
+   "hn_rank": 10476,
+   "hn_mentions": 3,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL1514616W"
+  },
+  {
+   "title": "Pseudodoxia epidemica",
+   "author": "Thomas Browne",
+   "year": 1650,
+   "hn_rank": 10497,
+   "hn_mentions": 3,
+   "topics": [
+    "biology",
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL997525W"
+  },
+  {
+   "title": "In Stahlgewittern",
+   "author": "Ernst Jünger",
+   "year": 1922,
+   "hn_rank": 10595,
+   "hn_mentions": 3,
+   "topics": [
+    "biography",
+    "history",
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL917355W"
+  },
+  {
+   "title": "The histories of Herodotus",
+   "author": "Erodotos",
+   "year": 1899,
+   "hn_rank": 10615,
+   "hn_mentions": 3,
+   "topics": [
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL15678067W"
+  },
+  {
+   "title": "English and American tool builders",
+   "author": "Joseph Wickham Roe",
+   "year": 1916,
+   "hn_rank": 10693,
+   "hn_mentions": 3,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL7584839W"
+  },
+  {
+   "title": "Three dialogues between Hylas and Philonous",
+   "author": "George Berkeley",
+   "year": 1713,
+   "hn_rank": 10713,
+   "hn_mentions": 3,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1066804W"
+  },
+  {
+   "title": "Soul on ice",
+   "author": "Eldridge Cleaver",
+   "year": 1863,
+   "hn_rank": 10731,
+   "hn_mentions": 3,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL5849413W"
+  },
+  {
+   "title": "Might Is Right",
+   "author": "Ragnar Redbeard",
+   "year": 1927,
+   "hn_rank": 10735,
+   "hn_mentions": 3,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL25448753W"
+  },
+  {
+   "title": "A Short History of the World",
+   "author": "H. G. Wells",
+   "year": 1922,
+   "hn_rank": 10767,
+   "hn_mentions": 3,
+   "topics": [
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL52254W"
+  },
+  {
+   "title": "Psychology",
+   "author": "William James",
+   "year": 1892,
+   "hn_rank": 10825,
+   "hn_mentions": 3,
+   "topics": [
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL1502063W"
+  },
+  {
+   "title": "L'ancien régime et la Révolution",
+   "author": "Alexis de Tocqueville",
+   "year": 1856,
+   "hn_rank": 10917,
+   "hn_mentions": 3,
+   "topics": [
+    "politics-society",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL487147W"
+  },
+  {
+   "title": "Die Grundlagen der Arithmetik",
+   "author": "Gottlob Frege",
+   "year": 1884,
+   "hn_rank": 10933,
+   "hn_mentions": 3,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL608737W"
+  },
+  {
+   "title": "A history of the warfare of science with theology in Christendom",
+   "author": "Andrew Dickson White",
+   "year": 1896,
+   "hn_rank": 10953,
+   "hn_mentions": 3,
+   "topics": [
+    "religion",
+    "popular-science"
+   ],
+   "url": "https://openlibrary.org/works/OL1461765W"
+  },
+  {
+   "title": "Untimely Meditations",
+   "author": "Friedrich Nietzsche",
+   "year": 1873,
+   "hn_rank": 10966,
+   "hn_mentions": 3,
+   "topics": [
+    "biography",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL98168W"
+  },
+  {
+   "title": "La comédie humaine",
+   "author": "Honoré de Balzac",
+   "year": 1837,
+   "hn_rank": 10992,
+   "hn_mentions": 3,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL85228W"
+  },
+  {
+   "title": "The Maine Woods",
+   "author": "Henry David Thoreau",
+   "year": 1803,
+   "hn_rank": 11009,
+   "hn_mentions": 3,
+   "topics": [
+    "biography",
+    "lifestyle",
+    "popular-science"
+   ],
+   "url": "https://openlibrary.org/works/OL55721W"
+  },
+  {
+   "title": "Dialogues Concerning Natural Religion",
+   "author": "David Hume",
+   "year": 1779,
+   "hn_rank": 11019,
+   "hn_mentions": 3,
+   "topics": [
+    "religion",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL93568W"
+  },
+  {
+   "title": "Jenseits von Gut und Böse",
+   "author": "Friedrich Nietzsche",
+   "year": 1885,
+   "hn_rank": 11169,
+   "hn_mentions": 3,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL98174W"
+  },
+  {
+   "title": "An enquiry concerning the principles of morals",
+   "author": "David Hume",
+   "year": 1751,
+   "hn_rank": 11191,
+   "hn_mentions": 3,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL15873903W"
+  },
+  {
+   "title": "The robber barons",
+   "author": "Josephson, Matthew",
+   "year": 1878,
+   "hn_rank": 11234,
+   "hn_mentions": 3,
+   "topics": [
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL2942446W"
+  },
+  {
+   "title": "Five hundred and seven mechanical movements",
+   "author": "Henry T. Brown",
+   "year": 1868,
+   "hn_rank": 11261,
+   "hn_mentions": 3,
+   "topics": [
+    "hardware"
+   ],
+   "url": "https://openlibrary.org/works/OL2590982W"
+  },
+  {
+   "title": "The opium-eater",
+   "author": "Thomas De Quincey",
+   "year": 1898,
+   "hn_rank": 11266,
+   "hn_mentions": 3,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL15199894W"
+  },
+  {
+   "title": "Walden, or Life in the woods",
+   "author": "Henry David Thoreau",
+   "year": 1930,
+   "hn_rank": 11276,
+   "hn_mentions": 3,
+   "topics": [
+    "biology",
+    "business"
+   ],
+   "url": "https://openlibrary.org/works/OL44478903W"
+  },
+  {
+   "title": "Die Welt als Wille und Vorstellung",
+   "author": "Arthur Schopenhauer",
+   "year": 1819,
+   "hn_rank": 11378,
+   "hn_mentions": 3,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL1183657W"
+  },
+  {
+   "title": "Strength of materials",
+   "author": "Stephen Timoshenko",
+   "year": 1930,
+   "hn_rank": 11395,
+   "hn_mentions": 3,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL3142929W"
+  },
+  {
+   "title": "American Negro slavery",
+   "author": "Ulrich Bonnell Phillips",
+   "year": 1918,
+   "hn_rank": 11476,
+   "hn_mentions": 3,
+   "topics": [
+    "history",
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL5602094W"
+  },
+  {
+   "title": "The science of knowledge",
+   "author": "Johann Gottlieb Fichte",
+   "year": 1889,
+   "hn_rank": 11523,
+   "hn_mentions": 5,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL508140W"
+  },
+  {
+   "title": "How we advertised America",
+   "author": "Creel, George",
+   "year": 1920,
+   "hn_rank": 11554,
+   "hn_mentions": 5,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL7887399W"
+  },
+  {
+   "title": "Constructive anatomy",
+   "author": "George Brant Bridgman",
+   "year": 1920,
+   "hn_rank": 11737,
+   "hn_mentions": 4,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL1332737W"
+  },
+  {
+   "title": "Don Giovanni",
+   "author": "Wolfgang Amadeus Mozart",
+   "year": 1800,
+   "hn_rank": 11763,
+   "hn_mentions": 4,
+   "topics": [
+    "arts"
+   ],
+   "url": "https://openlibrary.org/works/OL624289W"
+  },
+  {
+   "title": "A treatise on money",
+   "author": "John Maynard Keynes",
+   "year": 1930,
+   "hn_rank": 11769,
+   "hn_mentions": 4,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL35940W"
+  },
+  {
+   "title": "Natural magick",
+   "author": "Giambattista della Porta",
+   "year": 1658,
+   "hn_rank": 11797,
+   "hn_mentions": 3,
+   "topics": [
+    "fantasy"
+   ],
+   "url": "https://openlibrary.org/works/OL1095018W"
+  },
+  {
+   "title": "How to study in college",
+   "author": "Walter Pauk",
+   "year": 1900,
+   "hn_rank": 11843,
+   "hn_mentions": 3,
+   "topics": [
+    "productivity"
+   ],
+   "url": "https://openlibrary.org/works/OL15858539W"
+  },
+  {
+   "title": "Apologia pro vita sua",
+   "author": "John Henry Newman",
+   "year": 1860,
+   "hn_rank": 11916,
+   "hn_mentions": 3,
+   "topics": [
+    "biography",
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL1144827W"
+  },
+  {
+   "title": "Intuition in Science and Mathematics",
+   "author": "H. Fischbein",
+   "year": 1899,
+   "hn_rank": 11926,
+   "hn_mentions": 3,
+   "topics": [
+    "philosophy",
+    "math",
+    "popular-science"
+   ],
+   "url": "https://openlibrary.org/works/OL9095788W"
+  },
+  {
+   "title": "Ten books on architecture",
+   "author": "Leon Battista Alberti",
+   "year": 1485,
+   "hn_rank": 11968,
+   "hn_mentions": 3,
+   "topics": [
+    "design",
+    "arts"
+   ],
+   "url": "https://openlibrary.org/works/OL1417311W"
+  },
+  {
+   "title": "The story of Utopias",
+   "author": "Lewis Mumford",
+   "year": 1922,
+   "hn_rank": 11973,
+   "hn_mentions": 3,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL1879254W"
+  },
+  {
+   "title": "Liberty and the news",
+   "author": "Walter Lippmann",
+   "year": 1920,
+   "hn_rank": 12045,
+   "hn_mentions": 3,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL42337W"
+  },
+  {
+   "title": "Matter and motion",
+   "author": "James Clerk Maxwell",
+   "year": 1876,
+   "hn_rank": 12141,
+   "hn_mentions": 3,
+   "topics": [
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL606641W"
+  },
+  {
+   "title": "New musical resources",
+   "author": "Henry Cowell",
+   "year": 1930,
+   "hn_rank": 12147,
+   "hn_mentions": 3,
+   "topics": [
+    "arts",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL2945493W"
+  },
+  {
+   "title": "De laude scriptorum",
+   "author": "Johannes Trithemius",
+   "year": 1494,
+   "hn_rank": 12155,
+   "hn_mentions": 3,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL2436789W"
+  },
+  {
+   "title": "The gentle art of making enemies",
+   "author": "James McNeill Whistler",
+   "year": 1890,
+   "hn_rank": 12168,
+   "hn_mentions": 3,
+   "topics": [
+    "biography",
+    "design",
+    "arts"
+   ],
+   "url": "https://openlibrary.org/works/OL653119W"
+  },
+  {
+   "title": "A tract on monetary reform",
+   "author": "John Maynard Keynes",
+   "year": 1923,
+   "hn_rank": 12258,
+   "hn_mentions": 3,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL35934W"
+  },
+  {
+   "title": "The Periplus of the Erythraean Sea",
+   "author": "Wilfred H. Schoff",
+   "year": 1912,
+   "hn_rank": 12261,
+   "hn_mentions": 3,
+   "topics": [
+    "history",
+    "business"
+   ],
+   "url": "https://openlibrary.org/works/OL16331474W"
+  },
+  {
+   "title": "Lives of the poets",
+   "author": "Samuel Johnson",
+   "year": 1820,
+   "hn_rank": 12287,
+   "hn_mentions": 3,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL15291070W"
+  },
+  {
+   "title": "Manwatching",
+   "author": "Desmond Morris",
+   "year": 1920,
+   "hn_rank": 12369,
+   "hn_mentions": 2,
+   "topics": [
+    "psychology",
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL104148W"
+  },
+  {
+   "title": "The art of cookery, made plain and easy",
+   "author": "Hannah Glasse",
+   "year": 1747,
+   "hn_rank": 12373,
+   "hn_mentions": 2,
+   "topics": [
+    "lifestyle"
+   ],
+   "url": "https://openlibrary.org/works/OL1646026W"
+  },
+  {
+   "title": "John Barleycorn",
+   "author": "Jack London",
+   "year": 1913,
+   "hn_rank": 12436,
+   "hn_mentions": 2,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL144798W"
+  },
+  {
+   "title": "Ten days in a mad-house",
+   "author": "Nellie Bly",
+   "year": 1905,
+   "hn_rank": 12440,
+   "hn_mentions": 2,
+   "topics": [
+    "biology",
+    "biography",
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL16915826W"
+  },
+  {
+   "title": "The Kybalion",
+   "author": "William Walker Atkinson",
+   "year": 1908,
+   "hn_rank": 12444,
+   "hn_mentions": 2,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL15758519W"
+  },
+  {
+   "title": "The psychology and pedagogy of reading",
+   "author": "Edmund Burke Huey",
+   "year": 1908,
+   "hn_rank": 12492,
+   "hn_mentions": 2,
+   "topics": [
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL153495W"
+  },
+  {
+   "title": "Dictionnaire infernal",
+   "author": "J.-A.-S Collin de Plancy",
+   "year": 1825,
+   "hn_rank": 12527,
+   "hn_mentions": 2,
+   "topics": [
+    "fantasy"
+   ],
+   "url": "https://openlibrary.org/works/OL7037023W"
+  },
+  {
+   "title": "The improvement of the mind",
+   "author": "Isaac Watts",
+   "year": 1741,
+   "hn_rank": 12555,
+   "hn_mentions": 2,
+   "topics": [
+    "politics-society",
+    "math",
+    "productivity"
+   ],
+   "url": "https://openlibrary.org/works/OL667197W"
+  },
+  {
+   "title": "Astronomy",
+   "author": "Robert Horace Baker",
+   "year": 1930,
+   "hn_rank": 12611,
+   "hn_mentions": 2,
+   "topics": [
+    "physics"
+   ],
+   "url": "https://openlibrary.org/works/OL7026135W"
+  },
+  {
+   "title": "Indian boyhood",
+   "author": "Charles Alexander Eastman",
+   "year": 1902,
+   "hn_rank": 12621,
+   "hn_mentions": 2,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL544783W"
+  },
+  {
+   "title": "De finibus",
+   "author": "Marcus Tullius Cicero",
+   "year": 1900,
+   "hn_rank": 12728,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL42769006W"
+  },
+  {
+   "title": "The Game of Logic",
+   "author": "Lewis Carroll",
+   "year": 1886,
+   "hn_rank": 12747,
+   "hn_mentions": 2,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL151428W"
+  },
+  {
+   "title": "The Day Without Yesterday",
+   "author": "John Farrell",
+   "year": 1742,
+   "hn_rank": 12816,
+   "hn_mentions": 2,
+   "topics": [
+    "physics",
+    "biography",
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL57899W"
+  },
+  {
+   "title": "The Power of Concentration",
+   "author": "Theron Q. Dumont",
+   "year": 1877,
+   "hn_rank": 12858,
+   "hn_mentions": 2,
+   "topics": [
+    "productivity",
+    "psychology"
+   ],
+   "url": "https://openlibrary.org/works/OL8520797W"
+  },
+  {
+   "title": "Microbe Hunters",
+   "author": "Paul de Kruif",
+   "year": 1926,
+   "hn_rank": 12897,
+   "hn_mentions": 2,
+   "topics": [
+    "biology",
+    "popular-science",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL7992939W"
+  },
+  {
+   "title": "Social problems",
+   "author": "Henry George",
+   "year": 1883,
+   "hn_rank": 12917,
+   "hn_mentions": 2,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL60750W"
+  },
+  {
+   "title": "An autobiography",
+   "author": "Mohandas Karamchand Gandhi",
+   "year": 1927,
+   "hn_rank": 13009,
+   "hn_mentions": 2,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL298031W"
+  },
+  {
+   "title": "Fairy tales",
+   "author": "Gebrüder Grimm [Brothers Grimm]",
+   "year": 1800,
+   "hn_rank": 13029,
+   "hn_mentions": 2,
+   "topics": [
+    "fantasy"
+   ],
+   "url": "https://openlibrary.org/works/OL45352W"
+  },
+  {
+   "title": "The criminal prosecution and capital punishment of animals",
+   "author": "E. P. Evans",
+   "year": 1906,
+   "hn_rank": 13140,
+   "hn_mentions": 2,
+   "topics": [
+    "biology",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL1852504W"
+  },
+  {
+   "title": "The poverty of philosophy",
+   "author": "Karl Marx",
+   "year": 1847,
+   "hn_rank": 13218,
+   "hn_mentions": 2,
+   "topics": [
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL43035187W"
+  },
+  {
+   "title": "The four Gospels",
+   "author": "Kennedy, John",
+   "year": 1880,
+   "hn_rank": 13350,
+   "hn_mentions": 2,
+   "topics": [
+    "religion",
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL7635715W"
+  },
+  {
+   "title": "Oregon Trail",
+   "author": "Francis Parkman",
+   "year": 1800,
+   "hn_rank": 13404,
+   "hn_mentions": 2,
+   "topics": [
+    "lifestyle"
+   ],
+   "url": "https://openlibrary.org/works/OL102787W"
+  },
+  {
+   "title": "Alive!",
+   "author": "Piers Paul Read",
+   "year": 1920,
+   "hn_rank": 13419,
+   "hn_mentions": 2,
+   "topics": [
+    "hardware",
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL2563181W"
+  },
+  {
+   "title": "The road to Xanadu",
+   "author": "John Livingston Lowes",
+   "year": 1927,
+   "hn_rank": 13693,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL1156133W"
+  },
+  {
+   "title": "The profits of religion",
+   "author": "Upton Sinclair",
+   "year": 1900,
+   "hn_rank": 13694,
+   "hn_mentions": 2,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL43480485W"
+  },
+  {
+   "title": "De inventione",
+   "author": "Cicero",
+   "year": 1546,
+   "hn_rank": 13734,
+   "hn_mentions": 2,
+   "topics": [
+    "writing",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL67524W"
+  },
+  {
+   "title": "Adrift Seventy-Six Days Lost at Sea",
+   "author": "Steven Callahan",
+   "year": 1920,
+   "hn_rank": 13794,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL2029468W"
+  },
+  {
+   "title": "Ten Days That Shook the World",
+   "author": "John Reed",
+   "year": 1919,
+   "hn_rank": 13832,
+   "hn_mentions": 2,
+   "topics": [
+    "history",
+    "politics-society",
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL827976W"
+  },
+  {
+   "title": "An essay in aid of a grammar of assent",
+   "author": "John Henry Newman",
+   "year": 1870,
+   "hn_rank": 13942,
+   "hn_mentions": 2,
+   "topics": [
+    "philosophy",
+    "religion",
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL1144823W"
+  },
+  {
+   "title": "The Seven Lamps of Architecture",
+   "author": "John Ruskin",
+   "year": 1800,
+   "hn_rank": 14037,
+   "hn_mentions": 2,
+   "topics": [
+    "design",
+    "arts"
+   ],
+   "url": "https://openlibrary.org/works/OL88638W"
+  },
+  {
+   "title": "The Art of Public Speaking",
+   "author": "Dale Carnegie",
+   "year": 1915,
+   "hn_rank": 14147,
+   "hn_mentions": 2,
+   "topics": [
+    "writing",
+    "productivity"
+   ],
+   "url": "https://openlibrary.org/works/OL1063254W"
+  },
+  {
+   "title": "Arithmetica integra",
+   "author": "Michael Stifel",
+   "year": 1544,
+   "hn_rank": 14159,
+   "hn_mentions": 2,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL38785505W"
+  },
+  {
+   "title": "Self-help",
+   "author": "Samuel Smiles",
+   "year": 1800,
+   "hn_rank": 14219,
+   "hn_mentions": 2,
+   "topics": [
+    "productivity"
+   ],
+   "url": "https://openlibrary.org/works/OL2321834W"
+  },
+  {
+   "title": "De motu cordis",
+   "author": "Harvey, William",
+   "year": 1628,
+   "hn_rank": 14225,
+   "hn_mentions": 2,
+   "topics": [
+    "history",
+    "biology"
+   ],
+   "url": "https://openlibrary.org/works/OL1382107W"
+  },
+  {
+   "title": "Treatise on natural philosophy",
+   "author": "William Thomson Kelvin",
+   "year": 1867,
+   "hn_rank": 14387,
+   "hn_mentions": 2,
+   "topics": [
+    "math",
+    "philosophy"
+   ],
+   "url": "https://openlibrary.org/works/OL5962006W"
+  },
+  {
+   "title": "Why Startups Fail",
+   "author": "Thomas R. Eisenmann",
+   "year": 1900,
+   "hn_rank": 14418,
+   "hn_mentions": 2,
+   "topics": [
+    "startups",
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL24315781W"
+  },
+  {
+   "title": "Notes on the collection of transfers",
+   "author": "William James Sidis",
+   "year": 1926,
+   "hn_rank": 14523,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL43992096W"
+  },
+  {
+   "title": "Symbolic Logic",
+   "author": "Lewis Carroll",
+   "year": 1894,
+   "hn_rank": 14635,
+   "hn_mentions": 2,
+   "topics": [
+    "math"
+   ],
+   "url": "https://openlibrary.org/works/OL151440W"
+  },
+  {
+   "title": "The Expert at the Card Table",
+   "author": "S. W. Erdnase",
+   "year": 1902,
+   "hn_rank": 14733,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL3160296W"
+  },
+  {
+   "title": "On heroes, hero-worship and the heroic in history",
+   "author": "Thomas Carlyle",
+   "year": 1840,
+   "hn_rank": 14738,
+   "hn_mentions": 2,
+   "topics": [
+    "biography",
+    "business"
+   ],
+   "url": "https://openlibrary.org/works/OL1064770W"
+  },
+  {
+   "title": "I have a dream",
+   "author": "Martin Luther King Jr.",
+   "year": 1920,
+   "hn_rank": 14756,
+   "hn_mentions": 2,
+   "topics": [
+    "politics-society",
+    "design"
+   ],
+   "url": "https://openlibrary.org/works/OL1945960W"
+  },
+  {
+   "title": "The present age",
+   "author": "Søren Kierkegaard",
+   "year": 1851,
+   "hn_rank": 14770,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL16776013W"
+  },
+  {
+   "title": "Manhood of humanity",
+   "author": "Alfred Korzybski",
+   "year": 1921,
+   "hn_rank": 14799,
+   "hn_mentions": 2,
+   "topics": [
+    "writing"
+   ],
+   "url": "https://openlibrary.org/works/OL168124W"
+  },
+  {
+   "title": "Eminent Victorians",
+   "author": "Giles Lytton Strachey",
+   "year": 1910,
+   "hn_rank": 14802,
+   "hn_mentions": 2,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL1652379W"
+  },
+  {
+   "title": "The energies of men",
+   "author": "William James",
+   "year": 1907,
+   "hn_rank": 14898,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL1502039W"
+  },
+  {
+   "title": "Holiness",
+   "author": "J. C. Ryle",
+   "year": 1883,
+   "hn_rank": 14901,
+   "hn_mentions": 2,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL2525391W"
+  },
+  {
+   "title": "The young sea officer's sheet anchor",
+   "author": "Darcy Lever",
+   "year": 1843,
+   "hn_rank": 14988,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL1824460W"
+  },
+  {
+   "title": "The autobiography of a super-tramp",
+   "author": "W. H. Davies",
+   "year": 1908,
+   "hn_rank": 15099,
+   "hn_mentions": 2,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL1092945W"
+  },
+  {
+   "title": "The Pythagorean proposition",
+   "author": "Elisha S. Loomis",
+   "year": 1927,
+   "hn_rank": 15156,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL142241W"
+  },
+  {
+   "title": "Pierre Curie",
+   "author": "Marie Curie",
+   "year": 1923,
+   "hn_rank": 15158,
+   "hn_mentions": 2,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL723623W"
+  },
+  {
+   "title": "Tractatus theologico-politicus",
+   "author": "Benedictus de Spinoza",
+   "year": 1670,
+   "hn_rank": 15202,
+   "hn_mentions": 2,
+   "topics": [
+    "philosophy",
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL36017W"
+  },
+  {
+   "title": "Principles of geology",
+   "author": "Charles Lyell",
+   "year": 1830,
+   "hn_rank": 15238,
+   "hn_mentions": 2,
+   "topics": [
+    "biology"
+   ],
+   "url": "https://openlibrary.org/works/OL1104997W"
+  },
+  {
+   "title": "Memoirs of extraordinary popular delusions",
+   "author": "Charles Mackay",
+   "year": 1841,
+   "hn_rank": 15271,
+   "hn_mentions": 2,
+   "topics": [
+    "economics"
+   ],
+   "url": "https://openlibrary.org/works/OL2987334W"
+  },
+  {
+   "title": "Anarchism",
+   "author": "Emma Goldman",
+   "year": 1916,
+   "hn_rank": 15639,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL33157481W"
+  },
+  {
+   "title": "De la démocratie en Amérique",
+   "author": "Alexis de Tocqueville",
+   "year": 1835,
+   "hn_rank": 15645,
+   "hn_mentions": 2,
+   "topics": [
+    "politics-society",
+    "history"
+   ],
+   "url": "https://openlibrary.org/works/OL278001W"
+  },
+  {
+   "title": "Great captains unveiled",
+   "author": "B. H. Liddell Hart",
+   "year": 1927,
+   "hn_rank": 15653,
+   "hn_mentions": 2,
+   "topics": [
+    "biography"
+   ],
+   "url": "https://openlibrary.org/works/OL89110W"
+  },
+  {
+   "title": "Manifest der Kommunistischen Partei",
+   "author": "Karl Marx",
+   "year": 1848,
+   "hn_rank": 15675,
+   "hn_mentions": 2,
+   "topics": [
+    "politics-society"
+   ],
+   "url": "https://openlibrary.org/works/OL629052W"
+  },
+  {
+   "title": "Return of the God Hypothesis",
+   "author": "Stephen C. Meyer",
+   "year": 1920,
+   "hn_rank": 15685,
+   "hn_mentions": 2,
+   "topics": [
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL21638034W"
+  },
+  {
+   "title": "Memorabilia of Socrates",
+   "author": "Xenophon",
+   "year": 1863,
+   "hn_rank": 15719,
+   "hn_mentions": 2,
+   "topics": [
+    "other"
+   ],
+   "url": "https://openlibrary.org/works/OL687182W"
+  },
+  {
+   "title": "Work",
+   "author": "Margaret Maria Gordon",
+   "year": 1854,
+   "hn_rank": 15740,
+   "hn_mentions": 2,
+   "topics": [
+    "business",
+    "religion"
+   ],
+   "url": "https://openlibrary.org/works/OL44469385W"
+  }
+ ]
+}

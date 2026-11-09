@@ -62,6 +62,20 @@ Scan every .md in every subfolder:
 enano walk
 ```
 
+Watch a file or folder and re-scan on every change, printing only what moved
+(edit your notes in Obsidian and keep this running in a terminal):
+
+```bash
+enano watch notes.md
+```
+
+Call the bundle's scanner directly (no CLI wrapper, no model switching —
+regex-only on bare python3, neural needs `pip install onnxruntime numpy`):
+
+```bash
+python3 ~/.enano/models/personal-goals/latest/tools/scan.py notes.md
+```
+
 Open the enano web app in your browser (localhost backend + GUI):
 
 ```bash
@@ -137,7 +151,13 @@ Run the test suite (hermetic: no network, throwaway store):
 make test
 ```
 
-Serve the local web app at http://127.0.0.1:8765 (auto-opens the browser):
+Build the GUI from source (webapp/, React + Vite):
+
+```bash
+make webapp
+```
+
+Serve the local web app at http://localhost:8599 (auto-opens the browser):
 
 ```bash
 make web
@@ -148,6 +168,8 @@ Forward flags with ARGS:
 ```bash
 make web ARGS="--no-open --port 0 --json"
 ```
+
+The port is fixed at 8599 (IANA-unassigned) so the URL is stable and documentable; a busy port is an error, not a silent port change.
 
 Environment and store diagnostics:
 

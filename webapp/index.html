@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>ENANO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      html,
+      body,
+      #root {
+        height: 100%;
+        margin: 0;
+      }
+
+      /* Boot splash: paints from the HTML itself, long before the JS bundle
+       * finishes on mobile. Tokens mirror playground.css (.pg-root) so React
+       * taking over #root reads as a seamless swap, not a repaint. */
+      .boot-splash {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        background: #ffffff;
+        color: #000000;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+
+      .boot-brand {
+        font-size: 22px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+
+      .boot-bar {
+        width: 120px;
+        height: 4px;
+        overflow: hidden;
+        background: #dbdbdb;
+      }
+
+      .boot-bar span {
+        display: block;
+        width: 40%;
+        height: 100%;
+        background: #000000;
+        animation: boot-slide 1.1s ease-in-out infinite;
+      }
+
+      @keyframes boot-slide {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(350%);
+        }
+      }
+
+      .boot-msg {
+        font-size: 14px;
+      }
+
+      .boot-note {
+        max-width: 240px;
+        font-size: 13px;
+        line-height: 1.4;
+        text-align: center;
+        color: #8c8c8c;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .boot-bar span {
+          animation: none;
+          width: 100%;
+          opacity: 0.45;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="boot-splash" role="status" aria-live="polite">
+        <div class="boot-brand">enano</div>
+        <div class="boot-bar"><span></span></div>
+        <div class="boot-msg">Loading&hellip;</div>
+        <div class="boot-note" id="boot-note">First load can take a little while on mobile.</div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      setTimeout(function () {
+        var note = document.getElementById("boot-note");
+        if (note) note.textContent = "Still loading, thanks for waiting.";
+      }, 7000);
+    </script>
+  </body>
+</html>

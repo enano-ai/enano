@@ -1,0 +1,13 @@
+{
+  "enano-personal-goals-model.zip": {
+    "elevators": 21,
+    "detectors": 31,
+    "patterns": 6292,
+    "elevations": 15833,
+    "advice": 391
+  },
+  "enano-pitch-decks-model.zip": {
+    "models": 1,
+    "elevations": 75
+  }
+}

@@ -8,9 +8,30 @@
       "allow_concurrent_runs": false,
       "reveal": "always"
     },
+    "enano web restart": {
+      "label": "enano web restart",
+      "command": "make web-restart",
+      "use_new_terminal": true,
+      "allow_concurrent_runs": false,
+      "reveal": "always"
+    },
     "enano test": {
       "label": "enano test",
       "command": "make test",
+      "use_new_terminal": true,
+      "allow_concurrent_runs": false,
+      "reveal": "always"
+    },
+    "enano scan": {
+      "label": "enano scan",
+      "command": "make scan",
+      "use_new_terminal": true,
+      "allow_concurrent_runs": false,
+      "reveal": "always"
+    },
+    "enano watch": {
+      "label": "enano watch",
+      "command": "make watch",
       "use_new_terminal": true,
       "allow_concurrent_runs": false,
       "reveal": "always"
