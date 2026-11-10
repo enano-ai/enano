@@ -44,6 +44,14 @@ Fetch the personal-goals bundle (~36 MB, sha-verified):
 enano pull personal-goals
 ```
 
+Install bundles from a local pipeline build instead of the registry (accepts a
+`.ena.zip`, a dated build folder, or the `output/ena-zips` root — the newest
+build wins; sha-verified against the build's `registry.json` when present):
+
+```bash
+enano import /path/to/document-pipeline/output/ena-zips
+```
+
 Scan a document (regex plus the optional neural pass):
 
 ```bash
@@ -82,22 +90,16 @@ Open the enano web app in your browser (localhost backend + GUI):
 enano web
 ```
 
-List the source works with their counts:
-
-```bash
-enano elevators
-```
-
-Search the rule corpus, any word or phrase:
-
-```bash
-enano elevations "fear of failure"
-```
-
 See every model you can pull:
 
 ```bash
 enano list
+```
+
+Search the catalog by name or description:
+
+```bash
+enano search habit
 ```
 
 See what's installed:
@@ -132,7 +134,8 @@ enano doctor
 
 **Global Parameters**
 Every command takes `--json`; there are no other flags to learn. Bare `enano`
-onboards: it pulls the default model and shows the shortest path to a first scan.
+onboards: it shows the shortest path to a first scan. Nothing ever downloads
+unless you run `enano pull`.
 
 ## Local development
 

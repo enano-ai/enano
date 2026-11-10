@@ -195,9 +195,10 @@ def local_models() -> list[LocalModel]:
 def install_bundle(model: str, version: str, archive: Path) -> Path:
     """Extract a bundle zip into the store and point latest at it.
 
-    The zip contains a single top-level directory (enano-<model>-model-<date>
-    or etiny-...); its contents are lifted into models/<model>/<version>/ so
-    the store is addressed by clean names regardless of the artifact naming.
+    The zip contains a single top-level directory (today `<slug>.ena/`; older
+    artifacts were named enano-<model>-model-<date> or etiny-...); its
+    contents are lifted into models/<model>/<version>/ so the store is
+    addressed by clean names regardless of the artifact naming.
     """
     staging = model_dir(model, f".{version}.tmp")
     if staging.exists():

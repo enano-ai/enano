@@ -16,8 +16,13 @@ python -m build             # build sdist/wheel (creates dist/)
 pytest                      # run the test suite in tests/
 make install                # venv + editable install + pytest
 make test                   # pytest via .venv (falls back to python3)
+make release [ARGS="…"]     # scripts/release.py: bump + test + build + twine upload
+                            # + git tag + homebrew-tap formula update (--dry-run to rehearsal)
 make web ARGS="--no-open"   # serve the local web app (ARGS forwards flags)
-make doctor                 # enano doctor through the same wrapper
+make <cmd> [ARGS="…"]       # every CLI subcommand is a make shortcut (make list,
+                            # make pull ARGS=meditations, make scan DOC=notes.md,
+                            # make elevations QUERY="fear of failure") — latest
+                            # code through the repo venv, prod registry by default
 make webapp                 # npm install + build webapp/ into webapp/dist
 make webapp-dev             # vite dev server for the GUI
 ```
@@ -44,7 +49,7 @@ Set `ENANO_HOME=/tmp/some-dir` to redirect the store during testing so you never
 
 Five modules plus the vendored GUI (`cli` → `registry` + `store` + `web`; `registry` lazily imports `store` inside functions; `web` → `store` + `registry`; `webapp/` builds standalone via npm):
 
-- **`enano/cli.py`** — argparse front end. Each subcommand is a `cmd_*` function registered via `parser.set_defaults(func=...)`; `main()` dispatches with `return args.func(args) or 0`. Bare `enano` (no subcommand) runs onboarding (`cmd_bare`): pulls the default model and prints a cheat sheet.
+- **`enano/cli.py`** — argparse front end. Each subcommand is a `cmd_*` function registered via `parser.set_defaults(func=...)`; `main()` dispatches with `return args.func(args) or 0`. Bare `enano` (no subcommand) runs onboarding (`cmd_bare`): prints a cheat sheet and never downloads — `enano pull` is the only command that fetches models. `enano import <path>` installs bundles from a local pipeline build with no registry/download: accepts a `.ena.zip` file, a dated build folder, or the pipeline's `output/ena-zips` root (newest dated subfolder wins); model/version come from each zip's `VERSION.json`, sha256/size are verified against the build folder's `registry.json` when present (and that registry is cached into the store so offline `list`/`web` see it).
 - **`enano/store.py`** — the local store. Layout under `store_root()`:
   - `models/<model>/<version>/` — extracted bundles (immutable per version)
   - `models/<model>/latest` — symlink to the current version dir; **falls back to a plain text file containing the version string if symlink creation fails** (Windows). `read_latest()` handles both forms — always resolve through it, never assume a symlink.
@@ -57,9 +62,9 @@ Five modules plus the vendored GUI (`cli` → `registry` + `store` + `web`; `reg
 
 ### Bundle execution flow
 
-`scan`/`walk`/`elevators`/`elevations` resolve the default (or selected) bundle locally, then `subprocess.call([sys.executable, <bundle>/tools/<tool>.py, ...], cwd=<bundle>)`. Flags are forwarded raw via `nargs=argparse.REMAINDER` (`args.forward`); `main()` strips a leading `--` separator. Not every bundle ships tools — check `tools/scan.py` existence (`LocalModel.runnable`) before assuming a scanner exists.
+`scan`/`walk`/`elevators`/`elevations` resolve the default (or selected) bundle locally, then `subprocess.call([sys.executable, <bundle>/tools/<tool>.py, ...], cwd=<bundle>)`. Flags are forwarded raw via `nargs=argparse.REMAINDER` (`args.forward`); `main()` strips a leading `--` separator. Not every bundle ships tools — check `tools/scan.py` existence (`LocalModel.runnable`) before assuming a scanner exists. **`elevators`/`elevations` are hidden** (`help=argparse.SUPPRESS`, absent from README) but still registered and functional — power commands kept for compatibility. `search` shares `_catalog_rows`/`_print_catalog` with `list` and filters by slug/description/kind (case-insensitive substring).
 
-`_require_bundle()` is the gatekeeper: resolves locally, and if missing either exits with a pull hint (`auto_pull=False`) or interactively prompts and pulls (`auto_pull=True`; the prompt is skipped when stdin is not a tty, so piped runs fail cleanly with exit code 2).
+`_require_bundle()` is the gatekeeper: resolves locally, and if missing prints a pull hint and exits with code 2. No command outside `pull`/`upgrade` ever downloads a model (and `update`/`upgrade` only pull when the registry version is strictly newer than local — `_is_newer()`; a local build ahead of the registry is reported as `ahead-of-registry` and skipped, never downgraded).
 
 ## Conventions
 
@@ -67,7 +72,8 @@ Five modules plus the vendored GUI (`cli` → `registry` + `store` + `web`; `reg
 - Model selectors are `model` or `model@version` — parse with `_parse_selector()` (partition on `@`).
 - Errors are raised as `SystemExit(<message>)` with exit codes: `2` for user-declined/missing-model, `1` for failures (`verify`/`scan`/`walk`/`doctor` return 1 on failure), `0` on success. No tracebacks should leak to users.
 - Downloads show a tty progress bar but a single plain line when piped — keep that distinction when touching `download_archive`.
-- `install_bundle()` extracts the zip into a `.<version>.tmp` staging dir and **lifts the single top-level directory** (artifacts are named `enano-<model>-model-<date>` or `etiny-...`) into `models/<model>/<version>/`. Store paths use clean names regardless of artifact naming.
+- **Artifact naming (`.ena`)**: the pipeline emits `output/ena-zips/<YYYY-MM-DD>/<slug>.ena.zip` plus a `registry.json` (schema `enano.registry.v2`; entries carry `kind: book|bundle`, `latest`, `versions`) inside each dated folder — every build folder is a self-contained snapshot. Each zip has a single `<slug>.ena/` root whose `VERSION.json` (`enano.ena.v2`) carries `slug`, `kind`, and `built_at` (the install version).
+- `install_bundle()` extracts the zip into a `.<version>.tmp` staging dir and **lifts the single top-level directory** (today `<slug>.ena/`; older artifacts were named `enano-<model>-model-<date>` or `etiny-...`) into `models/<model>/<version>/`. Store paths use clean names regardless of artifact naming.
 - Version is single-sourced in `pyproject.toml`; `enano/__init__.py` reads it via `importlib.metadata` with a `0.0.0.dev0` fallback when the package is not installed (e.g. running from a source checkout without `pip install -e .`).
 - Python floor is 3.9: modules use `from __future__ import annotations` so `str | None` annotations are safe, but do not use 3.10+ syntax at runtime (no match statements, no `X | Y` in non-annotation positions).
 - Store-level `remove_version()` refuses to delete the version `latest` points at unless `force=True`; the CLI (`cmd_rm`) performs its own interactive confirmation (requires a tty) and then calls with `force=True`.

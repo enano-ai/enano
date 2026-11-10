@@ -10,7 +10,9 @@ import shutil
 import subprocess
 import sys
 import time
+import zipfile
 from pathlib import Path
+from typing import Any
 
 from . import __version__
 from . import registry as reg
@@ -23,26 +25,22 @@ def _parse_selector(selector: str) -> tuple[str, str | None]:
     return model.strip(), (version.strip() or None) if version else None
 
 
-def _require_bundle(selector: str, auto_pull: bool, quiet: bool = False) -> Path:
+def _is_newer(candidate: str | None, current: str | None) -> bool:
+    """True only when candidate is strictly newer than current. Versions are
+    ISO dates (YYYY-MM-DD), so a local build ahead of the registry (e.g. an
+    imported pipeline build) never counts as an update and never downgrades."""
+    if not candidate or candidate == current:
+        return False
+    return current is None or candidate > current
+
+
+def _require_bundle(selector: str) -> Path:
     model, version = _parse_selector(selector)
     path = store.resolve_version(model, version)
     if path:
         return path
-    entry = reg.resolve_entry(reg.fetch_registry(refresh=True), model, version)
-    size_mb = round(entry["bytes"] / 1e6, 1)
-    if not auto_pull:
-        print(f"{model} is not installed locally. Run: enano pull {model}  ({size_mb} MB)")
-        raise SystemExit(2)
-    prompt = f"{model}@{entry['version']} is not installed — download it now ({size_mb} MB)? [y/N] "
-    if sys.stdin.isatty() and input(prompt).strip().lower() not in ("y", "yes"):
-        raise SystemExit(2)
-    if not quiet:
-        print(f"pulling {model}@{entry['version']} …")
-    _pull(model, entry)
-    path = store.resolve_version(model, version)
-    if not path:
-        raise SystemExit(f"pull finished but {selector} still not resolvable")
-    return path
+    print(f"{model} is not installed. Run: enano pull {model}  (enano list shows what exists)")
+    raise SystemExit(2)
 
 
 def _run_tool(bundle: Path, tool: str, forward: list[str]) -> int:
@@ -124,6 +122,102 @@ def cmd_pull(args: argparse.Namespace) -> int:
     return 0
 
 
+# ------------------------------------------------------------------ import
+
+
+def _import_targets(path: Path) -> tuple[Path, list[Path]]:
+    """Resolve an import path to (build folder, zips).
+
+    Accepts a .ena.zip file, a build folder full of zips (e.g. the pipeline's
+    output/ena-zips/<date>/), or the ena-zips root — in which case the newest
+    dated subfolder wins, so each build folder stays one immutable snapshot.
+    """
+    if path.is_file():
+        if path.suffix != ".zip":
+            raise SystemExit(f"not a zip: {path}")
+        return path.parent, [path]
+    if not path.is_dir():
+        raise SystemExit(f"import path not found: {path}")
+    zips = sorted(p for p in path.glob("*.zip") if p.is_file())
+    if zips:
+        return path, zips
+    dated = sorted(d for d in path.iterdir() if d.is_dir() and any(d.glob("*.zip")))
+    if dated:
+        newest = dated[-1]
+        return newest, sorted(newest.glob("*.zip"))
+    raise SystemExit(f"no .ena zips found under {path}")
+
+
+def _import_version_doc(archive: Path) -> dict:
+    """VERSION.json from inside a .ena zip (fail-loud when absent or broken)."""
+    with zipfile.ZipFile(archive) as bundle:
+        matches = [n for n in bundle.namelist() if n.rsplit("/", 1)[-1] == "VERSION.json"]
+        if not matches:
+            raise SystemExit(f"{archive.name}: no VERSION.json inside — not an enano bundle")
+        try:
+            return jsonlib.loads(bundle.read(matches[0]))
+        except jsonlib.JSONDecodeError as exc:
+            raise SystemExit(f"{archive.name}: unreadable VERSION.json ({exc})")
+
+
+def cmd_import(args: argparse.Namespace) -> int:
+    """Install bundles from a local pipeline build instead of the registry."""
+    folder, zips = _import_targets(Path(args.path).expanduser())
+    registry_doc: dict = {}
+    registry_path = folder / "registry.json"
+    if registry_path.is_file():
+        registry_doc = jsonlib.loads(registry_path.read_text(encoding="utf-8"))
+        cache = store.registry_cache_path()
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        cache.write_text(jsonlib.dumps(registry_doc, indent=2), encoding="utf-8")
+    elif not args.json:
+        print("note: no registry.json next to the zips — importing unverified")
+    models = registry_doc.get("models", {})
+    results = []
+    for archive in zips:
+        doc = _import_version_doc(archive)
+        model = doc.get("slug") or doc.get("model") or archive.name.split(".ena")[0]
+        version = doc.get("built_at")
+        if not version:
+            raise SystemExit(f"{archive.name}: VERSION.json has no built_at — cannot version the install")
+        entry = (models.get(model) or {}).get("versions", {}).get(version)
+        verified = False
+        if entry:
+            size = archive.stat().st_size
+            if entry.get("bytes") and size != entry["bytes"]:
+                raise SystemExit(
+                    f"{archive.name}: size mismatch (got {size}, registry says {entry['bytes']})"
+                )
+            digest = reg.sha256_file(archive)
+            if digest != entry["sha256"]:
+                raise SystemExit(
+                    f"{archive.name}: sha256 mismatch ({digest} != {entry['sha256']}) — "
+                    "file corrupted or a stale registry"
+                )
+            verified = True
+        elif models and not args.json:
+            print(f"warning: {archive.name} not in registry.json — importing unverified")
+        record = {
+            "model": model,
+            "version": version,
+            "kind": doc.get("kind", "bundle"),
+            "verified": verified,
+        }
+        if store.model_dir(model, version).is_dir():
+            if not args.json:
+                print(f"{model}@{version} already installed")
+            results.append({**record, "status": "already-installed"})
+            continue
+        target = store.install_bundle(model, version, archive)
+        if not args.json:
+            note = "" if verified else " (unverified)"
+            print(f"installed {model}@{version} -> {target}{note}")
+        results.append({**record, "status": "installed"})
+    if args.json:
+        print(jsonlib.dumps(results, indent=2))
+    return 0
+
+
 def _human_bytes(size: float) -> str:
     for unit in ("B", "KB", "MB", "GB"):
         if size < 1000:
@@ -136,36 +230,33 @@ def _clip(text: str, width: int) -> str:
     return text if len(text) <= width else text[: width - 1].rstrip() + "…"
 
 
-def cmd_list(args: argparse.Namespace) -> int:
-    """Remote: the registry catalog — one row per model at latest."""
-    registry = reg.fetch_registry(refresh=True)
-    models = reg.registry_models(registry)
-    if not models:
-        raise SystemExit("registry has no models published")
+def _catalog_rows(registry: dict[str, Any]) -> list[dict]:
+    """One row per registry model at latest, with local install state."""
     rows = []
-    for name in sorted(models):
-        entry = models[name]
+    for name, entry in sorted(reg.registry_models(registry).items()):
         version = entry.get("latest") or sorted(entry.get("versions", {}))[-1]
         meta = entry.get("versions", {}).get(version, {})
         local = store.read_latest(name)
         if local == version:
             state = "installed"
         elif local:
-            state = f"update ({local})"
+            state = f"update ({version})" if version > local else f"ahead ({local})"
         else:
             state = "-"
         rows.append(
             {
                 "model": name,
                 "version": version,
+                "kind": entry.get("kind", "bundle"),
                 "description": entry.get("description", ""),
                 "bytes": meta.get("bytes", 0),
                 "state": state,
             }
         )
-    if args.json:
-        print(jsonlib.dumps(rows, indent=2))
-        return 0
+    return rows
+
+
+def _print_catalog(rows: list[dict]) -> None:
     name_w = max([len("NAME")] + [len(r["model"]) for r in rows])
     desc_w = 44
     print(f"{'NAME':<{name_w}}  {'DESCRIPTION':<{desc_w}}  {'SIZE':>8}  {'UPDATED':<11} STATE")
@@ -174,6 +265,39 @@ def cmd_list(args: argparse.Namespace) -> int:
             f"{r['model']:<{name_w}}  {_clip(r['description'], desc_w):<{desc_w}}"
             f"  {_human_bytes(r['bytes']):>8}  {r['version']:<11} {r['state']}"
         )
+
+
+def cmd_list(args: argparse.Namespace) -> int:
+    """Remote: the registry catalog — one row per model at latest."""
+    registry = reg.fetch_registry(refresh=True)
+    models = reg.registry_models(registry)
+    if not models:
+        raise SystemExit("registry has no models published")
+    rows = _catalog_rows(registry)
+    if args.json:
+        print(jsonlib.dumps(rows, indent=2))
+        return 0
+    _print_catalog(rows)
+    return 0
+
+
+def cmd_search(args: argparse.Namespace) -> int:
+    """Search the registry catalog by slug, description, or kind."""
+    query = " ".join(args.query).strip().lower()
+    if not query:
+        raise SystemExit("nothing to search: give a term (e.g. enano search habit)")
+    rows = [
+        r
+        for r in _catalog_rows(reg.fetch_registry(refresh=True))
+        if query in f"{r['model']} {r['description']} {r['kind']}".lower()
+    ]
+    if args.json:
+        print(jsonlib.dumps(rows, indent=2))
+        return 0
+    if not rows:
+        print(f"no models match {query!r} — enano list shows everything")
+        return 0
+    _print_catalog(rows)
     return 0
 
 
@@ -226,10 +350,14 @@ def _update_run(args: argparse.Namespace, fetch: bool) -> int:
             continue
         latest = entry.get("latest")
         local_latest = store.read_latest(model)
-        if latest == local_latest:
-            rows.append({"model": model, "current": local_latest, "latest": latest, "status": "up-to-date"})
+        if not _is_newer(latest, local_latest):
+            status = "up-to-date" if latest == local_latest else "ahead-of-registry"
+            rows.append({"model": model, "current": local_latest, "latest": latest, "status": status})
             if not args.json:
-                print(f"{model}: up to date ({latest})")
+                if status == "up-to-date":
+                    print(f"{model}: up to date ({latest})")
+                else:
+                    print(f"{model}: local {local_latest} is ahead of the registry ({latest}) — skipping")
             continue
         rows.append({"model": model, "current": local_latest, "latest": latest, "status": "update-available"})
         if not args.json:
@@ -239,7 +367,7 @@ def _update_run(args: argparse.Namespace, fetch: bool) -> int:
     runtime_entry = reg.resolve_runtime_entry(registry)
     if runtime_entry:
         current = store.read_runtime_latest()
-        if runtime_entry["version"] != current:
+        if _is_newer(runtime_entry["version"], current):
             rows.append({"model": "runtime", "current": current, "latest": runtime_entry["version"], "status": "update-available"})
             if not args.json:
                 print(f"runtime: {current or 'none'} -> {runtime_entry['version']}")
@@ -351,7 +479,7 @@ def cmd_prune(args: argparse.Namespace) -> int:
 
 def cmd_verify(args: argparse.Namespace) -> int:
     if args.model:
-        bundle = _require_bundle(args.model, auto_pull=False)
+        bundle = _require_bundle(args.model)
         targets = [m for m in store.local_models() if m.path == bundle]
     else:
         targets = store.local_models()
@@ -392,7 +520,7 @@ def _forwardable(forward: list[str]) -> list[str]:
 
 
 def cmd_scan(args: argparse.Namespace) -> int:
-    bundle = _require_bundle(store.default_model(), auto_pull=True, quiet=args.json)
+    bundle = _require_bundle(store.default_model())
     forward = _forwardable(list(args.forward))
     json_flag = ["--json"] if args.json else []
     if forward:
@@ -424,7 +552,7 @@ def _walk_docs(root: Path) -> list[Path]:
 
 
 def cmd_walk(args: argparse.Namespace) -> int:
-    bundle = _require_bundle(store.default_model(), auto_pull=True, quiet=args.json)
+    bundle = _require_bundle(store.default_model())
     tool = bundle / "tools" / "scan.py"
     if not tool.is_file():
         raise SystemExit(f"this bundle ships no scanner ({bundle.name})")
@@ -524,7 +652,7 @@ def _counts_line(counts: dict) -> str:
 
 def cmd_watch(args: argparse.Namespace) -> int:
     """`enano watch`: re-scan on every save and print only what moved."""
-    bundle = _require_bundle(store.default_model(), auto_pull=True, quiet=args.json)
+    bundle = _require_bundle(store.default_model())
     root = (Path(args.path).expanduser() if args.path else Path.cwd()).resolve()
     docs, is_folder = _watch_docs(root)
 
@@ -618,7 +746,7 @@ def cmd_watch(args: argparse.Namespace) -> int:
 
 
 def cmd_elevators(args: argparse.Namespace) -> int:
-    bundle = _require_bundle(store.default_model(), auto_pull=False)
+    bundle = _require_bundle(store.default_model())
     forward = list(args.forward)
     if args.json:
         forward.append("--json")
@@ -626,7 +754,7 @@ def cmd_elevators(args: argparse.Namespace) -> int:
 
 
 def cmd_elevations(args: argparse.Namespace) -> int:
-    bundle = _require_bundle(store.default_model(), auto_pull=False)
+    bundle = _require_bundle(store.default_model())
     forward = list(args.forward)
     if args.query and not any(a in forward for a in ("--search", "--id", "--elevator")):
         forward = ["--search", args.query, *forward]
@@ -690,16 +818,26 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--version", action="version", version=f"enano {__version__}")
     parser.add_argument("--no-color", action="store_true", help=argparse.SUPPRESS)
-    sub = parser.add_subparsers(dest="command")
+    sub = parser.add_subparsers(dest="command", metavar="<command>")
 
     p = sub.add_parser("pull", help="download and install a model bundle")
     p.add_argument("selectors", nargs="*", help="model[@version] … or 'all' (default version: latest)")
     p.add_argument("--json", action="store_true")
     p.set_defaults(func=cmd_pull)
 
+    p = sub.add_parser("import", help="install bundles from a local pipeline build (no download)")
+    p.add_argument("path", help="a .ena.zip file, a dated build folder, or the ena-zips root (newest build wins)")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(func=cmd_import)
+
     p = sub.add_parser("list", help="list registry models (what you can pull)")
     p.add_argument("--json", action="store_true")
     p.set_defaults(func=cmd_list)
+
+    p = sub.add_parser("search", help="search registry models by name, description, or kind")
+    p.add_argument("query", nargs="+", help="search term(s)")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(func=cmd_search)
 
     p = sub.add_parser("models", help="list installed models")
     p.add_argument("--json", action="store_true")
@@ -784,6 +922,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("topic", nargs="?", help="command name (default: top-level help)")
     p.set_defaults(func=cmd_help)
 
+    # elevators/elevations stay registered + dispatchable but never appear in help
+    for hidden in ("elevators", "elevations"):
+        sub._choices_actions = [a for a in sub._choices_actions if a.dest != hidden]
+
     return parser
 
 
@@ -806,23 +948,20 @@ def cmd_help(args: argparse.Namespace) -> int:
 
 
 def cmd_bare() -> int:
-    """Bare `enano`: onboard with the default model — pull it if missing,
-    then show the shortest path to a first scan."""
+    """Bare `enano`: show the shortest path to a first scan. Nothing ever
+    downloads here — `enano pull` is the only command that fetches models."""
     model = store.default_model()
     path = store.resolve_version(model, None)
-    if not path:
-        print(f"no models installed — pulling the default ({model}) …")
-        entry = reg.resolve_entry(reg.fetch_registry(refresh=True), model, None)
-        _pull(model, entry)
-        path = store.resolve_version(model, None)
     if path:
         print(f"ready: {model} is installed ({path.name})")
+    else:
+        print(f"nothing installed yet — start with: enano pull {model}")
     print()
+    print("  enano pull <model>        install a model (enano list shows what exists)")
     print("  enano scan notes.md      scan one document")
     print("  enano scan                scan every .md in the current folder")
     print("  enano walk                scan every .md in every subfolder")
     print("  enano web                 the same models in your browser")
-    print("  enano list                see every model you can pull")
     print(f"  enano use <model>         switch the default (now: {model})")
     return 0
 

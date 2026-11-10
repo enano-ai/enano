@@ -10,7 +10,7 @@ from enano import cli, store
 
 
 ALL_COMMANDS = {
-    "pull", "list", "models", "update", "upgrade", "use", "info",
+    "pull", "import", "list", "search", "models", "update", "upgrade", "use", "info",
     "rm", "prune", "verify", "scan", "walk", "watch", "elevators",
     "elevations", "doctor", "web", "help",
 }
@@ -30,6 +30,19 @@ def test_prog_is_enano():
 
 def test_every_command_registered():
     assert set(_subcommands(cli.build_parser())) == ALL_COMMANDS
+
+
+def test_elevators_and_elevations_hidden_from_help():
+    help_text = cli.build_parser().format_help()
+    assert "elevators" not in help_text
+    assert "elevations" not in help_text
+    assert "search" in help_text
+
+
+def test_hidden_commands_still_work_via_help_topic():
+    parser = cli.build_parser()
+    sub = _subcommands(parser)
+    assert "elevators" in sub and "elevations" in sub
 
 
 def test_every_command_takes_json():
@@ -95,7 +108,7 @@ def test_unknown_command_exits_2(capsys):
 
 def test_double_dash_stripped_from_forward(monkeypatch, tmp_path, store_home):
     calls = []
-    monkeypatch.setattr(cli, "_require_bundle", lambda selector, auto_pull, quiet=False: tmp_path)
+    monkeypatch.setattr(cli, "_require_bundle", lambda selector: tmp_path)
     monkeypatch.setattr(cli, "_run_tool", lambda b, t, f: calls.append(list(f)) or 0)
     assert cli.main(["scan", "--", "--raw-flag", "x"]) == 0
     assert calls == [["--raw-flag", "x"]]
@@ -122,12 +135,12 @@ def test_help_unknown_topic():
 # ------------------------------------------------------------- bare command
 
 
-def test_bare_onboarding_pulls_default(store_home, registry, downloads, capsys):
+def test_bare_onboarding_never_downloads(store_home, registry, downloads, capsys):
     assert cli.main([]) == 0
     out = capsys.readouterr().out
-    assert "ready: personal-goals is installed" in out
+    assert "enano pull personal-goals" in out
     assert "enano scan notes.md" in out
-    assert store.resolve_version("personal-goals", None) is not None
+    assert store.resolve_version("personal-goals", None) is None
 
 
 def test_bare_with_model_installed_skips_pull(store_home, bundle_factory, capsys):

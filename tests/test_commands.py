@@ -4,10 +4,12 @@ scan/walk/elevators/elevations/update/upgrade/doctor."""
 from __future__ import annotations
 
 import json
+import zipfile
 from pathlib import Path
 
 import pytest
 
+from conftest import SCAN_TOOL
 from enano import cli, store
 
 
@@ -19,7 +21,7 @@ def out_json(capsys):
 def tool_calls(monkeypatch, tmp_path, store_home):
     """Patch bundle resolution + tool execution; record what gets forwarded."""
     calls = []
-    monkeypatch.setattr(cli, "_require_bundle", lambda selector, auto_pull, quiet=False: tmp_path / "bundle")
+    monkeypatch.setattr(cli, "_require_bundle", lambda selector: tmp_path / "bundle")
     monkeypatch.setattr(cli, "_run_tool", lambda bundle, tool, forward: calls.append((tool, list(forward))) or 0)
     return calls
 
@@ -63,6 +65,142 @@ def test_pull_unknown_model_fails(store_home, registry, downloads):
         cli.main(["pull", "ghost"])
 
 
+# ------------------------------------------------------------------- import
+
+
+def _ena_zip(path: Path, slug: str, version: str = "2026-11-09", tools: bool = True) -> Path:
+    doc = {
+        "schema": "enano.ena.v2",
+        "format": "ena",
+        "slug": slug,
+        "kind": "book",
+        "model": slug,
+        "built_at": version,
+    }
+    with zipfile.ZipFile(path, "w") as zf:
+        zf.writestr(f"{slug}.ena/VERSION.json", json.dumps(doc))
+        if tools:
+            zf.writestr(f"{slug}.ena/tools/scan.py", SCAN_TOOL)
+    return path
+
+
+def _build_folder(root: Path, date: str = "2026-11-09", with_registry: bool = True) -> Path:
+    folder = root / date
+    folder.mkdir(parents=True)
+    zips = [
+        _ena_zip(folder / "meditations.ena.zip", "meditations", date),
+        _ena_zip(folder / "walden.ena.zip", "walden", date),
+    ]
+    if with_registry:
+        from enano import registry as reg
+
+        models = {}
+        for archive in zips:
+            slug = archive.name.split(".ena")[0]
+            models[slug] = {
+                "kind": "book",
+                "latest": date,
+                "versions": {
+                    date: {
+                        "bytes": archive.stat().st_size,
+                        "sha256": reg.sha256_file(archive),
+                        "url": f"https://example.com/{slug}.ena.{date}.zip",
+                    }
+                },
+            }
+        (folder / "registry.json").write_text(
+            json.dumps({"schema": "enano.registry.v2", "updated": date, "models": models})
+        )
+    return folder
+
+
+def test_import_build_folder_installs_and_verifies(store_home, tmp_path, capsys):
+    folder = _build_folder(tmp_path / "ena-zips")
+    assert cli.main(["import", str(folder)]) == 0
+    out = capsys.readouterr().out
+    assert "installed meditations@2026-11-09" in out
+    assert "installed walden@2026-11-09" in out
+    for slug in ("meditations", "walden"):
+        path = store.resolve_version(slug, None)
+        assert path is not None
+        assert (path / "tools" / "scan.py").is_file()
+
+
+def test_import_caches_the_build_registry(store_home, tmp_path):
+    folder = _build_folder(tmp_path / "ena-zips")
+    cli.main(["import", str(folder)])
+    cached = json.loads(store.registry_cache_path().read_text())
+    assert set(cached["models"]) == {"meditations", "walden"}
+
+
+def test_import_root_picks_newest_dated_folder(store_home, tmp_path):
+    root = tmp_path / "ena-zips"
+    _build_folder(root, "2026-11-02")
+    newest = _build_folder(root, "2026-11-09")
+    cli.main(["import", str(root), "--json"])
+    assert store.resolve_version("meditations", "2026-11-09") is not None
+    assert store.resolve_version("meditations", "2026-11-02") is None
+    assert newest.name == "2026-11-09"
+
+
+def test_import_single_zip(store_home, tmp_path, capsys):
+    archive = _ena_zip(tmp_path / "meditations.ena.zip", "meditations")
+    assert cli.main(["import", str(archive)]) == 0
+    assert "installed meditations@2026-11-09" in capsys.readouterr().out
+    assert store.resolve_version("meditations", None) is not None
+
+
+def test_import_json_output(store_home, tmp_path, capsys):
+    folder = _build_folder(tmp_path / "ena-zips")
+    assert cli.main(["import", str(folder), "--json"]) == 0
+    assert out_json(capsys) == [
+        {"model": "meditations", "version": "2026-11-09", "kind": "book", "verified": True, "status": "installed"},
+        {"model": "walden", "version": "2026-11-09", "kind": "book", "verified": True, "status": "installed"},
+    ]
+
+
+def test_import_without_registry_is_unverified(store_home, tmp_path, capsys):
+    folder = _build_folder(tmp_path / "ena-zips", with_registry=False)
+    assert cli.main(["import", str(folder)]) == 0
+    out = capsys.readouterr().out
+    assert "unverified" in out
+    assert store.resolve_version("meditations", None) is not None
+
+
+def test_import_sha_mismatch_fails_hard(store_home, tmp_path):
+    folder = _build_folder(tmp_path / "ena-zips")
+    doc = json.loads((folder / "registry.json").read_text())
+    doc["models"]["meditations"]["versions"]["2026-11-09"]["sha256"] = "f" * 64
+    (folder / "registry.json").write_text(json.dumps(doc))
+    with pytest.raises(SystemExit, match="sha256 mismatch"):
+        cli.main(["import", str(folder)])
+    assert store.resolve_version("meditations", None) is None
+
+
+def test_import_already_installed_reports_status(store_home, tmp_path, capsys):
+    folder = _build_folder(tmp_path / "ena-zips")
+    cli.main(["import", str(folder), "--json"])
+    capsys.readouterr()
+    assert cli.main(["import", str(folder), "--json"]) == 0
+    assert out_json(capsys) == [
+        {"model": "meditations", "version": "2026-11-09", "kind": "book", "verified": True, "status": "already-installed"},
+        {"model": "walden", "version": "2026-11-09", "kind": "book", "verified": True, "status": "already-installed"},
+    ]
+
+
+def test_import_missing_path_fails(store_home):
+    with pytest.raises(SystemExit, match="import path not found"):
+        cli.main(["import", "/nonexistent/ena-zips"])
+
+
+def test_import_zip_without_version_doc_fails(store_home, tmp_path):
+    bad = tmp_path / "not-a-bundle.ena.zip"
+    with zipfile.ZipFile(bad, "w") as zf:
+        zf.writestr("stuff/readme.txt", "hello")
+    with pytest.raises(SystemExit, match="no VERSION.json"):
+        cli.main(["import", str(bad)])
+
+
 # --------------------------------------------------------------------- list
 
 
@@ -73,7 +211,7 @@ def test_list_json_states(store_home, registry, bundle_factory, capsys):
     rows = out_json(capsys)
     by_model = {r["model"]: r for r in rows}
     assert by_model["career-advice"]["state"] == "installed"
-    assert by_model["personal-goals"]["state"] == "update (2025-06-01)"
+    assert by_model["personal-goals"]["state"] == "update (2026-01-01)"
 
 
 def test_list_json_fresh_store(store_home, registry, capsys):
@@ -87,6 +225,47 @@ def test_list_json_fresh_store(store_home, registry, capsys):
 def test_list_human_prints_header(store_home, registry, capsys):
     assert cli.main(["list"]) == 0
     assert capsys.readouterr().out.startswith("NAME")
+
+
+# ------------------------------------------------------------------- search
+
+
+def test_search_matches_name_and_description(store_home, registry, capsys):
+    assert cli.main(["search", "advice"]) == 0
+    out = capsys.readouterr().out
+    assert "personal-goals" in out
+    assert "career-advice" in out
+
+
+def test_search_json_rows(store_home, registry, capsys):
+    assert cli.main(["search", "goals", "--json"]) == 0
+    rows = out_json(capsys)
+    assert [r["model"] for r in rows] == ["personal-goals"]
+    assert rows[0]["state"] == "-"
+    assert rows[0]["version"] == "2026-01-01"
+
+
+def test_search_marks_installed(store_home, registry, bundle_factory, capsys):
+    bundle_factory()
+    assert cli.main(["search", "goals", "--json"]) == 0
+    assert out_json(capsys)[0]["state"] == "installed"
+
+
+def test_search_no_match(store_home, registry, capsys):
+    assert cli.main(["search", "quantum", "--json"]) == 0
+    assert out_json(capsys) == []
+
+
+def test_search_no_match_human(store_home, registry, capsys):
+    assert cli.main(["search", "quantum"]) == 0
+    assert "no models match" in capsys.readouterr().out
+
+
+def test_search_without_query_fails(capsys):
+    with pytest.raises(SystemExit) as exc:
+        cli.main(["search"])
+    assert exc.value.code == 2
+    assert "required: query" in capsys.readouterr().err
 
 
 # ------------------------------------------------------------------- models
@@ -305,17 +484,17 @@ def test_scan_folder_mode_without_md_files_fails(tool_calls, store_home, tty, tm
 def test_scan_failure_propagates_exit_1(monkeypatch, tmp_path, store_home, tty):
     monkeypatch.chdir(tmp_path)
     (tmp_path / "a.md").write_text("a")
-    monkeypatch.setattr(cli, "_require_bundle", lambda selector, auto_pull, quiet=False: tmp_path / "bundle")
+    monkeypatch.setattr(cli, "_require_bundle", lambda selector: tmp_path / "bundle")
     monkeypatch.setattr(cli, "_run_tool", lambda bundle, tool, forward: 1)
     assert cli.main(["scan"]) == 1
 
 
-def test_scan_auto_pulls_default_model(store_home, registry, downloads, capfd):
-    assert cli.main(["scan", "--json"]) == 0
-    assert store.resolve_version("personal-goals", None) is not None
-    lines = capfd.readouterr().out.strip().splitlines()
-    assert "installed personal-goals@2026-01-01" in lines[0]
-    assert json.loads(lines[-1])["scanned"] == ["-"]
+def test_scan_without_model_never_downloads(store_home, registry, downloads, capfd):
+    with pytest.raises(SystemExit) as exc:
+        cli.main(["scan", "--json"])
+    assert exc.value.code == 2
+    assert store.resolve_version("personal-goals", None) is None
+    assert "enano pull personal-goals" in capfd.readouterr().out
 
 
 # ------------------------------------------------------------------ runtime
@@ -554,6 +733,27 @@ def test_update_available(store_home, registry, bundle_factory, capsys):
     assert cli.main(["update"]) == 0
     assert "2025-06-01 -> 2026-01-01" in capsys.readouterr().out
     assert store.resolve_version("personal-goals", "2026-01-01") is None
+
+
+def test_update_local_newer_than_registry_skips(store_home, registry, bundle_factory, capsys):
+    bundle_factory(version="2026-06-01")
+    assert cli.main(["update"]) == 0
+    assert "ahead of the registry" in capsys.readouterr().out
+    assert store.read_latest("personal-goals") == "2026-06-01"
+
+
+def test_upgrade_never_downgrades(store_home, registry, downloads, bundle_factory):
+    bundle_factory(version="2026-06-01")
+    assert cli.main(["upgrade", "--json"]) == 0
+    assert store.read_latest("personal-goals") == "2026-06-01"
+    assert store.resolve_version("personal-goals", "2026-01-01") is None
+
+
+def test_list_marks_local_ahead(store_home, registry, bundle_factory, capsys):
+    bundle_factory(version="2026-06-01")
+    assert cli.main(["list", "--json"]) == 0
+    by_model = {r["model"]: r for r in out_json(capsys)}
+    assert by_model["personal-goals"]["state"] == "ahead (2026-06-01)"
 
 
 def test_update_model_not_in_registry(store_home, registry, bundle_factory, capsys):
