@@ -4,6 +4,7 @@ Usage:
   python3 scripts/release.py                minor bump (0.2.0 -> 0.3.0), full run
   python3 scripts/release.py 1.0.0          explicit version
   python3 scripts/release.py --dry-run      build + checks only; no commit/upload/tag
+  python3 scripts/release.py --push         also push branch + release tag after tagging
   python3 scripts/release.py --skip-tap     skip the homebrew-tap update
 
 PyPI upload uses twine credentials from ~/.pypirc or TWINE_* env vars. The
@@ -133,6 +134,7 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="build + checks only; no commit, upload, or tag")
     parser.add_argument("--skip-tests", action="store_true", help="skip the pytest gate")
     parser.add_argument("--skip-tap", action="store_true", help="skip the homebrew-tap update")
+    parser.add_argument("--push", action="store_true", help="push branch + release tag after tagging")
     args = parser.parse_args()
 
     old = current_version()
@@ -174,6 +176,9 @@ def main() -> int:
         run([sys.executable, "-m", "twine", "upload", *[str(p) for p in sorted(dist.iterdir())]])
         url = sdist_url(version)
         run(["git", "tag", f"v{version}"], cwd=ROOT)
+        if args.push:
+            run(["git", "push"], cwd=ROOT)
+            run(["git", "push", "origin", f"v{version}"], cwd=ROOT)
 
     text = formula(version, url, sha)
     print()
